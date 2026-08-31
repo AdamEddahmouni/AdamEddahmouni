@@ -1,0 +1,28 @@
+<svg width="1200" height="390" viewBox="0 0 1200 390" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1200" y2="390"><stop stop-color="#F7FAFF"/><stop offset=".55" stop-color="#EEF4FC"/><stop offset="1" stop-color="#F7FAFF"/></linearGradient>
+<linearGradient id="a" x1="760" y1="80" x2="1080" y2="320"><stop stop-color="#19D2C7"/><stop offset=".5" stop-color="#2F86FF"/><stop offset="1" stop-color="#7252F4"/></linearGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#52627A" stroke-opacity=".09"/></pattern>
+</defs>
+<rect width="1200" height="390" rx="26" fill="url(#bg)"/>
+<rect x=".75" y=".75" width="1198.5" height="388.5" rx="25.25" fill="none" stroke="#2F86FF" stroke-opacity=".25" stroke-width="1.5"/>
+<rect width="1200" height="390" rx="26" fill="url(#grid)"/>
+<g opacity=".85">
+<ellipse cx="945" cy="195" rx="155" ry="72" fill="none" stroke="#2F86FF" stroke-opacity=".35" transform="rotate(-15 945 195)"/>
+<ellipse cx="945" cy="195" rx="108" ry="130" fill="none" stroke="#19D2C7" stroke-opacity=".28" transform="rotate(35 945 195)"/>
+<ellipse cx="945" cy="195" rx="184" ry="44" fill="none" stroke="#7252F4" stroke-opacity=".26" transform="rotate(25 945 195)"/>
+<circle cx="945" cy="195" r="58" fill="none" stroke="url(#a)" stroke-width="2"/>
+<circle cx="945" cy="195" r="10" fill="#19D2C7"/><circle cx="1060" cy="143" r="6" fill="#2F86FF"/><circle cx="873" cy="278" r="6" fill="#7252F4"/>
+</g>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<text x="76" y="130" fill="#52627A" font-size="15" font-weight="700" letter-spacing="4">ENGINEERING · AI SYSTEMS · OPEN RESEARCH</text>
+<text x="72" y="210" fill="#0B1730" font-size="58" font-weight="800" letter-spacing="-2">Adam Eddahmouni</text>
+<text x="76" y="253" fill="#52627A" font-size="21" font-weight="500">Building structured, verifiable systems for difficult real-world problems.</text>
+<g transform="translate(76 292)">
+<rect width="126" height="34" rx="17" fill="#19D2C7" fill-opacity=".10" stroke="#19D2C7" stroke-opacity=".45"/>
+<text x="63" y="22" text-anchor="middle" fill="#19D2C7" font-size="12" font-weight="800">EVIDENCE FIRST</text>
+<rect x="140" width="137" height="34" rx="17" fill="#2F86FF" fill-opacity=".10" stroke="#2F86FF" stroke-opacity=".45"/>
+<text x="208.5" y="22" text-anchor="middle" fill="#2F86FF" font-size="12" font-weight="800">SYSTEMS BUILDER</text>
+<rect x="291" width="119" height="34" rx="17" fill="#7252F4" fill-opacity=".10" stroke="#7252F4" stroke-opacity=".45"/>
+<text x="350.5" y="22" text-anchor="middle" fill="#7252F4" font-size="12" font-weight="800">OPEN SOURCE</text>
+</g></g></svg>
