@@ -77,15 +77,25 @@ jobs:
 
       - name: Outbound links
         run: |
-          # collect markdown links, drop anchors, keep http(s)
-          mapfile -t urls < <(grep -oE 'https?://[^) >]+' README.md | sed 's/[.,]$//' | sort -u)
+          # Collect absolute URLs. The character class has to exclude quotes as
+          # well as ) and > : links inside HTML attributes
+          # (<a href="https://...">) otherwise get a trailing " and every one
+          # of those reports a spurious 404.
+          mapfile -t urls < <(
+            grep -oE "https?://[^)\"' >]+" README.md | sed 's/[.,;]$//' | sort -u
+          )
           status=0
           for u in "${urls[@]}"; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 -A "profile-readme-linkcheck" "$u" || echo 000)
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 25 \
+              -H 'Accept: text/html,application/xhtml+xml' \
+              -H 'Accept-Language: en' \
+              -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36' \
+              "$u" || echo 000)
             case "$code" in
-              2*|3*) echo "ok   $code $u" ;;
-              429)  echo "skip 429 (rate limited) $u" ;;
-              *)    echo "::error::dead link $code $u"; status=1 ;;
+              2*|3*)   echo "ok   $code $u" ;;
+              000)     echo "::warning::timed out $u"; status=1 ;;
+              403|429) echo "skip $code (bot-blocked or rate limited) $u" ;;
+              *)       echo "::error::dead link $code $u"; status=1 ;;
             esac
           done
           exit $status
