@@ -6,7 +6,12 @@ name: Check README
 
 on:
   push:
-    paths: ["README.md", "assets/**", "tools/**", ".github/workflows/check-readme.yml"]
+    paths:
+      - "README.md"
+      - "assets/**"
+      - "tools/**"
+      - ".github/workflows/link-check.yml"
+      - ".markdownlint-cli2.yaml"
   schedule:
     - cron: "41 6 * * *"
   workflow_dispatch:
