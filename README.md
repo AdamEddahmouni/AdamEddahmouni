@@ -31,11 +31,11 @@ Four open-source projects, plus the verification tooling that keeps them honest.
 <tr>
 <td width="50%" valign="top">
 
-<a href="https://github.com/AdamEddahmouni/nosograph"><picture>
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/nosograph-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/cards/nosograph-light.svg">
   <img width="100%" alt="NosoGraph — disease intelligence across biomedical sources, with a diagram of the evidence chain from disease through typed claims and evidence to provenance" src="./assets/cards/nosograph-dark.svg">
-</picture></a>
+</picture>
 
 <br>
 
@@ -54,11 +54,11 @@ Public Alpha · Apache-2.0 · not medical advice, not a diagnostic system, not c
 </td>
 <td width="50%" valign="top">
 
-<a href="https://github.com/AdamEddahmouni/agent-ready"><picture>
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/agent-ready-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/cards/agent-ready-light.svg">
   <img width="100%" alt="Agent-Ready — a repository contract for coding agents, with a diagram of one agent-ready.yaml file generating five agent instruction files" src="./assets/cards/agent-ready-dark.svg">
-</picture></a>
+</picture>
 
 <br>
 
@@ -76,11 +76,11 @@ No API keys. No LLM calls. No network access. Zero cost per run.
 <tr>
 <td width="50%" valign="top">
 
-<a href="https://github.com/AdamEddahmouni/market-trading-platform"><picture>
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/market-trading-platform-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/cards/market-trading-platform-light.svg">
   <img width="100%" alt="Market trading platform workspace — a diagram of branches feeding a protected main spine, then into a manifest and a lineage ledger" src="./assets/cards/market-trading-platform-dark.svg">
-</picture></a>
+</picture>
 
 <br>
 
@@ -96,11 +96,11 @@ Integrated trading platform with governed snapshots, a source-to-snapshot manife
 </td>
 <td width="50%" valign="top">
 
-<a href="https://github.com/AdamEddahmouni/short-squeeze-screener-internship"><picture>
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/short-squeeze-screener-internship-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/cards/short-squeeze-screener-internship-light.svg">
   <img width="100%" alt="Short squeeze research screener — a chart of reported short-interest bars where inconclusive readings are drawn as dashed caps rather than filled in" src="./assets/cards/short-squeeze-screener-internship-dark.svg">
-</picture></a>
+</picture>
 
 <br>
 
@@ -204,11 +204,11 @@ No third-party image or badge service is called at render time, so nothing on th
 
 <div align="center">
 
-<a href="https://github.com/AdamEddahmouni"><picture>
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/ui/status-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/ui/status-light.svg">
   <img alt="Open to collaborations" src="./assets/ui/status-dark.svg">
-</picture></a>
+</picture>
 
 <br>
 

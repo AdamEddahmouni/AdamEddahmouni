@@ -72,12 +72,35 @@ for (const r of removed) {
 }
 if (!stale) pass('no references to removed assets or retired services')
 
-// 6. every image has an alt attribute
+// 6. no <picture> nested inside <a>
+console.log('\npicture inside a link')
+// GitHub's markdown pipeline drops the whole <picture> element when it sits
+// inside an <a>: the <img> survives but both <source> elements are removed, so
+// the image silently loses its light/dark variants and can never switch. It
+// fails with no error anywhere, so it is checked here.
+const nested = readme.match(/<a[^>]*>(?:(?!<\/a>)[\s\S])*?<picture/g) ?? []
+if (nested.length) {
+  for (const n of nested) fail(`<picture> nested in <a> loses its <source> elements: ${n.slice(0, 60)}...`)
+} else {
+  pass('no <picture> nested inside <a> (all keep their light/dark variants)')
+}
+
+// 7. every <img> src falls back to something sensible
+console.log('\nfallback src')
+const imgTags = readme.match(/<img[^>]*>/g) ?? []
+let badFallback = 0
+for (const t of imgTags) {
+  const m = t.match(/src="([^"]+)"/)
+  if (!m) { fail(`img without src: ${t.slice(0, 60)}`); badFallback++ }
+  else if (!/^\.\/assets\//.test(m[1])) { fail(`img src not a local asset: ${m[1]}`); badFallback++ }
+}
+if (!badFallback) pass(`${imgTags.length} img elements use a local asset as src`)
+
+// 8. every image has an alt attribute
 console.log('\nimage alt text')
-const imgs = readme.match(/<img[^>]*>/g) ?? []
 let noAlt = 0
-for (const t of imgs) if (!/\balt="/.test(t)) { fail(`img without alt: ${t.slice(0, 70)}`); noAlt++ }
-if (!noAlt) pass(`${imgs.length} img elements all have alt`)
+for (const t of imgTags) if (!/\balt="/.test(t)) { fail(`img without alt: ${t.slice(0, 70)}`); noAlt++ }
+if (!noAlt) pass(`${imgTags.length} img elements all have alt`)
 
 console.log(`\n${failures ? `${failures} problem(s)` : 'README structure ok'}`)
 process.exit(failures ? 1 : 0)
