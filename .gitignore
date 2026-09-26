@@ -1,0 +1,16 @@
+# Build tooling output is committed on purpose: the README references these
+# files directly, so they must exist in the repository rather than be produced
+# by a deploy step. Only transient tooling state is ignored.
+
+node_modules/
+tools/serve.log
+
+# Local editor / agent workspace state - never part of the published profile
+.freebuff/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

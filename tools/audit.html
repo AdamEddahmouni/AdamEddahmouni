@@ -1,0 +1,107 @@
+<!doctype html>
+<!-- Development-only geometry audit. Inlines each asset so the live SVG DOM
+     can be measured with getBBox / getComputedStyle. Not published. -->
+<html lang="en">
+<head><meta charset="utf-8"><title>asset audit</title>
+<style>
+ body{font:13px ui-monospace,monospace;margin:0;padding:16px;background:#111;color:#eee}
+ .a{margin:0 0 4px}.p{color:#7f7;margin:14px 0 4px}.f{color:#f66;margin:14px 0 4px}
+ .r{color:#fd6;margin:4px 0 0 16px}
+</style></head>
+<body>
+<div id="out">running…</div>
+<script>
+const lines = []
+
+async function main() {
+  let pass = 0, fail = 0
+  const FILES = await (await fetch('/tools/manifest.json')).json()
+  for (const f of FILES) {
+    const res = await fetch(f)
+    if (!res.ok) { fail++; lines.push(`404 ${f}`); continue }
+    const src = await res.text()
+
+    // 1. XML well-formedness via DOMParser
+    const doc = new DOMParser().parseFromString(src, 'image/svg+xml')
+    const perr = doc.querySelector('parsererror')
+    if (perr) { fail++; lines.push(`XML ERROR ${f}: ${perr.textContent.slice(0,110)}`); continue }
+
+    // 2. inline it so we can measure real geometry
+    const holder = document.createElement('div')
+    holder.style.cssText = 'position:absolute;left:-9999px;top:0'
+    holder.innerHTML = src
+    document.body.appendChild(holder)
+    const svg = holder.querySelector('svg')
+    const w = +svg.getAttribute('width'), h = +svg.getAttribute('height')
+
+    const problems = []
+
+    // 3. every <text> must sit inside the viewBox
+    let texts = 0
+    for (const t of svg.querySelectorAll('text')) {
+      texts++
+      let b
+      try { b = t.getBBox() } catch { continue }
+      if (b.width === 0 && b.height === 0) { problems.push(`empty text "${t.textContent.slice(0,20)}"`); continue }
+      if (b.x < -1 || b.y < -1 || b.x + b.width > w + 1 || b.y + b.height > h + 1) {
+        problems.push(`text out of bounds "${(t.textContent||'').slice(0,24)}" box=${[b.x,b.y,b.width,b.height].map(n=>n.toFixed(0))} vs ${w}x${h}`)
+      }
+    }
+
+    // 4. no two <text> boxes may overlap
+    const boxes = []
+    for (const t of svg.querySelectorAll('text')) {
+      let b; try { b = t.getBBox() } catch { continue }
+      if (b.width > 0) boxes.push({ t: (t.textContent||'').slice(0,22), b })
+    }
+    for (let i = 0; i < boxes.length; i++) {
+      for (let j = i + 1; j < boxes.length; j++) {
+        const a = boxes[i].b, c = boxes[j].b
+        const ox = Math.min(a.x+a.width, c.x+c.width) - Math.max(a.x, c.x)
+        const oy = Math.min(a.y+a.height, c.y+c.height) - Math.max(a.y, c.y)
+        if (ox > 1.5 && oy > 1.5) {
+          problems.push(`text overlap "${boxes[i].t}" x "${boxes[j].t}" (${ox.toFixed(0)}x${oy.toFixed(0)}px)`)
+        }
+      }
+    }
+
+    // 5. geometry must not escape the canvas either. Elements under a
+    //    clipPath are excluded: getBBox reports pre-clip geometry, so an
+    //    intentionally off-canvas element (the scanline) would be a
+    //    false positive.
+    const isClipped = (el) => {
+      for (let n = el; n && n !== svg; n = n.parentNode) {
+        if (n.getAttribute && n.getAttribute('clip-path')) return true
+      }
+      return false
+    }
+    for (const c of svg.querySelectorAll('circle,rect,path')) {
+      if (isClipped(c)) continue
+      let b; try { b = c.getBBox() } catch { continue }
+      if (b.width === 0) continue
+      if (b.x < -2 || b.y < -2 || b.x + b.width > w + 2 || b.y + b.height > h + 2) {
+        problems.push(`shape out of bounds <${c.tagName}> ${[b.x,b.y,b.width,b.height].map(n=>n.toFixed(0))} vs ${w}x${h}`)
+        break
+      }
+    }
+
+    const size = (new Blob([src]).size/1024).toFixed(1)
+    if (problems.length) {
+      fail++
+      lines.push(`FAIL ${f}  (${w}x${h}, ${texts} text, ${size} KB)`)
+      problems.slice(0,6).forEach(p => lines.push(`   · ${p}`))
+      if (problems.length > 6) lines.push(`   · …and ${problems.length-6} more`)
+    } else {
+      pass++
+      lines.push(`ok   ${f}  (${w}x${h}, ${texts} text, ${size} KB)`)
+    }
+    holder.remove()
+  }
+  document.getElementById('out').innerHTML =
+    `<b>${pass} pass / ${fail} fail</b>` +
+    lines.map(l => `<div>${l.replace(/</g,'&lt;')}</div>`).join('')
+  document.title = `audit: ${pass} pass ${fail} fail`
+}
+main()
+</script>
+</body></html>

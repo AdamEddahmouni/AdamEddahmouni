@@ -1,0 +1,25 @@
+The generated artwork in this directory is dedicated to the public domain under
+CC0 1.0 Universal.
+
+To the extent possible under law, Adam Eddahmouni has waived all copyright and
+related or neighbouring rights to the SVGs in this directory. You may copy,
+modify, distribute and use them, including for commercial purposes, without
+asking permission.
+
+Full text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+Third-party components embedded in these files:
+
+  Space Grotesk   SIL Open Font License 1.1   https://fonts.google.com/specimen/Space+Grotesk
+  JetBrains Mono  SIL Open Font License 1.1   https://fonts.google.com/specimen/JetBrains+Mono
+
+  Both faces are subsetted to the glyphs each asset actually uses and embedded
+  as base64, because an SVG referenced through an <img> tag cannot fetch a
+  webfont. The OFL permits embedding and redistribution provided the licence
+  travels with the font, which is what this file does.
+
+  Icon paths in the stack chips are from Simple Icons, CC0 1.0 Universal:
+  https://simpleicons.org
+
+The repository's own text and code are under the MIT licence in the root
+LICENSE file.

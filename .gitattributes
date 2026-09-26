@@ -1,0 +1,27 @@
+# Normalise line endings in the repository itself, not just the working tree.
+# Without this, Windows checkouts rewrite the generated SVGs to CRLF, and the
+# renderer then produces a spurious diff on every run because the committed
+# bytes no longer match what the build wrote.
+
+* text=auto eol=lf
+
+# generated assets: byte-for-byte reproducible, so never touched
+*.svg text eol=lf
+*.json text eol=lf
+
+# tooling
+*.mjs text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+
+# shell scripts must stay LF even on Windows
+*.sh text eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.woff2 binary

@@ -1,0 +1,96 @@
+name: Check README
+
+# Guards the things that silently rot in a profile README: invalid SVG, assets
+# that have drifted past their size budget, paths the README references that no
+# longer exist, and dead outbound links.
+
+on:
+  push:
+    paths: ["README.md", "assets/**", "tools/**", ".github/workflows/check-readme.yml"]
+  schedule:
+    - cron: "41 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-readme
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Contrast gate
+        run: node tools/check-contrast.mjs
+
+      - name: README structure
+        run: node tools/check-markdown.mjs
+
+      - name: Every asset is well-formed XML
+        run: |
+          status=0
+          while IFS= read -r f; do
+            if ! python3 -c "import xml.etree.ElementTree as E,sys; E.parse(sys.argv[1])" "$f" 2>/tmp/xmlerr; then
+              echo "::error file=$f::invalid XML — $(cat /tmp/xmlerr | tail -1)"
+              status=1
+            fi
+          done < <(find assets -name '*.svg')
+          exit $status
+
+      - name: Asset size budgets
+        run: |
+          # budgets in KB, generous enough to allow a glyph or two of growth
+          declare -A B=( [hero]=70 [cards]=45 [stats]=65 [ui]=45 [badges]=35 [chips]=50 )
+          status=0
+          while IFS= read -r f; do
+            group=$(basename "$(dirname "$f")")
+            limit=${B[$group]:-45}
+            kb=$(( $(stat -c%s "$f") / 1024 ))
+            if [ "$kb" -gt "$limit" ]; then
+              echo "::error file=$f::${kb}KB exceeds ${limit}KB budget for $group"
+              status=1
+            fi
+          done < <(find assets -name '*.svg')
+          [ $status -eq 0 ] && echo "all assets within budget"
+          exit $status
+
+      - name: README references only files that exist
+        run: |
+          status=0
+          for p in $(grep -oE '\./assets/[A-Za-z0-9._/-]+\.svg' README.md | sort -u); do
+            if [ ! -f "${p#./}" ]; then
+              echo "::error::README references missing asset $p"
+              status=1
+            fi
+          done
+          [ $status -eq 0 ] && echo "all referenced assets present"
+          exit $status
+
+      - name: Outbound links
+        run: |
+          # collect markdown links, drop anchors, keep http(s)
+          mapfile -t urls < <(grep -oE 'https?://[^) >]+' README.md | sed 's/[.,]$//' | sort -u)
+          status=0
+          for u in "${urls[@]}"; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 -A "profile-readme-linkcheck" "$u" || echo 000)
+            case "$code" in
+              2*|3*) echo "ok   $code $u" ;;
+              429)  echo "skip 429 (rate limited) $u" ;;
+              *)    echo "::error::dead link $code $u"; status=1 ;;
+            esac
+          done
+          exit $status
+
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          config: .markdownlint-cli2.yaml

@@ -1,0 +1,36 @@
+# markdownlint for the profile README.
+#
+# The README is mostly raw HTML by necessity - GitHub only allows a limited
+# HTML subset, and the themed graphics need <picture> and <table>. Most
+# style rules are therefore off; the structural ones stay on, because a broken
+# table or a heading-level jump is a real rendering bug.
+
+config:
+  default: true
+
+  # long lines are unavoidable in HTML blocks and URLs
+  MD013: false
+
+  # inline HTML is the point here
+  MD033: false
+  MD041: false
+
+  # the README uses ATX headings inside table cells in places
+  MD024:
+    siblings_only: true
+
+  # duplicate headings across the two anchor targets we intentionally repeat
+  MD026: false
+
+  # bare URLs appear inside image alt-free link text
+  MD034: false
+
+  # first line is a <div>, not a heading
+  MD025: false
+
+  # emphasis used as a heading substitute in table cells
+  MD036: false
+
+ignores:
+  - tools/preview.html
+  - tools/audit.html
