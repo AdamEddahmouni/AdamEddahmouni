@@ -110,7 +110,7 @@ async function langs(scheme) {
     const col = LANG_COLOR[l.name] ?? sc.textFaint
     a.node(
       `<circle cx="26" cy="${y - 4}" r="4" fill="${col}"/>` +
-      `<text x="38" y="${y}" font-family="${500} 11px ${tokens.type.mono.family}, ${tokens.type.monoStack}" fill="${sc.text}">${l.name}</text>`,
+      `<text x="38" y="${y}" style="font:500 11px '${tokens.type.mono.family}', ${tokens.type.monoStack}" fill="${sc.text}">${l.name}</text>`,
     )
     a.node(
       `<rect x="${barX}" y="${y - 11}" width="${barW}" height="8" rx="4" fill="${sc.surfaceAlt}"/>`,

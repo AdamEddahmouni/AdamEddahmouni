@@ -32,27 +32,27 @@
 <rect width="600" height="252" rx="12" fill="#f6f8fb" stroke="#e3e8ef"/>
 <rect width="600" height="252" rx="12" fill="url(#dots)" opacity=".45"/>
 <rect x="20" y="20" width="560" height="2" rx="1" fill="#0b5fa5" opacity=".7"/>
-<text x="20" y="48" font-family="700 15px 'Space Grotesk', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#0b1220" font-weight="700">repository composition</text>
-<circle cx="26" cy="72" r="4" fill="#3776AB"/><text x="38" y="76" font-family="500 11px JetBrains Mono, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">Python</text>
+<text x="20" y="48" style="font:700 15px 'Space Grotesk', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#0b1220">repository composition</text>
+<circle cx="26" cy="72" r="4" fill="#3776AB"/><text x="38" y="76" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">Python</text>
 <rect x="150" y="65" width="300" height="8" rx="4" fill="#eef2f8"/>
 <rect x="150" y="65" width="284.4" height="8" rx="4" fill="#3776AB" opacity=".9" style="transform-origin:150px 69px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.00s"/>
-<text x="580" y="76" font-family="500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" fill="#4a5568" font-weight="500" text-anchor="end" style="font-variant-numeric:tabular-nums">94.8%</text>
-<circle cx="26" cy="98" r="4" fill="#3178C6"/><text x="38" y="102" font-family="500 11px JetBrains Mono, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">TypeScript</text>
+<text x="580" y="76" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">94.8%</text>
+<circle cx="26" cy="98" r="4" fill="#3178C6"/><text x="38" y="102" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">TypeScript</text>
 <rect x="150" y="91" width="300" height="8" rx="4" fill="#eef2f8"/>
 <rect x="150" y="91" width="9.6" height="8" rx="4" fill="#3178C6" opacity=".9" style="transform-origin:150px 95px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.06s"/>
-<text x="580" y="102" font-family="500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" fill="#4a5568" font-weight="500" text-anchor="end" style="font-variant-numeric:tabular-nums">3.2%</text>
-<circle cx="26" cy="124" r="4" fill="#F7DF1E"/><text x="38" y="128" font-family="500 11px JetBrains Mono, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">JavaScript</text>
+<text x="580" y="102" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">3.2%</text>
+<circle cx="26" cy="124" r="4" fill="#F7DF1E"/><text x="38" y="128" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">JavaScript</text>
 <rect x="150" y="117" width="300" height="8" rx="4" fill="#eef2f8"/>
 <rect x="150" y="117" width="6.0" height="8" rx="4" fill="#F7DF1E" opacity=".9" style="transform-origin:150px 121px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.12s"/>
-<text x="580" y="128" font-family="500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" fill="#4a5568" font-weight="500" text-anchor="end" style="font-variant-numeric:tabular-nums">0.9%</text>
-<circle cx="26" cy="150" r="4" fill="#563D7C"/><text x="38" y="154" font-family="500 11px JetBrains Mono, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">CSS</text>
+<text x="580" y="128" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">0.9%</text>
+<circle cx="26" cy="150" r="4" fill="#563D7C"/><text x="38" y="154" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">CSS</text>
 <rect x="150" y="143" width="300" height="8" rx="4" fill="#eef2f8"/>
 <rect x="150" y="143" width="6.0" height="8" rx="4" fill="#563D7C" opacity=".9" style="transform-origin:150px 147px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.18s"/>
-<text x="580" y="154" font-family="500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" fill="#4a5568" font-weight="500" text-anchor="end" style="font-variant-numeric:tabular-nums">0.6%</text>
-<circle cx="26" cy="176" r="4" fill="#E34C26"/><text x="38" y="180" font-family="500 11px JetBrains Mono, ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">HTML</text>
+<text x="580" y="154" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">0.6%</text>
+<circle cx="26" cy="176" r="4" fill="#E34C26"/><text x="38" y="180" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">HTML</text>
 <rect x="150" y="169" width="300" height="8" rx="4" fill="#eef2f8"/>
 <rect x="150" y="169" width="6.0" height="8" rx="4" fill="#E34C26" opacity=".9" style="transform-origin:150px 173px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.24s"/>
-<text x="580" y="180" font-family="500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="10.5" fill="#4a5568" font-weight="500" text-anchor="end" style="font-variant-numeric:tabular-nums">0.4%</text>
-<text x="20" y="236" font-family="500 9.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="9.5" fill="#667085" font-weight="500">by bytes across project repos · includes vendored datasets</text>
+<text x="580" y="180" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">0.4%</text>
+<text x="20" y="236" style="font:500 9.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#667085">by bytes across project repos · includes vendored datasets</text>
 <rect width="100%" height="100%" filter="url(#grainF)" opacity="0.02" style="mix-blend-mode:overlay"/>
 </svg>

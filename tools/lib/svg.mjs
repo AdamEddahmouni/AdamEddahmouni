@@ -66,21 +66,20 @@ export function text(x, y, str, opts = {}) {
     : body(size, weight)
   const attrs = [
     `x="${x}"`, `y="${y}"`,
-    `font-family="${esc(font)}"`,
-    `font-size="${size}"`,
+    // A CSS font shorthand ("700 15px 'Face', …") is only valid in style; in a
+    // font-family attribute the browser rejects it and falls back to serif.
+    `style="font:${esc(font)}${tabular ? ';font-variant-numeric:tabular-nums' : ''}"`,
     `fill="${fill}"`,
   ]
   // text() owns typography. Letting a caller also pass font-family through
   // `extra` produces a duplicate attribute, which makes the whole SVG invalid
   // XML and the asset silently fails to render. Fail loudly instead.
-  if (/font-family/.test(extra)) {
-    throw new Error('text(): use family/size/weight, not extra font-family (duplicate attribute)')
+  if (/font-family|style=/.test(extra)) {
+    throw new Error('text(): use family/size/weight, not extra font-family or style (duplicate attribute)')
   }
-  if (weight !== 400) attrs.push(`font-weight="${weight}"`)
   if (anchor !== 'start') attrs.push(`text-anchor="${anchor}"`)
   if (tracking) attrs.push(`letter-spacing="${tracking}"`)
   if (opacity !== undefined) attrs.push(`opacity="${opacity}"`)
-  if (tabular) attrs.push('style="font-variant-numeric:tabular-nums"')
   if (extra) attrs.push(extra)
   return `<text ${attrs.join(' ')}>${esc(str)}</text>`
 }

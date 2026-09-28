@@ -33,10 +33,10 @@
 </defs>
 <rect width="1200" height="104" fill="#0d1117"/>
 <rect width="1200" height="2" fill="url(#f)"/>
-<text x="0" y="44" font-family="500 15px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" fill="#e6edf3" font-weight="500">github.com/AdamEddahmouni</text>
-<text x="0" y="68" font-family="500 13px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" fill="#9aa7b4" font-weight="500">adameddahmouni@gmail.com</text>
-<text x="1200" y="44" font-family="500 13px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" fill="#9aa7b4" font-weight="500" text-anchor="end">adameddahmouni.github.io/nosograph</text>
-<text x="1200" y="68" font-family="500 12px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" fill="#8492a0" font-weight="500" text-anchor="end">Pennsylvania · Penn State</text>
-<text x="0" y="90" font-family="500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" font-size="11" fill="#8492a0" font-weight="500">engineering · AI systems · open research</text>
+<text x="0" y="44" style="font:500 15px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#e6edf3">github.com/AdamEddahmouni</text>
+<text x="0" y="68" style="font:500 13px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#9aa7b4">adameddahmouni@gmail.com</text>
+<text x="1200" y="44" style="font:500 13px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#9aa7b4" text-anchor="end">adameddahmouni.github.io/nosograph</text>
+<text x="1200" y="68" style="font:500 12px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#8492a0" text-anchor="end">Pennsylvania · Penn State</text>
+<text x="0" y="90" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#8492a0">engineering · AI systems · open research</text>
 <rect width="100%" height="100%" filter="url(#grainF)" opacity="0.028" style="mix-blend-mode:overlay"/>
 </svg>
