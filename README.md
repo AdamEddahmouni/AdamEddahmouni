@@ -6,19 +6,19 @@
   <img width="100%" alt="Adam Eddahmouni: four open-source projects. NosoGraph for biomedical disease evidence, Agent-Ready for coding-agent repository contracts, a trading-platform monorepo with a lineage guard, and a read-only short-squeeze research screener" src="./assets/hero/hero-dark.svg">
 </picture>
 
-[Email](mailto:adameddahmouni@gmail.com) · [NosoGraph docs](https://adameddahmouni.github.io/nosograph/) · [Projects](#projects) · [Stack](#stack)
+[LinkedIn](https://www.linkedin.com/in/adameddahmouni/) · [Email](mailto:adameddahmouni@gmail.com) · [NosoGraph docs](https://adameddahmouni.github.io/nosograph/) · [Projects](#projects) · [Stack](#stack)
 
 </div>
 
 ## Hi, I'm Adam 👋
 
-I'm a Penn State student and full-stack developer building **AI tooling**, **biomedical research software**, and **quantitative market systems**, all in the open.
+I'm a **Mechanical Engineering** student at **Penn State** (class of 2029) who also builds software: **AI tooling**, **biomedical research software**, and **quantitative market systems**, all in the open.
 
 - 🧬 **Now building:** [NosoGraph](https://github.com/AdamEddahmouni/nosograph), an open-source graph that links disease knowledge to its evidence and sources.
 - 🤖 **Also shipping:** [Agent-Ready](https://github.com/AdamEddahmouni/agent-ready), one config file that tells every AI coding agent how to work in your repo.
 - 📈 **Interested in:** developer tooling, data pipelines, fintech, and applied ML.
 - 🤝 **Open to:** internships, research collaborations, and open-source contributions.
-- 📫 **Reach me:** [adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com)
+- 📫 **Reach me:** [adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com) or on [LinkedIn](https://www.linkedin.com/in/adameddahmouni/)
 
 ## Projects
 
@@ -112,6 +112,6 @@ Runs fully locally and read-only, with a frozen demo mode for reproducible runs.
 ## Let's talk
 
 I'm always happy to talk about research software, developer tooling, or markets.
-Email me at **[adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com)**.
+Email me at **[adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com)** or connect on **[LinkedIn](https://www.linkedin.com/in/adameddahmouni/)**.
 
 <sub>NosoGraph is research software, not medical advice. The screener places no trades and gives no investment advice.</sub>
