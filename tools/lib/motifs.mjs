@@ -100,7 +100,7 @@ export function knowledgeGraph(s, x, y, w, h, { compact = false } = {}) {
       const anchor = n.u > 0.7 ? 'end' : n.u > 0.4 ? 'middle' : 'start'
       const dx = n.u > 0.7 ? -n.r - 4 : n.u > 0.4 ? 0 : n.r + 4
       parts.push(
-        `<text x="${+(n.X + dx).toFixed(2)}" y="${+(n.Y + 3.4).toFixed(2)}" font-family="${body(9.5)}" fill="${sc.textMuted}" text-anchor="${anchor}">${labels[i]}</text>`,
+        `<text x="${+(n.X + dx).toFixed(2)}" y="${+(n.Y + 3.4).toFixed(2)}" style="font:${body(9.5)}" fill="${sc.textMuted}" text-anchor="${anchor}">${labels[i]}</text>`,
       )
     })
   }
@@ -127,7 +127,7 @@ export function evidenceLegend(s, x, y, { colGap = 136, rowGap = 15 } = {}) {
         : k === 'unasserted' ? 'stroke-dasharray="3 3"' : ''
       return (
         `<line x1="${cx}" y1="${cy}" x2="${cx + 16}" y2="${cy}" stroke="${col}" stroke-width="2" ${dash}/>` +
-        `<text x="${cx + 22}" y="${cy + 3.4}" font-family="${mono(9)}" fill="${sc.textFaint}">${label}</text>`
+        `<text x="${cx + 22}" y="${cy + 3.4}" style="font:${mono(9)}" fill="${sc.textFaint}">${label}</text>`
       )
     })
     .join('')
@@ -184,7 +184,7 @@ export function contractAdapters(s, x, y, w, h, { compact = false } = {}) {
       `<path d="M ${busX} ${ay} L ${m.X(0.46)} ${ay}" stroke="${blue}" stroke-width="1.1" opacity=".3"/>` +
       `<g style="${fade(i + 1, 0.26)}">` +
         `<rect x="${m.X(0.46)}" y="${ay - ah / 2}" width="${aw}" height="${ah}" rx="${tokens.radius.chip}" fill="${sc.surfaceAlt}" stroke="${i === active ? blue : sc.border}" stroke-width="1"/>` +
-        (compact ? '' : `<text x="${m.X(0.46) + 7}" y="${ay + 3.2}" font-family="${mono(9)}" fill="${i === active ? sc.text : sc.textMuted}">${name}</text>`) +
+        (compact ? '' : `<text x="${m.X(0.46) + 7}" y="${ay + 3.2}" style="font:${mono(9)}" fill="${i === active ? sc.text : sc.textMuted}">${name}</text>`) +
       `</g>`,
     )
   })
@@ -271,7 +271,7 @@ export function commitLineage(s, x, y, w, h, { compact = false } = {}) {
         [0.28, 0.5, 0.72].map((v, k) =>
           `<rect x="${bx + bw * 0.16}" y="${by + bh * v}" width="${bw * [0.6, 0.45, 0.7][k]}" height="${m.L(0.014)}" rx="${m.L(0.007)}" fill="${b.tint}" opacity=".45"/>`,
         ).join('') +
-        (compact ? '' : `<text x="${bx + bw / 2}" y="${by + bh + 12}" font-family="${mono(8.5)}" fill="${sc.textFaint}" text-anchor="middle">${b.label}</text>`) +
+        (compact ? '' : `<text x="${bx + bw / 2}" y="${by + bh + 12}" style="font:${mono(8.5)}" fill="${sc.textFaint}" text-anchor="middle">${b.label}</text>`) +
       `</g>`,
     )
   })
@@ -330,9 +330,9 @@ export function dataQuality(s, x, y, w, h, { compact = false } = {}) {
   if (!compact) {
     parts.push(
       `<circle cx="${m.X(0.02) + 3}" cy="${m.Y(0.04)}" r="3" fill="${blue}"/>` +
-      `<text x="${m.X(0.02) + 11}" y="${m.Y(0.04) + 3.2}" font-family="${mono(9.5)}" fill="${sc.textFaint}">reported</text>` +
+      `<text x="${m.X(0.02) + 11}" y="${m.Y(0.04) + 3.2}" style="font:${mono(9.5)}" fill="${sc.textFaint}">reported</text>` +
       `<rect x="${m.X(0.30)}" y="${m.Y(0.04) - 3}" width="6" height="6" fill="none" stroke="${grey}" stroke-dasharray="2 2"/>` +
-      `<text x="${m.X(0.30) + 11}" y="${m.Y(0.04) + 3.2}" font-family="${mono(9.5)}" fill="${sc.textFaint}">inconclusive</text>`,
+      `<text x="${m.X(0.30) + 11}" y="${m.Y(0.04) + 3.2}" style="font:${mono(9.5)}" fill="${sc.textFaint}">inconclusive</text>`,
     )
   }
 

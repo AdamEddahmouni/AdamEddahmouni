@@ -149,7 +149,6 @@
       { "slug": "docker", "color": "#2496ED" },
       { "slug": "githubactions", "color": "#2088FF" },
       { "slug": "redis", "color": "#DC382D" },
-      { "slug": "markdown", "color": "#083FA1" },
       { "slug": "git", "color": "#F05032" }
     ]
   }

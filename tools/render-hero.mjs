@@ -89,10 +89,10 @@ ${dotField('heroDots', scheme, 26, 1)}`,
     `${weight} ${size}px '${tokens.type.mono.family}', ${tokens.type.monoStack}`
 
   a.node(
-    `<text x="${PAD}" y="72" font-family="${disp(40)}" fill="${sc.text}" letter-spacing="-.6">Adam Eddahmouni</text>`,
+    `<text x="${PAD}" y="72" style="font:${disp(40)}" fill="${sc.text}" letter-spacing="-.6">Adam Eddahmouni</text>`,
   )
   a.node(
-    `<text x="${PAD}" y="100" font-family="${400} 15px ${tokens.type.bodyStack}" fill="${sc.textMuted}">` +
+    `<text x="${PAD}" y="100" style="font:400 15px ${tokens.type.bodyStack}" fill="${sc.textMuted}">` +
       `biomedical research software · AI agent tooling · market &amp; platform systems</text>`,
   )
 
@@ -104,7 +104,7 @@ ${dotField('heroDots', scheme, 26, 1)}`,
     `<g class="rise d2">` +
       `<rect x="${pillX}" y="56" width="${pillW}" height="30" rx="${tokens.radius.pill}" fill="${sc.brand.teal}" fill-opacity=".12" stroke="${sc.brand.teal}" stroke-opacity=".4"/>` +
       statusDot(pillX + 18, 71, scheme, 3.6) +
-      `<text x="${pillX + 30}" y="${75}" font-family="${mon(12)}" fill="${sc.text}">${pillLabel}</text>` +
+      `<text x="${pillX + 30}" y="${75}" style="font:${mon(12)}" fill="${sc.text}">${pillLabel}</text>` +
     `</g>`,
   )
 

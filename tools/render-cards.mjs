@@ -75,14 +75,15 @@ ${dotField('dots', scheme, 20, 1)}`,
   // status pill, right
   const bl = p.badge.left
   const br = p.badge.right
-  const pw = bl.length * 6.2 + br.length * 6.2 + 30
+  // 14px padding each side plus a 20px gap that holds the separator dot
+  const pw = bl.length * 6.2 + br.length * 6.2 + 48
   const px = W - 26 - pw
   a.node(
     `<rect x="${px}" y="38" width="${pw}" height="24" rx="${tokens.radius.pill}" fill="${col}" fill-opacity=".12" stroke="${col}" stroke-opacity=".4"/>`,
   )
   a.text(px + 14, 54, bl, { size: 10, family: 'mono', weight: 500, fill: sc.text })
   a.text(px + pw - 14, 54, br, { size: 10, family: 'mono', weight: 500, fill: col, anchor: 'end' })
-  a.node(`<circle cx="${px + 14 + bl.length * 6.2 + 6}" cy="50" r="1.6" fill="${sc.textFaint}"/>`)
+  a.node(`<circle cx="${px + 14 + bl.length * 6.2 + 10}" cy="50" r="1.6" fill="${sc.textFaint}"/>`)
 
   // motif, large
   a.node(`<g clip-path="url(#motifClip)">${MOTIFS[key](scheme, 20, 90, 300, 148)}</g>`)
