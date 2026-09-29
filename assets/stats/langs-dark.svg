@@ -35,12 +35,12 @@
 <text x="20" y="48" style="font:700 15px 'Space Grotesk', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#e6edf3">repository composition</text>
 <circle cx="26" cy="72" r="4" fill="#3776AB"/><text x="38" y="76" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#e6edf3">Python</text>
 <rect x="150" y="65" width="300" height="8" rx="4" fill="#1c2430"/>
-<rect x="150" y="65" width="284.4" height="8" rx="4" fill="#3776AB" opacity=".9" style="transform-origin:150px 69px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.00s"/>
-<text x="580" y="76" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#9aa7b4" text-anchor="end">94.8%</text>
+<rect x="150" y="65" width="282.9" height="8" rx="4" fill="#3776AB" opacity=".9" style="transform-origin:150px 69px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.00s"/>
+<text x="580" y="76" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#9aa7b4" text-anchor="end">94.3%</text>
 <circle cx="26" cy="98" r="4" fill="#3178C6"/><text x="38" y="102" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#e6edf3">TypeScript</text>
 <rect x="150" y="91" width="300" height="8" rx="4" fill="#1c2430"/>
-<rect x="150" y="91" width="9.6" height="8" rx="4" fill="#3178C6" opacity=".9" style="transform-origin:150px 95px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.06s"/>
-<text x="580" y="102" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#9aa7b4" text-anchor="end">3.2%</text>
+<rect x="150" y="91" width="11.1" height="8" rx="4" fill="#3178C6" opacity=".9" style="transform-origin:150px 95px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.06s"/>
+<text x="580" y="102" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#9aa7b4" text-anchor="end">3.7%</text>
 <circle cx="26" cy="124" r="4" fill="#F7DF1E"/><text x="38" y="128" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#e6edf3">JavaScript</text>
 <rect x="150" y="117" width="300" height="8" rx="4" fill="#1c2430"/>
 <rect x="150" y="117" width="6.0" height="8" rx="4" fill="#F7DF1E" opacity=".9" style="transform-origin:150px 121px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.12s"/>
