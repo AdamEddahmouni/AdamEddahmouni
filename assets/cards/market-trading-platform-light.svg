@@ -63,7 +63,7 @@
 <text x="226" y="276" style="font:500 8.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#667085">lineage ledger</text>
 <line x1="352" y1="234" x2="614" y2="234" stroke="#e3e8ef"/>
 <text x="352" y="254" style="font:500 9.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#667085">— · Python</text>
-<text x="614" y="254" style="font:500 9.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#667085" text-anchor="end">1★ · 2026-10-04</text>
+<text x="614" y="254" style="font:500 9.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#667085" text-anchor="end">1★ · 2026-10-06</text>
 <text x="352" y="272" style="font:500 9px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#667085" opacity=".8">research use only</text>
 <rect width="100%" height="100%" filter="url(#grainF)" opacity="0.02" style="mix-blend-mode:overlay"/>
 </svg>
