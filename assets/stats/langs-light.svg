@@ -35,8 +35,8 @@
 <text x="20" y="48" style="font:700 15px 'Space Grotesk', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#0b1220">repository composition</text>
 <circle cx="26" cy="72" r="4" fill="#3776AB"/><text x="38" y="76" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">Python</text>
 <rect x="150" y="65" width="300" height="8" rx="4" fill="#eef2f8"/>
-<rect x="150" y="65" width="281.1" height="8" rx="4" fill="#3776AB" opacity=".9" style="transform-origin:150px 69px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.00s"/>
-<text x="580" y="76" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">93.7%</text>
+<rect x="150" y="65" width="280.8" height="8" rx="4" fill="#3776AB" opacity=".9" style="transform-origin:150px 69px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.00s"/>
+<text x="580" y="76" style="font:500 10.5px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;font-variant-numeric:tabular-nums" fill="#4a5568" text-anchor="end">93.6%</text>
 <circle cx="26" cy="98" r="4" fill="#3178C6"/><text x="38" y="102" style="font:500 11px 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#0b1220">TypeScript</text>
 <rect x="150" y="91" width="300" height="8" rx="4" fill="#eef2f8"/>
 <rect x="150" y="91" width="12.9" height="8" rx="4" fill="#3178C6" opacity=".9" style="transform-origin:150px 95px;animation:grow .7s cubic-bezier(.4,0,.2,1) both;animation-delay:0.06s"/>
