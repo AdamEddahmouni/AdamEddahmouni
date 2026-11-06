@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-05",
+  "generated": "2026-11-06",
   "repos": {
     "nosograph": {
       "stars": 1,
@@ -7,7 +7,7 @@
       "license": "Apache-2.0",
       "language": "Python",
       "lastCommit": "2026-11-02",
-      "pushedAt": "2026-11-04",
+      "pushedAt": "2026-11-06",
       "defaultBranch": "master"
     },
     "agent-ready": {
@@ -25,7 +25,7 @@
       "license": null,
       "language": "Python",
       "lastCommit": "2026-10-12",
-      "pushedAt": "2026-10-31",
+      "pushedAt": "2026-11-06",
       "defaultBranch": "main"
     },
     "short-squeeze-screener-internship": {
