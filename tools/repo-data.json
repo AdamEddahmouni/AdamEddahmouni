@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06",
+  "generated": "2026-11-07",
   "repos": {
     "nosograph": {
       "stars": 1,
@@ -19,15 +19,6 @@
       "pushedAt": "2026-10-28",
       "defaultBranch": "main"
     },
-    "market-trading-platform": {
-      "stars": 1,
-      "forks": 0,
-      "license": null,
-      "language": "Python",
-      "lastCommit": "2026-10-12",
-      "pushedAt": "2026-11-06",
-      "defaultBranch": "main"
-    },
     "short-squeeze-screener-internship": {
       "stars": 1,
       "forks": 0,
@@ -40,73 +31,78 @@
   },
   "account": {
     "followers": 1,
-    "publicRepos": 6,
+    "publicRepos": 5,
     "location": "Pennsylvania, United States",
     "bio": "Full-stack and quantitative systems developer exploring AI-driven tooling, fintech, and applied software engineering // Penn State Student"
   },
   "languages": [
     {
       "name": "Python",
-      "bytes": 105151884,
-      "pct": 93.6
-    },
-    {
-      "name": "TypeScript",
-      "bytes": 4940762,
-      "pct": 4.4
+      "bytes": 57766423,
+      "pct": null
     },
     {
       "name": "JavaScript",
-      "bytes": 1060392,
-      "pct": 0.9
+      "bytes": 637780,
+      "pct": null
     },
     {
-      "name": "CSS",
-      "bytes": 668255,
-      "pct": 0.6
+      "name": "TypeScript",
+      "bytes": 571306,
+      "pct": null
     },
     {
       "name": "HTML",
-      "bytes": 449811,
-      "pct": 0.4
+      "bytes": 379869,
+      "pct": null
+    },
+    {
+      "name": "CSS",
+      "bytes": 229935,
+      "pct": null
     },
     {
       "name": "Makefile",
-      "bytes": 55825,
-      "pct": 0
-    },
-    {
-      "name": "PowerShell",
-      "bytes": 43005,
-      "pct": 0
+      "bytes": 41094,
+      "pct": null
     },
     {
       "name": "Dockerfile",
-      "bytes": 9338,
-      "pct": 0
-    },
-    {
-      "name": "MATLAB",
-      "bytes": 4748,
-      "pct": 0
-    },
-    {
-      "name": "Batchfile",
-      "bytes": 2527,
-      "pct": 0
+      "bytes": 5359,
+      "pct": null
     },
     {
       "name": "Shell",
-      "bytes": 686,
-      "pct": 0
+      "bytes": 211,
+      "pct": null
+    },
+    {
+      "name": "message",
+      "bytes": "0Not Found",
+      "pct": null
+    },
+    {
+      "name": "documentation_url",
+      "bytes": "0https://docs.github.com/rest/repos/repos#list-repository-languages",
+      "pct": null
+    },
+    {
+      "name": "PowerShell",
+      "bytes": 12650,
+      "pct": null
+    },
+    {
+      "name": "status",
+      "bytes": "0404",
+      "pct": null
     }
   ],
   "activity": {
     "byDay": {
       "2026-11-02": 1,
       "2026-10-31": 2,
-      "2026-10-05": 5,
-      "2026-09-28": 34,
+      "2026-10-05": 4,
+      "2026-09-28": 6,
       "2026-09-14": 10,
       "2026-09-13": 30,
       "2026-09-11": 5,
@@ -143,34 +139,12 @@
       "2026-07-03": 3,
       "2026-07-02": 7,
       "2026-07-01": 2,
-      "2026-10-12": 19,
-      "2026-10-11": 10,
-      "2026-10-10": 2,
-      "2026-10-09": 6,
-      "2026-10-08": 20,
-      "2026-10-07": 36,
-      "2026-10-06": 10,
-      "2026-10-04": 5,
-      "2026-10-03": 2,
-      "2026-10-02": 5,
-      "2026-10-01": 29,
-      "2026-09-30": 19,
-      "2026-09-29": 33,
-      "2026-09-27": 10,
-      "2026-09-26": 1,
-      "2026-09-25": 9,
-      "2026-09-24": 41,
-      "2026-09-23": 75,
-      "2026-09-22": 42,
-      "2026-09-21": 55,
-      "2026-09-20": 22,
-      "2026-09-19": 20,
       "2026-09-05": 7,
       "2026-08-17": 1,
       "2026-08-01": 4,
       "2026-07-31": 1,
       "2026-07-27": 34
     },
-    "total": 951
+    "total": 451
   }
 }
