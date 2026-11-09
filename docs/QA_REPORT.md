@@ -1,146 +1,180 @@
 # QA report
 
-Run: 2026-11-09 · repository `AdamEddahmouni/AdamEddahmouni`, branch
-`freebuff/b7188e78c6350d4b9c0443bf` · nothing pushed.
+Branch reviewed: `profile/engineering-studio`.
+Tested commits: `774926a` (baseline) and `90b614a` (remediation).
+Date: 2026-11-09. Nothing was merged into `main`.
 
-## 1. Environment
+## 1. CI status
 
-| Item | Value |
-| --- | --- |
-| Node | v26.13.0 |
-| Renderer | Playwright 1.56.0, Chromium headless shell build 1194 |
-| OS | Ubuntu 24.04 userland, no root |
-| Browser deps | X/NSS/ASound `.deb`s extracted to a local sysroot, `LD_LIBRARY_PATH` |
-| Fonts for QA | Playfair Display 400/500, Inter 400/500, IBM Plex Mono 400/500 |
-| Repository deps | none at render time; Playwright/sharp are local QA-only |
-
-The container initially had **no system fonts**, which made Chromium draw no
-text at all. That is an environment limitation, not a profile bug: with one
-neutral font (DejaVu) present and none of the three design faces installed, the
-plates still render in Playfair Display and IBM Plex Mono, proving the
-base64 WOFF2 subsets embedded in each SVG are honoured (see
-`previews/qa-font-embedding.png`).
-
-## 2. Build results
-
-| Check | Result |
-| --- | --- |
-| `node tools/render-all.mjs` | exit 0 |
-| Generated assets | **32 SVGs, 1,059 KB** total (legacy artwork excluded) |
-| Hero desktop | 91–93 KB per theme |
-| Hero mobile | 56.6–56.7 KB per theme |
-| Work/evidence/activity plates | 23–62 KB |
-| Buttons | ~11 KB each |
-| Asset references in README | 32/32 resolve |
-| Manifest | `tools/manifest.json`, 32 entries, 2026-11-09 |
-
-A generator failure aborts the build and leaves the previous assets in place
-(`render-all.mjs` reported this correctly during development), so a broken run
-cannot publish a half-drawn profile.
-
-## 3. Automated gates
-
-| Gate | Command | Result |
+| Run | Commit | Result |
 | --- | --- | --- |
-| Contrast | `node tools/check-contrast.mjs` | **38/38 resolved pairs pass** AA body threshold |
-| Markdown/structure | `node tools/check-markdown.mjs` | **17/17 checks pass** |
-| External links | `node tools/check-links.mjs` | **8/8 reachable** (LinkedIn answers 999 to bots → reported gated) |
+| [`42544861673`](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42544861673) | `774926a` | **failure** — asset size budgets |
+| [`42549471766`](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42549471766) | `90b614a` | **success** — all steps |
 
-Markdown gate covers: 7 `<picture>` blocks with mobile and desktop sources in
-both schemes, descriptive alt text, file existence, no `<picture>` nested in an
-anchor, 4 HTML anchors + 10 Markdown links, internal anchors, all four buttons
-as real links, and forbidden content (sample metrics, private repository name,
-badge services, fake coordinates).
+The failure was structural, not cosmetic: the workflow divided bytes by 1024,
+compared the truncated integer against one flat default, and had no `activity`
+category. The hero (91 KB) exceeded a 70 KB hero limit and both activity plates
+(59/51 KB) fell through to the 45 KB default. The pipeline stopped there, so
+XML, asset-existence, link and lint steps never ran.
 
-## 4. Visual QA
+## 2. P0 repairs
 
-Captured with `node tools/screenshots.mjs` after each iteration:
+### 2.1 Asset size
 
-- Full page: **1440, 1280, 1024, 768, 390, 360 px**, dark and light (12 images)
-- Detail crops: hero, six plates, evidence, activity — both schemes (14 images)
-- Reduced-motion capture for both schemes
-- Standalone plate captures at native size for typography inspection
+Optimisation came before any budget change:
 
-The GitHub README column is ~1012 px at 1280 and ~330 px at 390, so the
-screenshots evaluate the content column, not the viewport.
+- **Hero** — the surface now writes integer coordinates instead of tenths and
+  samples 52×28 instead of 58×32 (desktop), 30×18 instead of 34×20 (mobile).
+  Visual comparison shows the same silhouette, crest and instrumentation.
+  Desktop fell from 93,577 B to 70,110 B; mobile from 58,086 B to 48,064 B.
+- **Activity** — 365 individual `<rect>` elements became five `<g fill>` groups
+  containing `<use href="#acell">` references. 61,372 B → 33,792 B. The grid,
+  intensity ramp and day-level data are unchanged.
+- Total generated artwork: **32 files, 905,240 B (884 KB)**, down from 1,059 KB.
 
-### Defects found and fixed
+Budgets now live in `tools/check-assets.mjs`, shared by local builds and CI, and
+are exact bytes per component:
 
-| # | Defect | Fix |
+| Component | Limit | Largest measured |
+| --- | ---: | ---: |
+| Hero desktop | 72,000 | 70,110 |
+| Hero mobile | 52,000 | 48,064 |
+| Activity | 38,000 | 33,792 |
+| Evidence | 36,000 | 33,805 |
+| Work | 28,000 | 25,696 |
+| At a glance | 26,000 | 23,883 |
+| UI buttons | 15,000 | 11,448 |
+
+The hero keeps a larger allowance deliberately: the surface is the profile's
+signature, while every word beside it stays real Markdown. The check also
+verifies the manifest count, total and membership, so an unreferenced asset
+cannot silently re-enter the page.
+
+### 2.2 Link validation
+
+`tools/check-links.mjs` now classifies results instead of collapsing them:
+
+- **7 verified** — both project repositories, the getting-started document, the
+  NosoGraph documentation site, GitHub profile, DOI (redirects to the Zenodo
+  record) and the research repository.
+- **1 gated** — LinkedIn answers HTTP 999 to automated clients. It is reported as
+  gated and never as independently verified.
+- **0 dead**.
+
+The README contains no reference to the private `market-trading-platform`
+repository, and the checker fails hard if that name appears. A 404 is a failure,
+not a skip.
+
+## 3. P1 mobile legibility
+
+At GitHub's phone column (~330 CSS px) a 480-unit artboard scales by ≈0.69, so
+the previous 6–10 unit labels measured 4–7 CSS px. Type that cannot reach the
+floor was removed rather than shrunk, and the meaning moved to alt text or
+Markdown:
+
+| Plate | Change |
+| --- | --- |
+| Activity | 16-unit title/total labels; month ticks and weekday labels removed; the title shortens to `GITHUB ACTIVITY` so it cannot collide with the capture date |
+| Hero | Two-line 16-unit descriptor; masthead and availability raised; the redundant phone footer location removed |
+| At a glance | Titles at 24 units; qualifier notes desktop-only |
+| Evidence | 16-unit stage names and detail text, vertical flow preserved; state colour bar removed where it collided with text |
+| Work | Phone plates keep the project name at 22 units and drop diagram micro-text; index raised to 14 units |
+
+Captured at 390 and 360 px in both schemes. No horizontal overflow. Desktop
+labels were raised too: masthead 12.5, descriptor 13, footers 11.5.
+
+A conflict found and fixed during this pass: the evidence alt text and generator
+description said "six-stage"; the chain has seven stages. Corrected.
+
+## 4. Data accuracy
+
+- The activity window now derives from `tools/repo-data.json.generated`; the
+  hardcoded end date is gone.
+- The plate previously read `PUBLIC + PRIVATE, AS REPORTED`, but the data is
+  public commit history, not GitHub's private-aware contribution graph. It now
+  reads `PUBLIC COMMITS` and `THREE FEATURED REPOSITORIES`, and the alt text
+  says public commit activity. `docs/CONTENT_SOURCES.md` records the distinction.
+- Claims re-read from each repository on 2026-11-09:
+  - NosoGraph v0.2.1, 25 registered adapters, 2,445 offline tests selected in the
+    v0.2.1 suite, Apache-2.0, concept DOI. The repository states the snapshot
+    date, not a fresh test run; the profile does not imply otherwise.
+  - Agent-Ready 0.6.1 pre-1.0, eleven commands, five adapters, 557 tests across
+    41 files on Ubuntu/Windows/macOS (repository-reported CI).
+  - Short Squeeze Screener 0.16.0, MIT, read-only, `FROZEN_DEMO`.
+- No trading performance, predictive accuracy or clinical claim appears.
+
+## 5. Verification executed
+
+| Check | Command | Result |
 | --- | --- | --- |
-| 1 | Desktop hero had no masthead: `AE / ENGINEERING STUDIO` and `BUILD · RESEARCH · SHIP` were defined but never appended | call `masthead()` inside the plate clip |
-| 2 | Project titles rendered GitHub link-blue, breaking the ivory hierarchy | headings are plain `### Name`; links moved to the metadata line |
-| 3 | At-a-glance cells were left-aligned with tiny icons and short dividers | centred cells, 30 px marks, full-height separators |
-| 4 | Mobile hero printed three footer labels into one line | phone plate shows location + availability only |
-| 5 | Mobile masthead rule collided with the right label | decorative rule is desktop-only; the hairline remains |
-| 6 | NosoGraph diagram too small and low-contrast on desktop | larger nodes, 62 px claim, 9.8 px state labels, snapshot chip |
-| 7 | Mobile plates hid the evidence-state names, leaving four anonymous dots | compact plates now label every state |
-| 8 | Mobile evidence type scaled to ~6.9 px on a phone | mobile type raised to 10.4–11.8 px |
-| 9 | Mobile activity figure overlapped the contribution grid | phone plate stacks figure above a full-width grid |
-| 10 | Activity legend clipped at the plate edge (`MOR`) | legend reserves trailing space; last month label dropped |
-| 11 | Light-mode surface was washed out on paper ground | 1.4× stroke weight for the light scheme |
-| 12 | README claimed a mechanical-engineering degree not present in the profile | corrected to “Penn State student”, source record updated |
-| 13 | Evidence details overflowed their columns in an early raster pass | wrapping tightened (size 10.5 → 10, ratio corrected), verified in browser |
+| Build + gates | `node tools/render-all.mjs` | exit 0 |
+| Contrast | `node tools/check-contrast.mjs` | **38/38** pairs pass |
+| README structure | `node tools/check-markdown.mjs` | **17/17** |
+| Asset budgets | `node tools/check-assets.mjs` | **32/32** referenced, manifest consistent |
+| SVG well-formedness | Python `ElementTree` over `assets/**` | **58/58** valid |
+| External links | `node tools/check-links.mjs` | 7 verified, 1 gated, 0 dead |
+| Markdown lint | `markdownlint-cli2@0.13.0` | **0 errors** |
+| Determinism | two renders, `sha256sum` over `assets/**/*.svg` | **byte-identical** |
+| CI | GitHub Actions run `42549471766` | **success** |
 
-### Verified in the browser
+Screenshots: 1440/1280/1024/768/390/360 px in dark and light, 14 detail crops,
+two reduced-motion captures, plus plate close-ups used during the fixes
+(`docs/previews/`).
 
-- Hero name fits at 1200 px (measured: “Eddahmouni” at 92 px = 530 px, plate is
-  1200 px) and at 480 px mobile (52 px = 300 px).
-- No horizontal scroll at 360 px; images scale to the column.
-- Both schemes are intentional: ink/ivory plates on GitHub light, paper plates
-  on GitHub dark, driven by `prefers-color-scheme` sources.
-- Motion: reveal starts complete, so a renderer that ignores CSS animation
-  shows the finished frame; `prefers-reduced-motion` forces the final state.
+## 6. Real GitHub rendering
 
-## 5. Accessibility
+The branch README was loaded as a GitHub page, not just raw Markdown:
 
-- Contrast: 38/38 text pairs at AA; white on teal is excluded (1.88:1) and the
-  gate documents why.
-- Every plate has `<title>` + `<desc>`; every README image has descriptive alt
-  text naming the information, not just the look.
-- Essential copy (statement, descriptions, facts, links, contact) is real
-  Markdown, selectable, translatable and screen-reader accessible.
-- Semantic headings: 5 sections, 3 project headings; buttons are real anchors.
-- No meaning is carried by colour alone: evidence states are labelled in the
-  diagram and described in prose.
-- No fake controls: four actions, four genuine destinations.
+- 7 `<picture>` elements and **11 images** loaded (`complete = true`) at their
+  full natural sizes (1200×430 hero, 1200×380 plates, 1200×300 activity).
+- Heading structure intact: Selected work, three project headings, evidence,
+  capabilities, activity, contact.
+- 4 button images resolve to their destinations; internal anchors resolve on the
+  branch page; `mailto:` is intact.
+- No missing image, no camo/proxy failure.
 
-## 6. Performance
+Limitation: the scripted browser-resize step failed with a platform tool error,
+so GitHub's phone breakpoint was **not** directly emulated on github.com. The
+`<picture>` sources and local 390/360 px captures are the evidence for mobile;
+the live profile page itself still renders the old README until this branch is
+merged into `main`.
 
-- 1.03 MB of generated SVG for the whole page, no external image requests, no badge
-  services, no third-party stats endpoints.
-- Fonts are subset per asset to the glyphs drawn; there are no duplicate webfont
-  downloads at runtime.
-- Soft target met for a media-heavy profile, though the hero is deliberately
-  the largest asset (≈92 KB) because it carries the identity.
+## 7. Reference images
 
-## 7. Limitations
+The two approved Engineering Studio references
+(`01-original-engineering-studio-reference.jpg`,
+`02-refined-hero-featured-work-study.png`) are **not present in this workspace**;
+they were supplied as attachments in the earlier session. Composition decisions
+were made against the established system and the prior render, not against a
+fresh pixel comparison in this run. This is a real limitation, not a claimed
+comparison.
 
-1. **Not rendered on github.com.** Pushing was not authorised, so the page was
-   validated in a GitHub-like preview and in Chromium against the same markup,
-   `<picture>` and theme rules. GitHub's sanitizer and camo proxy are the final
-   acceptance test; no claim is made that this was observed live.
-2. **Chromium only.** Firefox and Safari were not available in this environment.
-   The assets are plain SVG 1.1 + CSS with no script and no external references,
-   which is the conservative subset, but cross-browser pixel equality was not
-   measured.
-3. **SVG CSS animation inside `<img>`** is not guaranteed by every client.
-   Assets are authored so the static state is the finished frame.
-4. **LinkedIn** returns HTTP 999 to automated clients; it is reachable for a
-   browser but could not be content-verified here. It was supplied by the owner
-   in the previous README.
-5. **Legacy assets**: the previous profile's `assets/{cards,chips,stats,badges}`
-   and old hero files remain in the repository, unreferenced, because deleting
-   prior work was out of scope. They are safe to delete once the owner confirms.
-6. Preview PNGs (31 files: 12 full page, 2 reduced motion, 14 details, 3 renderer checks) are QA evidence only and are not used by the README.
+## 8. Remaining limitations
 
-## 8. Commands
+1. The public profile page (`main`) is unchanged; branch rendering is verified,
+   merge is not performed.
+2. Firefox and WebKit were not available; Chromium is the only browser tested.
+3. LinkedIn is gated (999) and could not be content-verified.
+4. Reference images unavailable for pixel comparison (see §7).
+5. Legacy artwork (28 files) is preserved but unreferenced; see
+   `docs/ASSET_INVENTORY.md`. It is excluded from the manifest and budgets.
+6. The render workflow remains manual-only; scheduled publishing is still
+   commented out.
+7. A docs-only commit follows this report and does not re-trigger the workflow
+   (its paths cover code, assets and README, not `docs/`). The recorded CI run is
+   the one for `90b614a`, which is the commit that contains all functional
+   changes.
 
-```bash
-node tools/render-all.mjs      # build 58 assets, gates, preview
-node tools/check-contrast.mjs  # 38/38
-node tools/check-markdown.mjs  # 17/17
-node tools/check-links.mjs     # network; 8/8 reachable
-node tools/screenshots.mjs     # needs Playwright + Chromium
-node tools/preview.mjs         # tools/.preview/index.html
-```
+## 9. Security and privacy
+
+- No secrets, tokens or credentials in the repository or generated files.
+- The private repository is excluded everywhere and blocked by two checks.
+- The check workflow is `contents: read`; only the manual render workflow has
+  write permission, and it commits only after every generator and gate passes.
+- No third-party badge services or runtime requests; fonts are OFL subsets.
+
+## 10. Recommendation
+
+**Ready for owner visual review.** Not ready to merge without that review, and
+the branch should not be merged by an agent: the profile page changes only when
+`main` is updated.
