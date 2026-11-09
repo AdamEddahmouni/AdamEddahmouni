@@ -1,16 +1,31 @@
-# Engineering Studio V4 — Integration Notes
+# Engineering Studio V4 — Integrated artwork
 
-This is a non-destructive patch for the existing `profile/engineering-studio` branch. It replaces the hero, at-a-glance, navigation and featured-gallery image references with V4 premium assets, while keeping the existing SVG research pipeline and contribution activity components. Do not delete the repository's existing scripts or assets.
+V4 was committed directly to the `profile/engineering-studio` feature branch in commit `a0be8dd`. This remains a review branch; `main` is unchanged.
 
-## Verification before publishing
-- Copy `repo_patch/` into the feature-branch checkout, preserving other files.
-- Update `tools/check-markdown.mjs` and `tools/check-assets.mjs` to validate `.webp` alongside `.svg`; their current regexes only inspect SVG.
-- Update documentation and preview tooling to recognize changed images and the shorter `Engineering evidence` heading.
-- Test GitHub's `<picture>` light/dark + mobile switching on the actual branch.
-- Confirm all external project links and claims with their current public sources.
-- Check the four linked nav images, the three featured project links, and the mobile gallery.
-- Run all existing CI checks; keep scheduled publication disabled.
-- Do not merge into `main` without final owner visual approval.
+## What changed
 
-## Graphic design tradeoffs
-The complete V4 hero and gallery are raster compositions for better cinematic visual fidelity. The images include editorial headings, so changes to baked-in text must be made by regenerating the art using the source compositor. Descriptions, links, and evidence remain selectable Markdown. The three-card gallery is a single image and is not three independently clickable cards; each project has explicit direct text links immediately below.
+- Replaced the old hero with the V4 cinematic teal/copper terrain composition.
+- Added desktop and mobile compositions in both light and dark themes.
+- Replaced the flat featured-work graphic with the three-project V4 gallery.
+- Preserved verified Markdown descriptions and direct links for all three projects.
+- Kept the original SVG research pipeline and GitHub activity graphics.
+- Added `tools/check-v4-assets.mjs` to validate the new WebP artwork in CI.
+
+## Implementation notes
+
+The featured gallery is a single composited image, **not three independent clickable cards**. Direct project repository links appear below it. The four navigation buttons are separate images nested inside genuine anchor links.
+
+The V4 hero and gallery include rasterized editorial text; regenerate source compositions when that wording changes. Essential project descriptions, caveats, contact details and destination links remain real, selectable Markdown.
+
+V4 assets under `assets/studio-v4/` are intentionally committed to the public profile repository. The large master-art archive and unused decorative extras are **not** committed. Legacy SVG assets and generator scripts remain available for the research pipeline, activity chart and future iterations.
+
+## Validation and release
+
+- `node tools/check-v4-assets.mjs` checks all referenced V4 WebP files, format signatures and component-size budgets.
+- `node tools/check-markdown.mjs` checks responsive picture variants, link structure and existing SVG references.
+- `node tools/check-assets.mjs` checks the existing SVG asset manifest and budgets.
+- The GitHub `Check README` workflow also checks contrast, XML, external links and Markdown lint.
+
+Local GitHub-like desktop/mobile previews were created at 1280 and 390 px in both themes. They intentionally use placeholders for existing evidence/activity SVGs because this patch was composited independently; the **actual feature branch retains those real SVG files**.
+
+Review the feature branch visually on GitHub, including mobile and theme switching, before merging it into `main`. No merge or automatic publication has been authorized.
