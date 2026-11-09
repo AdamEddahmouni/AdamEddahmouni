@@ -1,28 +1,135 @@
-[
-  "/assets/badges/badges-dark.svg",
-  "/assets/badges/badges-light.svg",
-  "/assets/cards/agent-ready-dark.svg",
-  "/assets/cards/agent-ready-light.svg",
-  "/assets/cards/market-trading-platform-dark.svg",
-  "/assets/cards/market-trading-platform-light.svg",
-  "/assets/cards/nosograph-dark.svg",
-  "/assets/cards/nosograph-light.svg",
-  "/assets/cards/short-squeeze-screener-internship-dark.svg",
-  "/assets/cards/short-squeeze-screener-internship-light.svg",
-  "/assets/chips/stack-dark.svg",
-  "/assets/chips/stack-light.svg",
-  "/assets/hero/hero-dark.svg",
-  "/assets/hero/hero-light.svg",
-  "/assets/stats/activity-dark.svg",
-  "/assets/stats/activity-light.svg",
-  "/assets/stats/langs-dark.svg",
-  "/assets/stats/langs-light.svg",
-  "/assets/stats/stats-dark.svg",
-  "/assets/stats/stats-light.svg",
-  "/assets/ui/divider-dark.svg",
-  "/assets/ui/divider-light.svg",
-  "/assets/ui/footer-dark.svg",
-  "/assets/ui/footer-light.svg",
-  "/assets/ui/status-dark.svg",
-  "/assets/ui/status-light.svg"
-]
+{
+  "generated": "2026-11-09",
+  "count": 32,
+  "totalBytes": 1084760,
+  "files": [
+    {
+      "path": "assets/activity/activity-desktop-dark.svg",
+      "bytes": 61372
+    },
+    {
+      "path": "assets/activity/activity-desktop-light.svg",
+      "bytes": 61371
+    },
+    {
+      "path": "assets/activity/activity-mobile-dark.svg",
+      "bytes": 52810
+    },
+    {
+      "path": "assets/activity/activity-mobile-light.svg",
+      "bytes": 52809
+    },
+    {
+      "path": "assets/evidence/pipeline-desktop-dark.svg",
+      "bytes": 33809
+    },
+    {
+      "path": "assets/evidence/pipeline-desktop-light.svg",
+      "bytes": 33808
+    },
+    {
+      "path": "assets/evidence/pipeline-mobile-dark.svg",
+      "bytes": 30881
+    },
+    {
+      "path": "assets/evidence/pipeline-mobile-light.svg",
+      "bytes": 30880
+    },
+    {
+      "path": "assets/glance/glance-desktop-dark.svg",
+      "bytes": 24109
+    },
+    {
+      "path": "assets/glance/glance-desktop-light.svg",
+      "bytes": 24107
+    },
+    {
+      "path": "assets/glance/glance-mobile-dark.svg",
+      "bytes": 24110
+    },
+    {
+      "path": "assets/glance/glance-mobile-light.svg",
+      "bytes": 24108
+    },
+    {
+      "path": "assets/hero/hero-desktop-dark.svg",
+      "bytes": 93577
+    },
+    {
+      "path": "assets/hero/hero-desktop-light.svg",
+      "bytes": 93488
+    },
+    {
+      "path": "assets/hero/hero-mobile-dark.svg",
+      "bytes": 58086
+    },
+    {
+      "path": "assets/hero/hero-mobile-light.svg",
+      "bytes": 57997
+    },
+    {
+      "path": "assets/ui/button-contact.svg",
+      "bytes": 10939
+    },
+    {
+      "path": "assets/ui/button-linkedin.svg",
+      "bytes": 11448
+    },
+    {
+      "path": "assets/ui/button-projects.svg",
+      "bytes": 11113
+    },
+    {
+      "path": "assets/ui/button-research.svg",
+      "bytes": 11082
+    },
+    {
+      "path": "assets/work/agent-ready-desktop-dark.svg",
+      "bytes": 25696
+    },
+    {
+      "path": "assets/work/agent-ready-desktop-light.svg",
+      "bytes": 25695
+    },
+    {
+      "path": "assets/work/agent-ready-mobile-dark.svg",
+      "bytes": 22291
+    },
+    {
+      "path": "assets/work/agent-ready-mobile-light.svg",
+      "bytes": 22290
+    },
+    {
+      "path": "assets/work/nosograph-desktop-dark.svg",
+      "bytes": 24965
+    },
+    {
+      "path": "assets/work/nosograph-desktop-light.svg",
+      "bytes": 24964
+    },
+    {
+      "path": "assets/work/nosograph-mobile-dark.svg",
+      "bytes": 23066
+    },
+    {
+      "path": "assets/work/nosograph-mobile-light.svg",
+      "bytes": 23065
+    },
+    {
+      "path": "assets/work/short-squeeze-screener-internship-desktop-dark.svg",
+      "bytes": 24539
+    },
+    {
+      "path": "assets/work/short-squeeze-screener-internship-desktop-light.svg",
+      "bytes": 24538
+    },
+    {
+      "path": "assets/work/short-squeeze-screener-internship-mobile-dark.svg",
+      "bytes": 20874
+    },
+    {
+      "path": "assets/work/short-squeeze-screener-internship-mobile-light.svg",
+      "bytes": 20873
+    }
+  ]
+}
