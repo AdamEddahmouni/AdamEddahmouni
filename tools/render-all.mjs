@@ -49,7 +49,7 @@ function walk(dir) {
 const GENERATED = [
   /^assets\/hero\/hero-(desktop|mobile)-(dark|light)\.svg$/,
   /^assets\/glance\/glance-(desktop|mobile)-(dark|light)\.svg$/,
-  /^assets\/work\/[a-z0-9-]+-(desktop|mobile)-(dark|light)\.svg$/,
+  /^assets\/featured\/featured-(desktop|mobile)-(dark|light)\.svg$/,
   /^assets\/evidence\/pipeline-(desktop|mobile)-(dark|light)\.svg$/,
   /^assets\/activity\/activity-(desktop|mobile)-(dark|light)\.svg$/,
   /^assets\/ui\/button-[a-z]+\.svg$/,

@@ -41,8 +41,9 @@ bar position in `tools/generate-hero.mjs`.
 1. Add an entry to `data/projects.json` → `featured` with `id`, `index`, `name`,
    `category`, `kicker`, `summary`, `facts`, `links`, `accent`, `art`.
 2. Add an artwork function in `tools/generate-work.mjs` and register it in `ART`.
-3. Add the Markdown block to `README.md`: picture set (mobile/desktop × light/dark),
-   heading, description, facts, links.
+3. Add the Markdown block to `README.md`: heading, description, facts and links.
+   The gallery, not the Markdown, holds the card image; regenerate it once the
+   project entry exists.
 4. Run `node tools/render-all.mjs`; the manifest and checks update automatically.
 
 Removing a project means removing its block from the README and its entry from
@@ -52,7 +53,7 @@ review; delete them deliberately.
 ## Update project images
 
 Generated plates are the source of truth; there are no raster screenshots. If a
-real screenshot is ever added, keep it under `assets/work/`, use a 2× capture,
+real screenshot is ever added, keep it under `assets/featured/`, use a 2× capture,
 compress to WebP, add a matching alt description, and label it as a screenshot
 rather than a conceptual diagram. Do not use concept art as evidence of a
 working product.
@@ -61,8 +62,8 @@ working product.
 
 Budgets live in `tools/check-assets.mjs`, not in the workflow, so local builds
 and CI use the same numbers. They are exact bytes per component: hero desktop
-72,000; hero mobile 52,000; activity 38,000; evidence 36,000; work 28,000;
-glance 26,000; ui 15,000. The hero is deliberately the exception: the surface is
+72,000; hero mobile 52,000; featured desktop 60,000; featured mobile 55,000;
+activity 38,000; evidence 36,000; glance 26,000; ui 15,000. The hero is deliberately the exception: the surface is
 the profile's signature, while its words stay HTML-crisp in Markdown.
 
 Raising a limit is a design decision, not a way to make CI green: change the

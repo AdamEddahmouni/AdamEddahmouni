@@ -1,7 +1,7 @@
 # QA report
 
 Branch reviewed: `profile/engineering-studio`.
-Tested commits: `774926a` (baseline) and `90b614a` (remediation).
+Tested commits: `774926a` (baseline), `90b614a` (CI and legibility remediation), and the featured-gallery follow-up on the same branch.
 Date: 2026-11-09. Nothing was merged into `main`.
 
 ## 1. CI status
@@ -30,7 +30,7 @@ Optimisation came before any budget change:
 - **Activity** — 365 individual `<rect>` elements became five `<g fill>` groups
   containing `<use href="#acell">` references. 61,372 B → 33,792 B. The grid,
   intensity ramp and day-level data are unchanged.
-- Total generated artwork: **32 files, 905,240 B (884 KB)**, down from 1,059 KB.
+- Total generated artwork: **24 files, 756 KB**, down from 1,059 KB. One three-card gallery replaced the three stacked project plates; the 12 retired SVGs were deleted.
 
 Budgets now live in `tools/check-assets.mjs`, shared by local builds and CI, and
 are exact bytes per component:
@@ -41,7 +41,8 @@ are exact bytes per component:
 | Hero mobile | 52,000 | 48,064 |
 | Activity | 38,000 | 33,792 |
 | Evidence | 36,000 | 33,805 |
-| Work | 28,000 | 25,696 |
+| Featured gallery desktop | 60,000 | 35,281 |
+| Featured gallery mobile | 55,000 | 33,215 |
 | At a glance | 26,000 | 23,883 |
 | UI buttons | 15,000 | 11,448 |
 
@@ -78,7 +79,7 @@ Markdown:
 | Hero | Two-line 16-unit descriptor; masthead and availability raised; the redundant phone footer location removed |
 | At a glance | Titles at 24 units; qualifier notes desktop-only |
 | Evidence | 16-unit stage names and detail text, vertical flow preserved; state colour bar removed where it collided with text |
-| Work | Phone plates keep the project name at 22 units and drop diagram micro-text; index raised to 14 units |
+| Featured work | Three cards on desktop; stacked on phones; names at 24 units, fact pills at 16 units, diagrams keep only their structure |
 
 Captured at 390 and 360 px in both schemes. No horizontal overflow. Desktop
 labels were raised too: masthead 12.5, descriptor 13, footers 11.5.
@@ -110,14 +111,14 @@ description said "six-stage"; the chain has seven stages. Corrected.
 | Build + gates | `node tools/render-all.mjs` | exit 0 |
 | Contrast | `node tools/check-contrast.mjs` | **38/38** pairs pass |
 | README structure | `node tools/check-markdown.mjs` | **17/17** |
-| Asset budgets | `node tools/check-assets.mjs` | **32/32** referenced, manifest consistent |
-| SVG well-formedness | Python `ElementTree` over `assets/**` | **58/58** valid |
+| Asset budgets | `node tools/check-assets.mjs` | **24/24** referenced, manifest consistent |
+| SVG well-formedness | Python `ElementTree` over `assets/**` | **50/50** valid |
 | External links | `node tools/check-links.mjs` | 7 verified, 1 gated, 0 dead |
 | Markdown lint | `markdownlint-cli2@0.13.0` | **0 errors** |
 | Determinism | two renders, `sha256sum` over `assets/**/*.svg` | **byte-identical** |
 | CI | GitHub Actions run `42549471766` | **success** |
 
-Screenshots: 1440/1280/1024/768/390/360 px in dark and light, 14 detail crops,
+Screenshots: 1440/1280/1024/768/390/360 px in dark and light, 5 picture crops,
 two reduced-motion captures, plus plate close-ups used during the fixes
 (`docs/previews/`).
 
@@ -125,8 +126,8 @@ two reduced-motion captures, plus plate close-ups used during the fixes
 
 The branch README was loaded as a GitHub page, not just raw Markdown:
 
-- 7 `<picture>` elements and **11 images** loaded (`complete = true`) at their
-  full natural sizes (1200×430 hero, 1200×380 plates, 1200×300 activity).
+- 5 `<picture>` elements and **9 images** loaded (`complete = true`) at their
+  full natural sizes (1200×430 hero, 1200×382 gallery, 1200×300 activity).
 - Heading structure intact: Selected work, three project headings, evidence,
   capabilities, activity, contact.
 - 4 button images resolve to their destinations; internal anchors resolve on the
@@ -139,15 +140,16 @@ so GitHub's phone breakpoint was **not** directly emulated on github.com. The
 the live profile page itself still renders the old README until this branch is
 merged into `main`.
 
-## 7. Reference images
+## 7. Reference alignment
 
-The two approved Engineering Studio references
-(`01-original-engineering-studio-reference.jpg`,
-`02-refined-hero-featured-work-study.png`) are **not present in this workspace**;
-they were supplied as attachments in the earlier session. Composition decisions
-were made against the established system and the prior render, not against a
-fresh pixel comparison in this run. This is a real limitation, not a claimed
-comparison.
+Both references were supplied after the first remediation pass. The study keeps
+a dark card on a white page, uses a three-up featured-work gallery, and renders
+project facts as visible pills. This pass rebuilt featured work as that gallery
+and raised phone fact pills from 13 to 16 units. It did **not** turn the light
+scheme into a dark plate: the cream palette is an intentional theme variant, not
+an attempt to reproduce the mock's white canvas. No pixel-overlay comparison was
+performed; the match is compositional, judged from the captures in
+`docs/previews/`.
 
 ## 8. Remaining limitations
 
@@ -155,7 +157,9 @@ comparison.
    merge is not performed.
 2. Firefox and WebKit were not available; Chromium is the only browser tested.
 3. LinkedIn is gated (999) and could not be content-verified.
-4. Reference images unavailable for pixel comparison (see §7).
+4. Reference alignment is compositional; no pixel-overlay comparison was done
+   (see §7). The hero's wireframe surface is flatter than the study's rendered
+   surface.
 5. Legacy artwork (28 files) is preserved but unreferenced; see
    `docs/ASSET_INVENTORY.md`. It is excluded from the manifest and budgets.
 6. The render workflow remains manual-only; scheduled publishing is still
@@ -175,6 +179,7 @@ comparison.
 
 ## 10. Recommendation
 
-**Ready for owner visual review.** Not ready to merge without that review, and
-the branch should not be merged by an agent: the profile page changes only when
-`main` is updated.
+**Ready for owner visual review.** The featured-work gallery now follows the
+approved study's three-card composition. Not ready to merge without that review,
+and the branch should not be merged by an agent: the profile page changes only
+when `main` is updated.

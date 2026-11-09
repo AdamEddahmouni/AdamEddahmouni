@@ -22,7 +22,8 @@ const LIMITS = {
   'hero/hero-mobile': 52_000,
   activity: 38_000,
   evidence: 36_000,
-  work: 28_000,
+  'featured/featured-desktop': 60_000,
+  'featured/featured-mobile': 55_000,
   glance: 26_000,
   ui: 15_000,
 }
@@ -45,7 +46,9 @@ for (const rel of refs) {
   const bytes = statSync(full).size
   const parts = rel.split('/')
   const group = parts[1]
-  const key = group === 'hero' ? `hero/${parts[2].replace(/-(dark|light)\.svg$/, '')}` : group
+  const key = group === 'hero' || group === 'featured'
+    ? `${group}/${parts[2].replace(/-(dark|light)\.svg$/, '')}`
+    : group
   const limit = LIMITS[key]
   if (!limit) {
     console.log(`  FAIL  no budget category for ${rel} (${key})`)

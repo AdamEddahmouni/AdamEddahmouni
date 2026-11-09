@@ -1,37 +1,43 @@
 /**
- * Featured work plates.
+ * Featured work — the three-card gallery from the approved reference study.
  *
- * Each project gets its own conceptual diagram rather than a stock image: an
- * evidence graph for NosoGraph, a contract pipeline for Agent-Ready, a
- * short-interest field for the screener. They share one frame, one grid and
- * one type system, so three different subjects still read as one set.
+ * One plate holds three cards: a conceptual diagram, the project name and its
+ * factual tags. The reference put full descriptions inside its cards; this
+ * system keeps descriptions, links and the complete fact list as real Markdown
+ * underneath, so the gallery stays scannable without turning essential copy
+ * into pixels. On phones the same cards stack instead of shrinking to a
+ * three-column strip.
  *
- * The diagrams are explicitly labelled "conceptual diagram" — none of them is
- * a screenshot, and none contains invented data. Titles, descriptions, facts
- * and links live in README Markdown, not in the artwork.
+ * The diagrams are explicitly conceptual — none is a screenshot and none
+ * contains invented data. They reuse the same drawing routines as the earlier
+ * full-width plates, at a scale where only their structure survives.
  */
 
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
-  ROOT, schemeOf, text, label, rule, grain, dotField, dotFill, mix,
-  plateRect, plateClip,
+  ROOT, schemeOf, text, label, rule, grain, dotField, dotFill, plateRect,
+  plateClip, chip,
 } from './lib/svg.mjs'
 import { asset } from './lib/asset.mjs'
-import { bracketFrame, icon } from './lib/marks.mjs'
 
 const data = JSON.parse(readFileSync(join(ROOT, 'data', 'projects.json'), 'utf8'))
 
-const DESKTOP = { w: 1200, h: 380, pad: 44 }
-const MOBILE = { w: 480, h: 360, pad: 24 }
+const DESKTOP = {
+  w: 1200, h: 382, pad: 44, gap: 20, cardH: 334, artH: 180,
+  nameSize: 27, chipSize: 12, chipH: 23, top: 24,
+}
+const MOBILE = {
+  w: 480, h: 1050, pad: 24, gap: 18, cardH: 322, artH: 160,
+  nameSize: 24, chipSize: 16, chipH: 27, top: 24,
+}
 
 // ---------------------------------------------------------------------------
-// artwork
+// artwork — compact versions of the three conceptual diagrams
 // ---------------------------------------------------------------------------
 
 function evidenceArt(a, sc, x, y, w, h, compact) {
   const cy = y + h / 2
-  // faint measurement grid
   for (let i = 1; i < 4; i++) {
     a.node(rule(x, y + (h / 4) * i, x + w, y + (h / 4) * i, sc.grid, 0.9))
   }
@@ -43,26 +49,20 @@ function evidenceArt(a, sc, x, y, w, h, compact) {
   if (!compact) {
     a.node(text(dx, cy + 3, 'DZ', { family: 'mono', size: 10, weight: 500, fill: sc.brand.teal, anchor: 'middle', tracking: 1.4 }))
     a.node(label(dx, cy + dr + 20, 'DISEASE', { size: 8.6, tracking: 1.6, fill: sc.textFaint, anchor: 'middle' }))
-  }
-  if (!compact) {
     a.node(text(dx, cy + dr + 36, 'record kept intact', { family: 'mono', size: 8, weight: 400, fill: sc.textFaint, anchor: 'middle' }))
   }
 
-  // claim
   const cw = w * (compact ? 0.3 : 0.23)
   const ch = compact ? 40 : 62
   const cxx = x + w * (compact ? 0.3 : 0.3)
   a.node(`<rect x="${cxx}" y="${cy - ch / 2}" width="${cw}" height="${ch}" rx="7" fill="${sc.elevated}" stroke="${sc.brand.teal}" stroke-opacity=".55"/>`)
   if (!compact) {
     a.node(text(cxx + cw / 2, cy - 2, 'TYPED CLAIM', { family: 'mono', size: 9.6, weight: 500, fill: sc.text, anchor: 'middle', tracking: 1.4 }))
-  }
-  if (!compact) {
     a.node(text(cxx + cw / 2, cy + 14, 'disease · relation · study', { family: 'mono', size: 7.6, weight: 400, fill: sc.textFaint, anchor: 'middle' }))
   }
   a.node(`<path d="M${dx + dr + 8} ${cy}C${cxx - 40} ${cy} ${cxx - 40} ${cy} ${cxx - 2} ${cy}" stroke="${sc.brand.teal}" stroke-width="1.1" opacity=".55"/>`)
   a.node(`<circle cx="${cxx - 2}" cy="${cy}" r="2.4" fill="${sc.brand.teal}" opacity=".8"/>`)
 
-  // four evidence states
   const states = [
     ['supporting', sc.evidence.supporting, false],
     ['contradictory', sc.evidence.contradictory, false],
@@ -76,8 +76,6 @@ function evidenceArt(a, sc, x, y, w, h, compact) {
     const startX = cxx + cw
     a.node(`<path d="M${startX} ${cy}C${startX + 40} ${cy} ${ex - 46} ${ny} ${ex - 8} ${ny}" stroke="${color}" stroke-width="1" opacity=".65"${dashed ? ' stroke-dasharray="3 4"' : ''}/>`)
     a.node(`<circle cx="${ex}" cy="${ny}" r="${compact ? 5 : 6.6}" fill="${color}" opacity="${name === 'unasserted' ? '.55' : '.95'}"/>`)
-    // Compact plates still name the states: at GitHub's phone width an
-    // unlabelled dot communicates nothing.
     if (!compact) {
       a.node(text(ex + 18, ny + 4, name, {
         family: 'mono', size: 9.8, weight: 400, fill: color, tracking: 0.6,
@@ -86,7 +84,6 @@ function evidenceArt(a, sc, x, y, w, h, compact) {
   })
 
   if (!compact) {
-    // provenance chip
     const px = x + w * 0.84
     const pw = w * 0.15
     a.node(`<rect x="${px}" y="${cy + 30}" width="${pw}" height="50" rx="6" fill="${sc.surface}" stroke="${sc.border}"/>`)
@@ -102,7 +99,6 @@ function contractArt(a, sc, x, y, w, h, compact) {
   const cardH = compact ? h * 0.4 : h * 0.52
   const stackX = x + w * (compact ? 0.05 : 0.04)
 
-  // layered cards: the contract sits under generated adapter files
   for (let i = 2; i >= 0; i--) {
     const ox = stackX + i * 5
     const oy = cy - cardH / 2 - i * 9
@@ -117,13 +113,11 @@ function contractArt(a, sc, x, y, w, h, compact) {
     }
   }
 
-  // fan-out arrow
   const ax = stackX + cardW + 14
   const ax2 = x + w * (compact ? 0.4 : 0.3)
   a.node(`<path d="M${ax} ${cy}C${(ax + ax2) / 2} ${cy} ${(ax + ax2) / 2} ${cy} ${ax2 - 4} ${cy}" stroke="${sc.brand.teal}" stroke-width="1.1" opacity=".6"/>`)
   a.node(`<path d="M${ax2 - 10} ${cy - 4}L${ax2 - 4} ${cy}L${ax2 - 10} ${cy + 4}" stroke="${sc.brand.teal}" stroke-width="1.1" fill="none" opacity=".7" stroke-linecap="round"/>`)
 
-  // five adapter targets
   const chips = ['AGENTS.md', 'CLAUDE.md', '.cursorrules', 'COPILOT', 'GEMINI']
   const chipX = x + w * (compact ? 0.42 : 0.32)
   const chipW = w * (compact ? 0.42 : 0.2)
@@ -141,25 +135,7 @@ function contractArt(a, sc, x, y, w, h, compact) {
         fill: verified ? sc.brand.teal : sc.textMuted,
       }))
     }
-    if (!compact) {
-      a.node(icon(verified ? 'link' : 'doc', chipX + chipW - 22, cyy + 7, 12, verified ? sc.brand.teal : sc.textFaint, { opacity: 0.75 }))
-    }
   })
-
-  if (!compact) {
-    // verification pipeline along the plate floor
-    const steps = ['VALIDATE', 'GENERATE', 'CHECK', 'VERIFY']
-    const py = y + h - 20
-    const sx = x + w * 0.08
-    steps.forEach((step, i) => {
-      const px = sx + i * (w * 0.2)
-      a.node(`<circle cx="${px}" cy="${py}" r="3" fill="${i === 3 ? sc.brand.copper : sc.brand.teal}" opacity=".85"/>`)
-      a.node(label(px + 12, py + 3.4, step, { size: 8, tracking: 1.6, fill: sc.textFaint }))
-      if (i < steps.length - 1) {
-        a.node(rule(px + 12 + step.length * 7.2 + 8, py, px + w * 0.2 - 12, py, sc.borderStrong, 0.55))
-      }
-    })
-  }
 }
 
 function screenerArt(a, sc, x, y, w, h, compact) {
@@ -168,7 +144,6 @@ function screenerArt(a, sc, x, y, w, h, compact) {
   const left = x + (compact ? 6 : 10)
   const right = x + w - (compact ? 6 : 10)
 
-  // horizontal grid
   for (let i = 1; i <= 3; i++) {
     a.node(rule(left, baseY - ((baseY - topY) / 4) * i, right, baseY - ((baseY - topY) / 4) * i, sc.grid, 0.9))
   }
@@ -179,7 +154,6 @@ function screenerArt(a, sc, x, y, w, h, compact) {
   const bw = slot * 0.52
 
   for (let i = 0; i < n; i++) {
-    const t = i / n
     const raw = 0.28 + 0.5 * Math.abs(Math.sin(i * 1.31 + 0.7)) + 0.14 * Math.sin(i * 0.47 + 1.9)
     const bh = Math.max(6, (baseY - topY) * Math.min(0.92, raw))
     const x0 = left + i * slot + (slot - bw) / 2
@@ -194,91 +168,97 @@ function screenerArt(a, sc, x, y, w, h, compact) {
     }
   }
 
-  // threshold reference: a rule, not a fabricated reading
   const thresholdY = topY + (baseY - topY) * 0.34
   a.node(`<line x1="${left}" y1="${thresholdY}" x2="${right}" y2="${thresholdY}" stroke="${sc.brand.copper}" stroke-width=".9" stroke-dasharray="5 5" opacity=".55"/>`)
-  if (!compact) {
-    a.node(label(right, thresholdY - 8, 'SCREEN THRESHOLD', { size: 8, tracking: 1.5, fill: sc.brand.copper, anchor: 'end' }))
-    a.node(label(left, baseY + 22, 'CANDIDATES →', { size: 8, tracking: 1.5, fill: sc.textFaint }))
-    a.node(label(right, baseY + 22, 'INCONCLUSIVE = DASHED', { size: 8, tracking: 1.4, fill: sc.textFaint, anchor: 'end' }))
-  }
 }
 
 const ART = { evidence: evidenceArt, contract: contractArt, screener: screenerArt }
 
 // ---------------------------------------------------------------------------
-// plate
+// gallery
 // ---------------------------------------------------------------------------
 
-async function render(project, scheme, layout) {
-  const sc = schemeOf(scheme)
+async function render(scheme, layout) {
   const mobile = layout === 'mobile'
+  const sc = schemeOf(scheme)
   const L = mobile ? MOBILE : DESKTOP
-  const { w, h, pad } = L
-  const accent = sc.brand[project.accent]
+  const { w, h, pad, gap, cardH, artH, nameSize, chipSize, chipH, top } = L
+  const cardW = mobile ? w - pad * 2 : (w - pad * 2 - gap * 2) / 3
+
+  const clips = data.featured.map((_, i) => {
+    // Phone cards stack vertically and share one column origin; only the
+    // desktop row shifts by the column stride. Using the stride here on mobile
+    // clipped cards 1 and 2 off-canvas.
+    const x = pad + (mobile ? 0 : i * (cardW + gap))
+    const y = top + (mobile ? i * (cardH + gap) : 0)
+    return `<clipPath id="card${i}"><rect x="${x + 12}" y="${y + 12}" width="${cardW - 24}" height="${artH}" rx="8"/></clipPath>`
+  })
 
   const a = asset({
     w, h, scheme,
-    path: `assets/work/${project.id}-${layout}-${scheme}.svg`,
-    title: `${project.name} — conceptual diagram`,
-    desc:
-      `${project.kicker.toLowerCase()}. Conceptual technical diagram, not a screenshot. ` +
-      `${project.summary}`,
-    defs: `${dotField('workDots', sc, 32, 1)}${plateClip('workPlate', w, h)}`,
+    path: `assets/featured/featured-${layout}-${scheme}.svg`,
+    title: 'Featured work — three public systems',
+    desc: 'Three cards: NosoGraph, a biomedical evidence graph; Agent-Ready, a repository contract for AI agents; and Short Squeeze Screener, a read-only market screener. Each card shows a conceptual diagram and its stack.',
+    defs: `${dotField('featuredDots', sc, 32, 1)}${plateClip('featuredPlate', w, h)}${clips.join('')}`,
   })
 
-  a.node(plateRect(w, h, sc.surface, sc.border))
-  a.node(`<g clip-path="url(#workPlate)">`)
-  a.node(dotFill(0, 0, w, h, 'workDots', scheme === 'dark' ? 0.4 : 0.5))
+  a.node(plateRect(w, h, sc.page, sc.border))
+  a.node(`<g clip-path="url(#featuredPlate)">`)
+  a.node(dotFill(0, 0, w, h, 'featuredDots', scheme === 'dark' ? 0.35 : 0.45))
 
-  // meta row
-  const metaY = mobile ? 34 : 38
-  a.node(label(pad, metaY, project.index, {
-    size: mobile ? 14 : 10.5, tracking: 2.2, fill: accent,
-  }))
-  if (!mobile) {
-    a.node(label(pad + 34, metaY, project.category, {
-      size: 10, tracking: 2.2, fill: sc.textFaint,
-    }))
-  }
-  if (!mobile) {
-    a.node(label(w - pad, metaY, 'CONCEPTUAL DIAGRAM', {
-      size: 8.4, tracking: 1.8, fill: sc.textFaint, anchor: 'end',
-    }))
-  }
-  a.node(rule(pad, metaY + 16, w - pad, metaY + 16, sc.border, 0.85))
+  data.featured.forEach((project, i) => {
+    const x = pad + (mobile ? 0 : i * (cardW + gap))
+    const y = top + (mobile ? i * (cardH + gap) : 0)
+    const accent = sc.brand[project.accent]
 
-  // artwork
-  const artY = mobile ? 66 : 74
-  const artH = h - artY - (mobile ? 62 : 74)
-  a.node(`<g class="fade d2">`)
-  ART[project.art](a, sc, pad, artY, w - pad * 2, artH, mobile)
-  a.node(`</g>`)
+    a.node(`<g class="fade d${i + 1}">`)
+    a.node(`<rect x="${x}" y="${y}" width="${cardW}" height="${cardH}" rx="12" fill="${sc.surface}" stroke="${sc.border}"/>`)
+    a.node(`<rect x="${x + 12}" y="${y + 12}" width="${cardW - 24}" height="${artH}" rx="8" fill="${sc.page}" stroke="${sc.border}" stroke-opacity=".8"/>`)
+    a.node(`<g clip-path="url(#card${i})">`)
+    ART[project.art](a, sc, x + 12, y + 12, cardW - 24, artH, true)
+    a.node(`</g>`)
 
-  // foot
-  const footY = h - (mobile ? 26 : 28)
-  if (mobile) {
-    a.node(text(pad, footY - 4, project.name, {
-      family: 'serif', size: 22, weight: 500, fill: sc.text, tracking: -0.3,
+    a.node(label(x + 14, y + artH + 34, project.index, {
+      size: mobile ? 12 : 10.5, tracking: 2, fill: accent,
     }))
-  } else {
-    a.node(text(pad, footY - 6, project.kicker, {
-      family: 'mono', size: 9, weight: 500, tracking: 1.8, fill: sc.textFaint,
-    }))
-    a.node(text(w - pad, footY - 6, `FIG. ${project.index}`, {
-      family: 'mono', size: 9, weight: 400, tracking: 1.4, fill: sc.textFaint, anchor: 'end',
-    }))
-  }
+    if (!mobile) {
+      a.node(label(x + cardW - 14, y + artH + 34, project.category, {
+        size: 9.5, tracking: 1.5, fill: sc.textFaint, anchor: 'end',
+      }))
+    }
 
-  a.node(bracketFrame(w - pad - 34, footY - 30, 34, 24, sc.borderStrong, { len: 8, opacity: 0.5 }))
+    a.node(text(x + 14, y + artH + (mobile ? 68 : 68), project.name, {
+      family: 'serif', size: nameSize, weight: 500, fill: sc.text,
+      tracking: -0.4,
+    }))
+
+    // Fact pills wrap to a second row when a card cannot hold them in one.
+    let cx = x + 14
+    let cy = y + artH + (mobile ? 84 : 82)
+    for (const fact of project.facts) {
+      const padX = mobile ? 10 : 8
+      let pill = chip(cx, cy, fact, sc, {
+        accent, size: chipSize, h: chipH, padX,
+      })
+      if (cx > x + 14 && cx + pill.w > x + cardW - 14) {
+        cx = x + 14
+        cy += chipH + 7
+        pill = chip(cx, cy, fact, sc, {
+          accent, size: chipSize, h: chipH, padX,
+        })
+      }
+      a.node(pill.markup)
+      cx += pill.w + 8
+    }
+    a.node(`</g>`)
+  })
+
   a.node(grain(sc, w, h))
   a.node(`</g>`)
   await a.commit()
 }
 
 for (const layout of ['desktop', 'mobile']) {
-  for (const scheme of ['dark', 'light']) {
-    for (const project of data.featured) await render(project, scheme, layout)
-  }
+  for (const scheme of ['dark', 'light']) await render(scheme, layout)
 }
-console.log('work done')
+console.log('featured gallery done')

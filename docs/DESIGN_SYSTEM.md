@@ -10,7 +10,7 @@ palette and a motion vocabulary.
 | --- | --- |
 | **The Monograph** | Editorial serif display, generous margins, ruled sections, restrained copy |
 | **Signal Observatory** | Generated parametric surfaces, instrumentation arcs, technical labels |
-| **Product Foundry** | Three project plates, each with its own conceptual diagram |
+| **Product Foundry** | A three-card project gallery, each card with its own conceptual diagram |
 
 Balance: editorial credibility first, technical character second, product
 expression third. No cyberpunk, no neon glow, no badge walls, no fake terminals.
@@ -79,7 +79,7 @@ including accent labels drawn at 9–10 px. It fails on unresolved tokens.
 | --- | --- | --- |
 | Hero | `assets/hero/hero-{desktop,mobile}-{dark,light}.svg` | Name, descriptor, generated surface, instrumentation |
 | At a glance | `assets/glance/glance-*` | Four domains, custom icons, hairline separators; qualifiers are desktop-only |
-| Work plates | `assets/work/<project>-*` | One conceptual diagram per project, labelled; the phone plate carries its project name and drops diagram micro-text |
+| Featured gallery | `assets/featured/featured-*` | Three cards on desktop, stacked on phones; each card carries a compact conceptual diagram, serif project name and factual pills. Descriptions, links and full facts stay in Markdown |
 | Evidence diagram | `assets/evidence/pipeline-*` | NosoGraph's documented seven-stage evidence chain; vertical flow on phones |
 | Activity | `assets/activity/activity-*` | Public commit calendar from captured API data; 53-week grid, total, capture date and legend, no month ticks |
 | Buttons | `assets/ui/button-*.svg` | Real links, theme-neutral ink pills |

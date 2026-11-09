@@ -30,11 +30,11 @@ I build open-source research software, developer tooling, and market systems —
 ## Selected work
 
 <picture>
-  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/work/nosograph-mobile-dark.svg">
-  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/work/nosograph-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/work/nosograph-desktop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/work/nosograph-desktop-light.svg">
-  <img width="100%" src="./assets/work/nosograph-desktop-dark.svg" alt="Conceptual diagram: a disease node feeds a typed claim, which carries four evidence states — supporting, contradictory, inconclusive and unasserted — plus a provenance snapshot.">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/featured/featured-mobile-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/featured/featured-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/featured/featured-desktop-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/featured/featured-desktop-light.svg">
+  <img width="100%" src="./assets/featured/featured-desktop-dark.svg" alt="Three featured systems as cards: NosoGraph, a biomedical evidence graph; Agent-Ready, a repository contract for AI agents; and Short Squeeze Screener, a read-only market screener. Each card carries its conceptual diagram and factual tags.">
 </picture>
 
 ### NosoGraph
@@ -45,14 +45,6 @@ Disease knowledge connected to the evidence behind it. Every claim carries its s
 
 [Repository](https://github.com/AdamEddahmouni/nosograph) · [Documentation](https://adameddahmouni.github.io/nosograph/) · [DOI](https://doi.org/10.5281/zenodo.22055279)
 
-<picture>
-  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/work/agent-ready-mobile-dark.svg">
-  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/work/agent-ready-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/work/agent-ready-desktop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/work/agent-ready-desktop-light.svg">
-  <img width="100%" src="./assets/work/agent-ready-desktop-dark.svg" alt="Conceptual diagram: one agent-ready.yaml contract generates instruction files for five coding agents, then runs a validate, generate, check and verify pipeline.">
-</picture>
-
 ### Agent-Ready
 
 One schema-validated file that tells every AI coding agent how to work in a repository: the commands it may run, the paths it may not touch, the verification it must pass, and the evidence it must leave behind. Eleven CLI commands, no API keys, no network access, and no LLM calls — the same contract produces the same result every time.
@@ -60,14 +52,6 @@ One schema-validated file that tells every AI coding agent how to work in a repo
 `TypeScript` · `11 CLI commands` · `5 adapters` · `557 tests on 3 platforms`
 
 [Repository](https://github.com/AdamEddahmouni/agent-ready)
-
-<picture>
-  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/work/short-squeeze-screener-internship-mobile-dark.svg">
-  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/work/short-squeeze-screener-internship-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/work/short-squeeze-screener-internship-desktop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/work/short-squeeze-screener-internship-desktop-light.svg">
-  <img width="100%" src="./assets/work/short-squeeze-screener-internship-desktop-dark.svg" alt="Conceptual diagram: a field of short-interest bars with a threshold line; candidates the data cannot resolve are drawn as dashed outlines.">
-</picture>
 
 ### Short Squeeze Screener
 

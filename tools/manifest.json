@@ -1,7 +1,7 @@
 {
   "generated": "2026-11-08",
-  "count": 32,
-  "totalBytes": 905264,
+  "count": 24,
+  "totalBytes": 774042,
   "files": [
     {
       "path": "assets/activity/activity-desktop-dark.svg",
@@ -34,6 +34,22 @@
     {
       "path": "assets/evidence/pipeline-mobile-light.svg",
       "bytes": 31205
+    },
+    {
+      "path": "assets/featured/featured-desktop-dark.svg",
+      "bytes": 35281
+    },
+    {
+      "path": "assets/featured/featured-desktop-light.svg",
+      "bytes": 35280
+    },
+    {
+      "path": "assets/featured/featured-mobile-dark.svg",
+      "bytes": 33215
+    },
+    {
+      "path": "assets/featured/featured-mobile-light.svg",
+      "bytes": 33214
     },
     {
       "path": "assets/glance/glance-desktop-dark.svg",
@@ -82,54 +98,6 @@
     {
       "path": "assets/ui/button-research.svg",
       "bytes": 11082
-    },
-    {
-      "path": "assets/work/agent-ready-desktop-dark.svg",
-      "bytes": 25696
-    },
-    {
-      "path": "assets/work/agent-ready-desktop-light.svg",
-      "bytes": 25695
-    },
-    {
-      "path": "assets/work/agent-ready-mobile-dark.svg",
-      "bytes": 19283
-    },
-    {
-      "path": "assets/work/agent-ready-mobile-light.svg",
-      "bytes": 19282
-    },
-    {
-      "path": "assets/work/nosograph-desktop-dark.svg",
-      "bytes": 24965
-    },
-    {
-      "path": "assets/work/nosograph-desktop-light.svg",
-      "bytes": 24964
-    },
-    {
-      "path": "assets/work/nosograph-mobile-dark.svg",
-      "bytes": 19056
-    },
-    {
-      "path": "assets/work/nosograph-mobile-light.svg",
-      "bytes": 19055
-    },
-    {
-      "path": "assets/work/short-squeeze-screener-internship-desktop-dark.svg",
-      "bytes": 24539
-    },
-    {
-      "path": "assets/work/short-squeeze-screener-internship-desktop-light.svg",
-      "bytes": 24538
-    },
-    {
-      "path": "assets/work/short-squeeze-screener-internship-mobile-dark.svg",
-      "bytes": 20570
-    },
-    {
-      "path": "assets/work/short-squeeze-screener-internship-mobile-light.svg",
-      "bytes": 20569
     }
   ]
 }
