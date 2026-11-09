@@ -96,8 +96,8 @@ function project(opts) {
   return { points, cols, rows }
 }
 
-const polyline = (pts) =>
-  `M${pts.map((p) => `${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join('L')}`
+const polyline = (pts, precision = 1) =>
+  `M${pts.map((p) => `${p.x.toFixed(precision)} ${p.y.toFixed(precision)}`).join('L')}`
 
 /**
  * Render the surface.
@@ -122,6 +122,7 @@ export function surface(opts) {
     animate = true,
     glow = 1,
     lineOpacity = 1,
+    precision = 1,
     highlight = true,
     nodes = true,
   } = opts
@@ -144,7 +145,7 @@ export function surface(opts) {
     const stroke = mix(mix(deep, teal, clamp(n * 1.5)), copper, smoothstep(0.42, 0.95, n))
     const opacity = Math.min(0.92, lerp(0.16, 0.62, v) * lineOpacity * weight)
     rowPaths.push(
-      `<path d="${polyline(row)}" stroke="${stroke}" stroke-width="${lerp(0.65, 1.05, v).toFixed(2)}" opacity="${opacity.toFixed(2)}" stroke-linecap="round"/>`,
+      `<path d="${polyline(row, precision)}" stroke="${stroke}" stroke-width="${lerp(0.65, 1.05, v).toFixed(2)}" opacity="${opacity.toFixed(2)}" stroke-linecap="round"/>`,
     )
   }
 
@@ -154,13 +155,13 @@ export function surface(opts) {
     const n = pts.reduce((a, p) => a + p.n, 0) / pts.length
     const stroke = mix(mix(deep, teal, clamp(n * 1.6)), copper, smoothstep(0.45, 0.95, n))
     colPaths.push(
-      `<path d="${polyline(pts)}" stroke="${stroke}" stroke-width=".7" opacity="${Math.min(0.7, 0.2 * lineOpacity * weight).toFixed(2)}"/>`,
+      `<path d="${polyline(pts, precision)}" stroke="${stroke}" stroke-width=".7" opacity="${Math.min(0.7, 0.2 * lineOpacity * weight).toFixed(2)}"/>`,
     )
   }
 
   // Crest: the brightest sample per row, chained into a single ridgeline.
   const crestPts = points.map((row) => row.reduce((best, p) => (p.n > best.n ? p : best), row[0]))
-  const crestD = polyline(crestPts)
+  const crestD = polyline(crestPts, precision)
 
   const signalNodes = []
   if (nodes) {

@@ -32,19 +32,21 @@ function masthead(a, sc, L, mobile) {
   const { w, pad } = L
   const y = mobile ? 40 : 56
   a.node(label(pad, y, `${profile.monogram} / ENGINEERING STUDIO`, {
-    size: mobile ? 8.6 : 11,
-    tracking: mobile ? 1.8 : 3.2,
+    size: mobile ? 14 : 12.5,
+    tracking: mobile ? 1.4 : 3,
     fill: sc.textMuted,
   }))
-  a.node(label(w - pad, y, profile.tagline, {
-    size: mobile ? 8.6 : 11,
-    tracking: mobile ? 1.8 : 3.2,
-    fill: sc.textMuted,
-    anchor: 'end',
-  }))
+  if (!mobile) {
+    a.node(label(w - pad, y, profile.tagline, {
+      size: 12.5,
+      tracking: 3,
+      fill: sc.textMuted,
+      anchor: 'end',
+    }))
+  }
   const lineY = y - 4
-  const lineW = 96
-  const lineX = 300
+  const lineW = 78
+  const lineX = 326
   // The rule sits between the two labels on desktop; the phone plate is too
   // narrow for it, and the full-width hairline below already does the job.
   if (!mobile) {
@@ -69,8 +71,9 @@ async function render(scheme, layout) {
     ...surfaceBox,
     id: 'heroSurf',
     seed: 187,
-    cols: mobile ? 34 : 58,
-    rows: mobile ? 20 : 32,
+    cols: mobile ? 30 : 52,
+    rows: mobile ? 18 : 28,
+    precision: 0,
     crests: [
       { u: 0.64, v: 0.33, amp: 1.0, su: 0.17, sv: 0.2 },
       { u: 0.3, v: 0.62, amp: 0.56, su: 0.2, sv: 0.24 },
@@ -138,11 +141,21 @@ ${surf.defs}`,
     family: 'serif', size: nameSize, weight: 400, fill: sc.text, tracking: -1.6,
   }))
   a.node(`<rect x="${mobile ? 336 : 588}" y="${secondY - (mobile ? 8 : 9)}" width="${mobile ? 28 : 50}" height="${mobile ? 5 : 8}" rx="1.5" fill="${sc.brand.copper}"/>`)
-  a.node(label(pad, mobile ? 218 : 354, profile.descriptor, {
-    size: mobile ? 10.2 : 11,
-    tracking: mobile ? 1.2 : 2.5,
-    fill: mix(sc.textMuted, sc.text, 0.25),
-  }))
+  if (mobile) {
+    // Two lines at a size that survives the 330px content column; the single
+    // tracked line would either overflow or shrink below legibility.
+    const parts = profile.descriptor.split(' / ')
+    a.node(label(pad, 226, parts.slice(0, 2).join(' / '), {
+      size: 16, tracking: 0.8, fill: mix(sc.textMuted, sc.text, 0.25),
+    }))
+    a.node(label(pad, 248, parts.slice(2).join(' / '), {
+      size: 16, tracking: 0.8, fill: mix(sc.textMuted, sc.text, 0.25),
+    }))
+  } else {
+    a.node(label(pad, 354, profile.descriptor, {
+      size: 13, tracking: 2.2, fill: mix(sc.textMuted, sc.text, 0.25),
+    }))
+  }
 
   // furniture
   const frame = mobile
@@ -152,8 +165,8 @@ ${surf.defs}`,
 
   const footY = mobile ? 506 : 400
   a.node(rule(pad, footY - 22, w - pad, footY - 22, sc.border, 0.9))
-  a.node(text(pad, footY, mobile ? profile.location.toUpperCase() : `github.com/${profile.username}`, {
-    family: 'mono', size: mobile ? 8.6 : 10, weight: 400, tracking: 1.1, fill: sc.textFaint,
+  a.node(text(pad, footY, mobile ? '' : `github.com/${profile.username}`, {
+    family: 'mono', size: 11.5, weight: 400, tracking: 1.1, fill: sc.textFaint,
   }))
   if (!mobile) {
     a.node(text(w / 2, footY, profile.location.toUpperCase(), {
@@ -164,7 +177,7 @@ ${surf.defs}`,
     }))
   }
   a.node(text(w - pad, footY, profile.availability.toUpperCase(), {
-    family: 'mono', size: mobile ? 8.6 : 10, weight: 500, tracking: 1.4, fill: sc.textFaint, anchor: 'end',
+    family: 'mono', size: mobile ? 16 : 11.5, weight: 500, tracking: 1.2, fill: sc.textFaint, anchor: 'end',
   }))
 
   a.node(grain(sc, w, h))

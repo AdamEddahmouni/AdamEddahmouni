@@ -32,50 +32,50 @@
 <rect width="480" height="820" fill="transparent"/>
 <rect x="1" y="1" width="478" height="818" rx="16" fill="#0F1B24" stroke="#22333D"/>
 <g clip-path="url(#evPlateM)">
-<text x="26" y="34" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#8C9DA6" letter-spacing="1.8">EVIDENCE CHAIN</text>
+<text x="26" y="34" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#8C9DA6" letter-spacing="1.4">EVIDENCE CHAIN</text>
 <line x1="26" y1="48" x2="454" y2="48" stroke="#22333D" stroke-width="1" opacity="0.85"/>
 <line x1="40" y1="86" x2="40" y2="670.5714285714286" stroke="#344650" stroke-width="1" opacity=".75"/>
-<circle cx="40" cy="86" r="11" fill="#0F1B24" stroke="#22D3C5"/>
-<text x="40" y="89.4" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">01</text>
-<text x="68" y="83" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">SOURCES</text>
-<text x="68" y="101" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">MONDO · HPO · PubMed · ClinicalTrials.gov · Open Targets · GWAS</text>
+<circle cx="40" cy="86" r="13" fill="#0F1B24" stroke="#22D3C5"/>
+<text x="40" y="90" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">01</text>
+<text x="72" y="84" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">SOURCES</text>
+<text x="72" y="106" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">MONDO · HPO · PubMed · ClinicalTrials.gov ·</text>
+<text x="72" y="125" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Open Targets · GWAS</text>
 <path d="M40 98C40 134.71428571428572 40 134.71428571428572 40 171.42857142857144" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6"/><path d="M36.6 165.42857142857144L40 171.42857142857144L43.4 165.42857142857144" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="40" cy="183.42857142857144" r="11" fill="#0F1B24" stroke="#22D3C5"/>
-<text x="40" y="186.82857142857145" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">02</text>
-<text x="68" y="180.42857142857144" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">ADAPTERS</text>
-<text x="68" y="198.42857142857144" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">25 registered pipeline adapters, each with its own mapping</text>
+<circle cx="40" cy="183.42857142857144" r="13" fill="#0F1B24" stroke="#22D3C5"/>
+<text x="40" y="187.42857142857144" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">02</text>
+<text x="72" y="181.42857142857144" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">ADAPTERS</text>
+<text x="72" y="203.42857142857144" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">25 registered pipeline adapters, each with its</text>
+<text x="72" y="222.42857142857144" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">own mapping</text>
 <path d="M40 195.42857142857144C40 232.14285714285717 40 232.14285714285717 40 268.8571428571429" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6"/><path d="M36.6 262.8571428571429L40 268.8571428571429L43.4 262.8571428571429" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="40" cy="280.8571428571429" r="11" fill="#0F1B24" stroke="#22D3C5"/>
-<text x="40" y="284.25714285714287" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">03</text>
-<text x="68" y="277.8571428571429" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">NORMALISE</text>
-<text x="68" y="295.8571428571429" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Identifiers resolved, metadata validated, gaps preserved</text>
+<circle cx="40" cy="280.8571428571429" r="13" fill="#0F1B24" stroke="#22D3C5"/>
+<text x="40" y="284.8571428571429" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">03</text>
+<text x="72" y="278.8571428571429" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">NORMALISE</text>
+<text x="72" y="300.8571428571429" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Identifiers resolved, metadata validated, gaps</text>
+<text x="72" y="319.8571428571429" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">preserved</text>
 <path d="M40 292.8571428571429C40 329.57142857142856 40 329.57142857142856 40 366.2857142857143" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6"/><path d="M36.6 360.2857142857143L40 366.2857142857143L43.4 360.2857142857143" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="40" cy="378.2857142857143" r="11" fill="#0F1B24" stroke="#22D3C5"/>
-<text x="40" y="381.68571428571425" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">04</text>
-<text x="68" y="375.2857142857143" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">TYPED CLAIM</text>
-<text x="68" y="393.2857142857143" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Disease → claim → evidence relationship → study</text>
+<circle cx="40" cy="378.2857142857143" r="13" fill="#0F1B24" stroke="#22D3C5"/>
+<text x="40" y="382.2857142857143" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">04</text>
+<text x="72" y="376.2857142857143" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">TYPED CLAIM</text>
+<text x="72" y="398.2857142857143" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Disease → claim → evidence relationship →</text>
+<text x="72" y="417.2857142857143" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">study</text>
 <path d="M40 390.2857142857143C40 427 40 427 40 463.7142857142857" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6"/><path d="M36.6 457.7142857142857L40 463.7142857142857L43.4 457.7142857142857" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="40" cy="475.7142857142857" r="11" fill="#0F1B24" stroke="#FF8A5B"/>
-<text x="40" y="479.1142857142857" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#FF8A5B" text-anchor="middle">05</text>
-<text x="68" y="472.7142857142857" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">EVIDENCE STATE</text>
-<text x="68" y="490.7142857142857" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Supporting · Contradictory · Inconclusive · Unasserted</text>
+<circle cx="40" cy="475.7142857142857" r="13" fill="#0F1B24" stroke="#FF8A5B"/>
+<text x="40" y="479.7142857142857" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#FF8A5B" text-anchor="middle">05</text>
+<text x="72" y="473.7142857142857" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">EVIDENCE STATE</text>
+<text x="72" y="495.7142857142857" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Supporting · Contradictory · Inconclusive ·</text>
+<text x="72" y="514.7142857142858" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Unasserted</text>
 <path d="M40 487.7142857142857C40 524.4285714285714 40 524.4285714285714 40 561.1428571428571" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6"/><path d="M36.6 555.1428571428571L40 561.1428571428571L43.4 555.1428571428571" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="68" y="509.7142857142857" width="16" height="4.5" rx="2.25" fill="#22D3C5"/>
-<rect x="88" y="509.7142857142857" width="16" height="4.5" rx="2.25" fill="#FF8A5B"/>
-<rect x="108" y="509.7142857142857" width="16" height="4.5" rx="2.25" fill="#8C9DA6"/>
-<rect x="128" y="509.7142857142857" width="16" height="4.5" rx="2.25" fill="#3F5560"/>
-<circle cx="40" cy="573.1428571428571" r="11" fill="#0F1B24" stroke="#22D3C5"/>
-<text x="40" y="576.5428571428571" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">06</text>
-<text x="68" y="570.1428571428571" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">PROVENANCE</text>
-<text x="68" y="588.1428571428571" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Source snapshot kept with every reading</text>
+<circle cx="40" cy="573.1428571428571" r="13" fill="#0F1B24" stroke="#22D3C5"/>
+<text x="40" y="577.1428571428571" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">06</text>
+<text x="72" y="571.1428571428571" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">PROVENANCE</text>
+<text x="72" y="593.1428571428571" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Source snapshot kept with every reading</text>
 <path d="M40 585.1428571428571C40 621.8571428571429 40 621.8571428571429 40 658.5714285714286" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6"/><path d="M36.6 652.5714285714286L40 658.5714285714286L43.4 652.5714285714286" stroke="#344650" stroke-width="1.1" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="40" cy="670.5714285714286" r="11" fill="#0F1B24" stroke="#22D3C5"/>
-<text x="40" y="673.9714285714285" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">07</text>
-<text x="68" y="667.5714285714286" style="font:500 10.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="1.1">SURFACES</text>
-<text x="68" y="685.5714285714286" style="font:400 11.4px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">CLI · FastAPI · JSON / Markdown exports</text>
+<circle cx="40" cy="670.5714285714286" r="13" fill="#0F1B24" stroke="#22D3C5"/>
+<text x="40" y="674.5714285714286" style="font:500 10.5px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#22D3C5" text-anchor="middle">07</text>
+<text x="72" y="668.5714285714286" style="font:500 16px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#F5F1E8" letter-spacing="0.7">SURFACES</text>
+<text x="72" y="690.5714285714286" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">CLI · FastAPI · JSON / Markdown exports</text>
 <line x1="26" y1="776" x2="454" y2="776" stroke="#22333D" stroke-width="1" opacity="0.8"/>
-<text x="26" y="796" style="font:400 11.8px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Evidence is not proof.</text>
-<text x="454" y="796" style="font:500 8.8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#8C9DA6" text-anchor="end" letter-spacing="1.4">SOURCE · STATE</text>
+<text x="26" y="796" style="font:400 16px ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" fill="#A8B7BE">Evidence is not proof.</text>
 <rect width="480" height="820" filter="url(#grainF)" opacity="0.035" style="mix-blend-mode:overlay"/>
 </g>
 </svg>

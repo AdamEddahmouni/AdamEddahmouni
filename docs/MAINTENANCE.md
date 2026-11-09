@@ -11,7 +11,8 @@ node tools/preview.mjs          # rebuild tools/.preview/index.html only
 node tools/screenshots.mjs      # capture QA screenshots (needs Playwright + Chromium)
 node tools/check-contrast.mjs   # WCAG gate for both schemes
 node tools/check-markdown.mjs   # structure, links, alt text, forbidden claims
-node tools/check-links.mjs      # verify every external link resolves
+node tools/check-links.mjs      # classify every external link (ok/gated/dead)
+node tools/check-assets.mjs     # exact-byte budgets + manifest integrity
 node tools/fetch-repo-data.mjs  # refresh contributions/languages (needs GITHUB_TOKEN)
 ```
 
@@ -55,6 +56,28 @@ real screenshot is ever added, keep it under `assets/work/`, use a 2× capture,
 compress to WebP, add a matching alt description, and label it as a screenshot
 rather than a conceptual diagram. Do not use concept art as evidence of a
 working product.
+
+## Asset budgets
+
+Budgets live in `tools/check-assets.mjs`, not in the workflow, so local builds
+and CI use the same numbers. They are exact bytes per component: hero desktop
+72,000; hero mobile 52,000; activity 38,000; evidence 36,000; work 28,000;
+glance 26,000; ui 15,000. The hero is deliberately the exception: the surface is
+the profile's signature, while its words stay HTML-crisp in Markdown.
+
+Raising a limit is a design decision, not a way to make CI green: change the
+number, say why in `docs/QA_REPORT.md`, and record the new measured size.
+
+## Capture date and determinism
+
+- `tools/fetch-repo-data.mjs` stamps `tools/repo-data.json` with the capture date.
+- `tools/generate-activity.mjs` derives its 53-week window from that stamp; there
+  is no hardcoded end date.
+- `tools/render-all.mjs` uses the same stamp for the manifest, so two renders of
+  unchanged inputs are byte-identical. Verify with a second run and compare
+  `sha256sum` over `assets/**/*.svg`; nothing should change.
+- The calendar is public commit activity across the featured repositories, not
+  GitHub's private-aware contribution total. Keep the `PUBLIC COMMITS` label.
 
 ## Change theme colours
 

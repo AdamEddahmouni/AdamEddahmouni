@@ -46,7 +46,7 @@ async function renderDesktop(scheme) {
     path: `assets/evidence/pipeline-desktop-${scheme}.svg`,
     title: 'NosoGraph evidence pipeline',
     desc:
-      'Conceptual diagram of NosoGraph’s evidence chain: six source families enter 25 registered ' +
+      'Conceptual diagram of NosoGraph’s evidence chain: source families enter 25 registered ' +
       'adapters, are normalised and validated into typed claims, carry one of four evidence states, ' +
       'keep a provenance snapshot, and are exposed through the CLI, API and exports.',
     defs: plateClip('evPlate', w, h),
@@ -123,7 +123,7 @@ async function renderMobile(scheme) {
   a.node(plateRect(w, h, sc.surface, sc.border))
   a.node(`<g clip-path="url(#evPlateM)">`)
 
-  a.node(label(pad, 34, 'EVIDENCE CHAIN', { size: 10.4, tracking: 1.8, fill: sc.textFaint }))
+  a.node(label(pad, 34, 'EVIDENCE CHAIN', { size: 16, tracking: 1.4, fill: sc.textFaint }))
   a.node(rule(pad, 48, w - pad, 48, sc.border, 0.85))
 
   const top = 86
@@ -135,36 +135,29 @@ async function renderMobile(scheme) {
   stages.forEach((stage, i) => {
     const cy = top + step * i
     const accent = i === 4 ? sc.brand.copper : sc.brand.teal
-    a.node(`<circle cx="${lineX}" cy="${cy}" r="11" fill="${sc.surface}" stroke="${accent}"/>`)
-    a.node(text(lineX, cy + 3.4, String(i + 1).padStart(2, '0'), {
-      family: 'mono', size: 8, weight: 500, fill: accent, anchor: 'middle',
+    a.node(`<circle cx="${lineX}" cy="${cy}" r="13" fill="${sc.surface}" stroke="${accent}"/>`)
+    a.node(text(lineX, cy + 4, String(i + 1).padStart(2, '0'), {
+      family: 'mono', size: 10.5, weight: 500, fill: accent, anchor: 'middle',
     }))
-    a.node(text(lineX + 28, cy - 3, stage.label, {
-      family: 'mono', size: 10.4, weight: 500, tracking: 1.1, fill: sc.text,
+    a.node(text(lineX + 32, cy - 2, stage.label, {
+      family: 'mono', size: 16, weight: 500, tracking: 0.7, fill: sc.text,
     }))
-    const lines = wrapText(stage.detail, w - pad * 2 - 48, { size: 11.4, ratio: 0.5, maxLines: 2 })
+    const lines = wrapText(stage.detail, w - pad * 2 - 54, { size: 16, ratio: 0.5, maxLines: 2 })
     lines.forEach((line, k) => {
-      a.node(text(lineX + 28, cy + 15 + k * 15, line, {
-        family: 'sans', size: 11.4, weight: 400, fill: sc.textMuted,
+      a.node(text(lineX + 32, cy + 20 + k * 19, line, {
+        family: 'sans', size: 16, weight: 400, fill: sc.textMuted,
       }))
     })
     if (i < stages.length - 1) {
       a.node(connectorDown(lineX, cy + 12, lineX, top + step * (i + 1) - 12, sc.borderStrong, { opacity: 0.6 }))
     }
     if (stage.label === 'EVIDENCE STATE') {
-      const colors = [sc.evidence.supporting, sc.evidence.contradictory, sc.evidence.inconclusive, sc.evidence.unknown]
-      colors.forEach((c, k) => {
-        a.node(`<rect x="${lineX + 28 + k * 20}" y="${cy + 34}" width="16" height="4.5" rx="2.25" fill="${c}"/>`)
-      })
     }
   })
 
   a.node(rule(pad, h - 44, w - pad, h - 44, sc.border, 0.8))
   a.node(text(pad, h - 24, 'Evidence is not proof.', {
-    family: 'sans', size: 11.8, weight: 400, fill: sc.textMuted,
-  }))
-  a.node(text(w - pad, h - 24, 'SOURCE · STATE', {
-    family: 'mono', size: 8.8, weight: 500, tracking: 1.4, fill: sc.textFaint, anchor: 'end',
+    family: 'sans', size: 16, weight: 400, fill: sc.textMuted,
   }))
 
   a.node(grain(sc, w, h))

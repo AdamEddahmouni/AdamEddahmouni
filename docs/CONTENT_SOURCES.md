@@ -24,7 +24,7 @@ than left in place.
 | --- | --- |
 | “Open-source research software for connecting disease knowledge, evidence, and provenance across biomedical sources” | Repository description + `README.md` |
 | 25 registered pipeline adapters | `README.md` status table |
-| 2,445 offline tests (v0.2.1 suite) | `README.md` status table |
+| 2,445 offline tests selected in the v0.2.1 suite (repository-reported, not rerun here) | `README.md` status table + `docs/generated/public-status.yaml` |
 | v0.2.1, Public Alpha | `README.md` status section |
 | Apache-2.0 | GitHub API license metadata |
 | DOI 10.5281/zenodo.22055279 | `README.md` citation block |
@@ -44,7 +44,7 @@ hosted demo availability, or that the graph proves anything.
 | 11 CLI commands | `README.md` command table and project status |
 | Five generated adapter targets: `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, Copilot, Gemini | `README.md` “Vendor-Neutral” |
 | No API keys, no LLM calls, no network access | `README.md` “Deterministic by Design” |
-| 557 tests across 41 test files on Ubuntu, Windows, macOS | `README.md` project status |
+| 557 tests across 41 test files on Ubuntu, Windows, and macOS (a repository-reported CI count, not a run executed here) | `README.md` project status |
 | v0.6.1, pre-1.0, Apache-2.0 | `README.md` project status + GitHub API license |
 
 Deliberately not claimed: external adoption. The project README itself states
@@ -72,11 +72,14 @@ Deliberately not claimed: returns, accuracy, profitability, live data.
 
 ## Contribution data
 
-`tools/repo-data.json` is captured from the GitHub GraphQL contribution calendar
-by `tools/fetch-repo-data.mjs`. The current capture is dated 2026-11-08 and
-reports 451 contributions in the trailing year. The activity plate prints that
-date so the figure is never mistaken for live data. If a later API call fails,
-the committed file is left untouched, so the last valid plate survives.
+`tools/repo-data.json` is captured by `tools/fetch-repo-data.mjs` from the public
+commit history of the three featured repositories over the trailing 371 days —
+**not** GitHub's contribution graph, which includes private activity that a
+repository-scoped token cannot read. The current capture is dated 2026-11-08 and
+reports 451 public commits. The activity plate says `PUBLIC COMMITS` and prints
+the capture date, so the figure is never mistaken for live data or for the
+private-aware contribution total on the GitHub profile. If a later API call
+fails, the committed file is left untouched and the last valid plate survives.
 
 ## Artwork provenance
 

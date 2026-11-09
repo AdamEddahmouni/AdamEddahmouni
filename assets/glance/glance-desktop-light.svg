@@ -35,27 +35,26 @@
 <g class="fade d2">
 <g transform="translate(161.25 64) scale(1.25)" opacity="1" fill="none" stroke="#0B6E6A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 7.4 4.6 12l4.6 4.6"/><path d="M14.8 7.4 19.4 12l-4.6 4.6"/><path d="M13.4 4.8 10.6 19.2"/></g>
 <text x="176.25" y="136" style="font:500 28px 'Playfair Display', Georgia, 'Times New Roman', serif" fill="#0A1117" text-anchor="middle" letter-spacing="-0.2">Engineering</text>
-<text x="176.25" y="160" style="font:500 9.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.6">SOFTWARE, DATA, SYSTEMS</text>
+<text x="176.25" y="160" style="font:500 13px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.2">SOFTWARE, DATA, SYSTEMS</text>
 </g>
 <g class="fade d3">
 <g transform="translate(443.75 64) scale(1.25)" opacity="1" fill="none" stroke="#0B6E6A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6 18.4 7.4 12 11.2 5.6 7.4Z"/><path d="M12 11.2 18.4 15 12 18.8 5.6 15Z"/><path d="M12 11.2v3.8"/><path d="M5.6 7.4v3.9"/><path d="M18.4 7.4v3.9"/></g>
 <text x="458.75" y="136" style="font:500 28px 'Playfair Display', Georgia, 'Times New Roman', serif" fill="#0A1117" text-anchor="middle" letter-spacing="-0.2">AI Systems</text>
-<text x="458.75" y="160" style="font:500 9.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.6">AGENTS, TOOLING, EVALUATION</text>
+<text x="458.75" y="160" style="font:500 13px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.2">AGENTS, TOOLING, EVALUATION</text>
 </g>
 <line x1="317.5" y1="58" x2="317.5" y2="204" stroke="#DDD6C7" stroke-width="1" opacity="0.85"/>
 <g class="fade d4">
 <g transform="translate(726.25 64) scale(1.25)" opacity="1" fill="none" stroke="#0B6E6A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2a7.2 7.2 0 1 0 0 14.4 7.2 7.2 0 0 0 0-14.4Z"/><path d="M12 4.2v3.1M12 15.5v3.1M4.8 11.4h3.1M15.9 11.4h3.1"/><path d="M16.6 4.4 19.8 4.4 19.8 7.6"/><path d="M12 11.4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></g>
 <text x="741.25" y="136" style="font:500 28px 'Playfair Display', Georgia, 'Times New Roman', serif" fill="#0A1117" text-anchor="middle" letter-spacing="-0.2">Research</text>
-<text x="741.25" y="160" style="font:500 9.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.6">EVIDENCE, PROVENANCE</text>
+<text x="741.25" y="160" style="font:500 13px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.2">EVIDENCE, PROVENANCE</text>
 </g>
 <line x1="600" y1="58" x2="600" y2="204" stroke="#DDD6C7" stroke-width="1" opacity="0.85"/>
 <g class="fade d5">
 <g transform="translate(1008.75 64) scale(1.25)" opacity="1" fill="none" stroke="#0B6E6A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3.8 17.6 8.6 12.4l3.1 2.5 5.4-6.2 3 2.2"/><path d="M3.8 20.2h16.4"/><path d="M8.6 17.2v2.9M12.1 18v2.1M16.9 12.4v6"/></g>
 <text x="1023.75" y="136" style="font:500 28px 'Playfair Display', Georgia, 'Times New Roman', serif" fill="#0A1117" text-anchor="middle" letter-spacing="-0.2">Markets</text>
-<text x="1023.75" y="160" style="font:500 9.4px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.6">DATA, QUANTITATIVE WORK</text>
+<text x="1023.75" y="160" style="font:500 13px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="middle" letter-spacing="1.2">DATA, QUANTITATIVE WORK</text>
 </g>
 <line x1="882.5" y1="58" x2="882.5" y2="204" stroke="#DDD6C7" stroke-width="1" opacity="0.85"/>
 <line x1="48" y1="218" x2="1152" y2="218" stroke="#DDD6C7" stroke-width="1" opacity="0.55"/>
-<text x="1152" y="232" style="font:500 8px 'IBM Plex Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace" fill="#5F6E77" text-anchor="end" letter-spacing="1.8">FOUR DOMAINS</text>
 <rect width="1200" height="240" filter="url(#grainF)" opacity="0.02" style="mix-blend-mode:overlay"/>
 </svg>

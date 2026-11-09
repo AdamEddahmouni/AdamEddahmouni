@@ -40,8 +40,10 @@ function evidenceArt(a, sc, x, y, w, h, compact) {
   const dr = compact ? 18 : 34
   a.node(`<circle cx="${dx}" cy="${cy}" r="${dr}" fill="none" stroke="${sc.brand.teal}" stroke-width="1.1" opacity=".75"/>`)
   a.node(`<circle cx="${dx}" cy="${cy}" r="${dr + 7}" fill="none" stroke="${sc.borderStrong}" stroke-width=".7" opacity=".6" stroke-dasharray="2 4"/>`)
-  a.node(text(dx, cy + 3, 'DZ', { family: 'mono', size: compact ? 9 : 10, weight: 500, fill: sc.brand.teal, anchor: 'middle', tracking: 1.4 }))
-  a.node(label(dx, cy + dr + 20, 'DISEASE', { size: compact ? 7.5 : 8.6, tracking: 1.6, fill: sc.textFaint, anchor: 'middle' }))
+  if (!compact) {
+    a.node(text(dx, cy + 3, 'DZ', { family: 'mono', size: 10, weight: 500, fill: sc.brand.teal, anchor: 'middle', tracking: 1.4 }))
+    a.node(label(dx, cy + dr + 20, 'DISEASE', { size: 8.6, tracking: 1.6, fill: sc.textFaint, anchor: 'middle' }))
+  }
   if (!compact) {
     a.node(text(dx, cy + dr + 36, 'record kept intact', { family: 'mono', size: 8, weight: 400, fill: sc.textFaint, anchor: 'middle' }))
   }
@@ -51,7 +53,9 @@ function evidenceArt(a, sc, x, y, w, h, compact) {
   const ch = compact ? 40 : 62
   const cxx = x + w * (compact ? 0.3 : 0.3)
   a.node(`<rect x="${cxx}" y="${cy - ch / 2}" width="${cw}" height="${ch}" rx="7" fill="${sc.elevated}" stroke="${sc.brand.teal}" stroke-opacity=".55"/>`)
-  a.node(text(cxx + cw / 2, cy - 2, 'TYPED CLAIM', { family: 'mono', size: compact ? 10 : 9.6, weight: 500, fill: sc.text, anchor: 'middle', tracking: 1.4 }))
+  if (!compact) {
+    a.node(text(cxx + cw / 2, cy - 2, 'TYPED CLAIM', { family: 'mono', size: 9.6, weight: 500, fill: sc.text, anchor: 'middle', tracking: 1.4 }))
+  }
   if (!compact) {
     a.node(text(cxx + cw / 2, cy + 14, 'disease · relation · study', { family: 'mono', size: 7.6, weight: 400, fill: sc.textFaint, anchor: 'middle' }))
   }
@@ -74,9 +78,11 @@ function evidenceArt(a, sc, x, y, w, h, compact) {
     a.node(`<circle cx="${ex}" cy="${ny}" r="${compact ? 5 : 6.6}" fill="${color}" opacity="${name === 'unasserted' ? '.55' : '.95'}"/>`)
     // Compact plates still name the states: at GitHub's phone width an
     // unlabelled dot communicates nothing.
-    a.node(text(ex + (compact ? 12 : 18), ny + 4, name, {
-      family: 'mono', size: compact ? 9.8 : 9.8, weight: 400, fill: color, tracking: 0.6,
-    }))
+    if (!compact) {
+      a.node(text(ex + 18, ny + 4, name, {
+        family: 'mono', size: 9.8, weight: 400, fill: color, tracking: 0.6,
+      }))
+    }
   })
 
   if (!compact) {
@@ -104,7 +110,7 @@ function contractArt(a, sc, x, y, w, h, compact) {
       `<rect x="${ox}" y="${oy}" width="${cardW}" height="${cardH}" rx="8" fill="${sc.elevated}" fill-opacity="${0.55 + i * 0.12}" stroke="${sc.brand.violet}" stroke-opacity="${0.3 + i * 0.16}"/>`,
     )
     if (i === 0) {
-      a.node(text(ox + 12, oy + 22, 'agent-ready.yaml', { family: 'mono', size: compact ? 8 : 8.6, weight: 500, fill: sc.brand.violetSoft }))
+      if (!compact) a.node(text(ox + 12, oy + 22, 'agent-ready.yaml', { family: 'mono', size: 8.6, weight: 500, fill: sc.brand.violetSoft }))
       for (let l = 0; l < 5; l++) {
         a.node(`<rect x="${ox + 12}" y="${oy + 34 + l * 9}" width="${cardW * (l % 2 ? 0.5 : 0.72)}" height="2.5" rx="1.25" fill="${sc.brand.violetSoft}" opacity="${0.5 - l * 0.06}"/>`)
       }
@@ -129,10 +135,12 @@ function contractArt(a, sc, x, y, w, h, compact) {
     const cyy = top + i * (chipH + gap)
     const verified = i === 0
     a.node(`<rect x="${chipX}" y="${cyy}" width="${chipW}" height="${chipH}" rx="5" fill="${sc.surface}" stroke="${verified ? sc.brand.teal : sc.border}" stroke-opacity="${verified ? 0.7 : 1}"/>`)
-    a.node(text(chipX + 10, cyy + chipH / 2 + 3.2, name, {
-      family: 'mono', size: compact ? 9.4 : 9.5, weight: 500,
-      fill: verified ? sc.brand.teal : sc.textMuted,
-    }))
+    if (!compact) {
+      a.node(text(chipX + 10, cyy + chipH / 2 + 3.2, name, {
+        family: 'mono', size: 9.5, weight: 500,
+        fill: verified ? sc.brand.teal : sc.textMuted,
+      }))
+    }
     if (!compact) {
       a.node(icon(verified ? 'link' : 'doc', chipX + chipW - 22, cyy + 7, 12, verified ? sc.brand.teal : sc.textFaint, { opacity: 0.75 }))
     }
@@ -226,11 +234,13 @@ async function render(project, scheme, layout) {
   // meta row
   const metaY = mobile ? 34 : 38
   a.node(label(pad, metaY, project.index, {
-    size: mobile ? 10 : 10.5, tracking: 2.2, fill: accent,
+    size: mobile ? 14 : 10.5, tracking: 2.2, fill: accent,
   }))
-  a.node(label(pad + (mobile ? 28 : 34), metaY, project.category, {
-    size: mobile ? 8.6 : 10, tracking: mobile ? 1.4 : 2.2, fill: sc.textFaint,
-  }))
+  if (!mobile) {
+    a.node(label(pad + 34, metaY, project.category, {
+      size: 10, tracking: 2.2, fill: sc.textFaint,
+    }))
+  }
   if (!mobile) {
     a.node(label(w - pad, metaY, 'CONCEPTUAL DIAGRAM', {
       size: 8.4, tracking: 1.8, fill: sc.textFaint, anchor: 'end',
@@ -247,12 +257,18 @@ async function render(project, scheme, layout) {
 
   // foot
   const footY = h - (mobile ? 26 : 28)
-  a.node(text(pad, footY - 6, project.kicker, {
-    family: 'mono', size: mobile ? 8.4 : 9, weight: 500, tracking: mobile ? 1.2 : 1.8, fill: sc.textFaint,
-  }))
-  a.node(text(w - pad, footY - 6, `FIG. ${project.index}`, {
-    family: 'mono', size: mobile ? 8.4 : 9, weight: 400, tracking: 1.4, fill: sc.textFaint, anchor: 'end',
-  }))
+  if (mobile) {
+    a.node(text(pad, footY - 4, project.name, {
+      family: 'serif', size: 22, weight: 500, fill: sc.text, tracking: -0.3,
+    }))
+  } else {
+    a.node(text(pad, footY - 6, project.kicker, {
+      family: 'mono', size: 9, weight: 500, tracking: 1.8, fill: sc.textFaint,
+    }))
+    a.node(text(w - pad, footY - 6, `FIG. ${project.index}`, {
+      family: 'mono', size: 9, weight: 400, tracking: 1.4, fill: sc.textFaint, anchor: 'end',
+    }))
+  }
 
   a.node(bracketFrame(w - pad - 34, footY - 30, 34, 24, sc.borderStrong, { len: 8, opacity: 0.5 }))
   a.node(grain(sc, w, h))

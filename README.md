@@ -86,7 +86,7 @@ The evidence model behind NosoGraph, drawn as it is documented in the repository
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/evidence/pipeline-mobile-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="./assets/evidence/pipeline-desktop-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/evidence/pipeline-desktop-light.svg">
-  <img width="100%" src="./assets/evidence/pipeline-desktop-dark.svg" alt="Six-stage evidence chain: sources, 25 registered adapters, normalisation and validation, typed claims, four evidence states, provenance snapshots and the CLI, API and export surfaces.">
+  <img width="100%" src="./assets/evidence/pipeline-desktop-dark.svg" alt="Seven-stage evidence chain: sources, 25 registered adapters, normalisation and validation, typed claims, four evidence states, provenance snapshots and the CLI, API and export surfaces.">
 </picture>
 
 ## Capabilities
@@ -108,7 +108,7 @@ I'm a Penn State student and I build software in the open. Most of what I know c
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/activity/activity-mobile-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="./assets/activity/activity-desktop-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/activity/activity-desktop-light.svg">
-  <img width="100%" src="./assets/activity/activity-desktop-dark.svg" alt="Contribution calendar for the last twelve months, drawn as a teal heat grid with the total shown alongside.">
+  <img width="100%" src="./assets/activity/activity-desktop-dark.svg" alt="Public commit activity for the last twelve months across the three featured repositories, drawn as a teal heat grid with the total shown alongside.">
 </picture>
 
 ## Contact

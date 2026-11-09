@@ -1,71 +1,71 @@
 {
-  "generated": "2026-11-09",
+  "generated": "2026-11-08",
   "count": 32,
-  "totalBytes": 1084760,
+  "totalBytes": 905264,
   "files": [
     {
       "path": "assets/activity/activity-desktop-dark.svg",
-      "bytes": 61372
+      "bytes": 33828
     },
     {
       "path": "assets/activity/activity-desktop-light.svg",
-      "bytes": 61371
+      "bytes": 33827
     },
     {
       "path": "assets/activity/activity-mobile-dark.svg",
-      "bytes": 52810
+      "bytes": 33568
     },
     {
       "path": "assets/activity/activity-mobile-light.svg",
-      "bytes": 52809
+      "bytes": 33567
     },
     {
       "path": "assets/evidence/pipeline-desktop-dark.svg",
-      "bytes": 33809
+      "bytes": 33805
     },
     {
       "path": "assets/evidence/pipeline-desktop-light.svg",
-      "bytes": 33808
+      "bytes": 33804
     },
     {
       "path": "assets/evidence/pipeline-mobile-dark.svg",
-      "bytes": 30881
+      "bytes": 31206
     },
     {
       "path": "assets/evidence/pipeline-mobile-light.svg",
-      "bytes": 30880
+      "bytes": 31205
     },
     {
       "path": "assets/glance/glance-desktop-dark.svg",
-      "bytes": 24109
+      "bytes": 23883
     },
     {
       "path": "assets/glance/glance-desktop-light.svg",
-      "bytes": 24107
+      "bytes": 23881
     },
     {
       "path": "assets/glance/glance-mobile-dark.svg",
-      "bytes": 24110
+      "bytes": 21864
     },
     {
       "path": "assets/glance/glance-mobile-light.svg",
-      "bytes": 24108
+      "bytes": 21862
     },
     {
       "path": "assets/hero/hero-desktop-dark.svg",
-      "bytes": 93577
+      "bytes": 70110
     },
     {
       "path": "assets/hero/hero-desktop-light.svg",
-      "bytes": 93488
+      "bytes": 70021
     },
     {
       "path": "assets/hero/hero-mobile-dark.svg",
-      "bytes": 58086
+      "bytes": 48064
     },
     {
       "path": "assets/hero/hero-mobile-light.svg",
-      "bytes": 57997
+      "bytes": 47975
     },
     {
       "path": "assets/ui/button-contact.svg",
@@ -93,11 +93,11 @@
     },
     {
       "path": "assets/work/agent-ready-mobile-dark.svg",
-      "bytes": 22291
+      "bytes": 19283
     },
     {
       "path": "assets/work/agent-ready-mobile-light.svg",
-      "bytes": 22290
+      "bytes": 19282
     },
     {
       "path": "assets/work/nosograph-desktop-dark.svg",
@@ -109,11 +109,11 @@
     },
     {
       "path": "assets/work/nosograph-mobile-dark.svg",
-      "bytes": 23066
+      "bytes": 19056
     },
     {
       "path": "assets/work/nosograph-mobile-light.svg",
-      "bytes": 23065
+      "bytes": 19055
     },
     {
       "path": "assets/work/short-squeeze-screener-internship-desktop-dark.svg",
@@ -125,11 +125,11 @@
     },
     {
       "path": "assets/work/short-squeeze-screener-internship-mobile-dark.svg",
-      "bytes": 20874
+      "bytes": 20570
     },
     {
       "path": "assets/work/short-squeeze-screener-internship-mobile-light.svg",
-      "bytes": 20873
+      "bytes": 20569
     }
   ]
 }

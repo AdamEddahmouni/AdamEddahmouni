@@ -18,7 +18,7 @@ const data = JSON.parse(readFileSync(join(ROOT, 'data', 'projects.json'), 'utf8'
 const blocks = data.glance
 
 const DESKTOP = { w: 1200, h: 240, pad: 48 }
-const MOBILE = { w: 640, h: 400, pad: 30 }
+const MOBILE = { w: 480, h: 380, pad: 30 }
 
 async function render(scheme, layout) {
   const sc = schemeOf(scheme)
@@ -39,7 +39,7 @@ async function render(scheme, layout) {
   a.node(sectionHeader(pad, mobile ? 40 : 44, 'AT A GLANCE', sc, { ruleTo: w - pad }))
 
   const cols = mobile ? 2 : 4
-  const gapX = mobile ? 36 : 26
+  const gapX = mobile ? 30 : 26
   const cellW = (w - pad * 2 - gapX * (cols - 1)) / cols
   const cellH = mobile ? 132 : 150
   const top = mobile ? 76 : 64
@@ -57,15 +57,17 @@ async function render(scheme, layout) {
     a.node(`<g class="fade d${i + 2}">`)
     a.node(icon(block.icon, cx - iconSize / 2, y, iconSize, sc.brand.teal, { strokeWidth: 1.3 }))
     a.node(text(cx, y + (mobile ? 64 : 72), block.title, {
-      family: 'serif', size: mobile ? 23 : 28, weight: 500, fill: sc.text,
+      family: 'serif', size: mobile ? 24 : 28, weight: 500, fill: sc.text,
       tracking: -0.2, anchor: 'middle',
     }))
-    a.node(label(cx, y + (mobile ? 86 : 96), block.note.toUpperCase(), {
-      size: mobile ? 8.8 : 9.4,
-      tracking: mobile ? 1.1 : 1.6,
-      fill: sc.textFaint,
-      anchor: 'middle',
-    }))
+    // The qualifier is 9px inside a 640-unit artboard, which is ~4.5 CSS px on
+    // a phone. On the phone plate the title alone carries the domain; the
+    // Markdown capabilities section carries the detail.
+    if (!mobile) {
+      a.node(label(cx, y + 96, block.note.toUpperCase(), {
+        size: 13, tracking: 1.2, fill: sc.textFaint, anchor: 'middle',
+      }))
+    }
     a.node(`</g>`)
 
     // Separators span the band rather than stopping at the text baseline.
@@ -82,9 +84,6 @@ async function render(scheme, layout) {
 
   // hairline foot, matching the reference's ruled band edges
   a.node(rule(pad, h - (mobile ? 26 : 22), w - pad, h - (mobile ? 26 : 22), sc.border, 0.55))
-  a.node(label(w - pad, h - (mobile ? 10 : 8), 'FOUR DOMAINS', {
-    size: 8, tracking: 1.8, fill: sc.textFaint, anchor: 'end',
-  }))
 
   a.node(grain(sc, w, h))
   await a.commit()

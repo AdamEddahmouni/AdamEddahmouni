@@ -51,7 +51,12 @@ including accent labels drawn at 9–10 px. It fails on unresolved tokens.
 | Technical | IBM Plex Mono | 400, 500 | Tracked labels, stage names, captions |
 
 - Display sizes: 92 px desktop hero, 52 px mobile hero, 26–30 px section headings.
-- Mono labels: 8–11 px with 1.2–3.2 px tracking, always uppercase.
+- Mono labels: 10–13 px desktop with 1.2–3.2 px tracking, always uppercase.
+- **Mobile legibility floor:** a 480-unit artboard is displayed at roughly 330 CSS
+  px on a phone, a scale of 0.69. Essential text is therefore set at **16 units
+  minimum** (≈11 CSS px), secondary text at 13–15. Labels that cannot meet the
+  floor are removed rather than shrunk, and the meaning moves to the alt text or
+  the Markdown beside the plate.
 - SVG served through `<img>` cannot fetch webfonts, so faces are subset to the
   glyphs each asset actually draws and embedded as base64 WOFF2
   (`tools/lib/fonts.mjs`, cache in `tools/lib/font-cache.json`).
@@ -73,10 +78,10 @@ including accent labels drawn at 9–10 px. It fails on unresolved tokens.
 | Component | Files | Notes |
 | --- | --- | --- |
 | Hero | `assets/hero/hero-{desktop,mobile}-{dark,light}.svg` | Name, descriptor, generated surface, instrumentation |
-| At a glance | `assets/glance/glance-*` | Four domains, custom icons, hairline separators |
-| Work plates | `assets/work/<project>-*` | One conceptual diagram per project, "CONCEPTUAL DIAGRAM" labelled |
-| Evidence diagram | `assets/evidence/pipeline-*` | NosoGraph's documented evidence chain |
-| Activity | `assets/activity/activity-*` | Custom contribution calendar from captured API data |
+| At a glance | `assets/glance/glance-*` | Four domains, custom icons, hairline separators; qualifiers are desktop-only |
+| Work plates | `assets/work/<project>-*` | One conceptual diagram per project, labelled; the phone plate carries its project name and drops diagram micro-text |
+| Evidence diagram | `assets/evidence/pipeline-*` | NosoGraph's documented seven-stage evidence chain; vertical flow on phones |
+| Activity | `assets/activity/activity-*` | Public commit calendar from captured API data; 53-week grid, total, capture date and legend, no month ticks |
 | Buttons | `assets/ui/button-*.svg` | Real links, theme-neutral ink pills |
 
 Each plate carries `<title>` and `<desc>`; the README carries descriptive alt

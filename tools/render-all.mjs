@@ -9,7 +9,7 @@
  */
 
 import { spawnSync } from 'node:child_process'
-import { readdirSync, statSync, writeFileSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { ROOT } from './lib/svg.mjs'
 
@@ -59,8 +59,12 @@ const files = walk(join(ROOT, 'assets'))
   .filter((rel) => GENERATED.some((re) => re.test(rel)))
   .sort()
   .map((rel) => join(ROOT, rel))
+// Tie the manifest stamp to the captured data, not the wall clock, so two
+// renders of unchanged inputs produce byte-identical files and CI does not
+// create a commit just because the day rolled over.
+const capture = JSON.parse(readFileSync(join(ROOT, 'tools', 'repo-data.json'), 'utf8')).generated
 const manifest = {
-  generated: new Date().toISOString().slice(0, 10),
+  generated: capture,
   count: files.length,
   totalBytes: files.reduce((s, f) => s + statSync(f).size, 0),
   files: files.map((f) => ({
@@ -72,7 +76,7 @@ writeFileSync(join(ROOT, 'tools', 'manifest.json'), JSON.stringify(manifest, nul
 const mb = (manifest.totalBytes / 1024 / 1024).toFixed(2)
 console.log(`\nmanifest: ${manifest.count} assets, ${mb} MB total`)
 
-for (const gate of ['check-contrast.mjs', 'check-markdown.mjs']) {
+for (const gate of ['check-contrast.mjs', 'check-markdown.mjs', 'check-assets.mjs']) {
   console.log(`\n── ${gate}`)
   const r = spawnSync(process.execPath, [`tools/${gate}`], { stdio: 'inherit' })
   if (r.status !== 0) process.exit(r.status ?? 1)
