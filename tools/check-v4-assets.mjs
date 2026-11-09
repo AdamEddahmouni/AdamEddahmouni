@@ -11,7 +11,7 @@ let problems=0,total=0
 for(const ref of refs){
  const file=resolve(ROOT,ref)
  if (!existsSync(file)) {console.error(`MISSING ${ref}`);problems++;continue}
- const size=statSync(file).size,totalOld=total;total += size
+ const size=statSync(file).size;total += size
  const buf=readFileSync(file)
  if(buf.toString('ascii',0,4)!=='RIFF'||buf.toString('ascii',8,12)!=='WEBP'){console.error(`INVALID WebP ${ref}`);problems++}
  const type=ref.split('/')[3]
