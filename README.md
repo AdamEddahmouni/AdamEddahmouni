@@ -1,11 +1,11 @@
 <div align="center">
 
 <picture>
-  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/hero/hero-mobile-dark.svg">
-  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/hero/hero-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero/hero-desktop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/hero/hero-desktop-light.svg">
-  <img width="100%" src="./assets/hero/hero-desktop-dark.svg" alt="Adam Eddahmouni — software engineering, AI systems and applied research. A generated teal-to-copper wireframe surface with instrumentation arcs.">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/hero/hero-mobile-dark.webp">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/hero/hero-mobile-light.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/hero/hero-desktop-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/hero/hero-desktop-light.webp">
+  <img width="100%" src="./assets/studio-v4/presentation/hero/hero-desktop-dark.webp" alt="Adam Eddahmouni — Engineering Studio. Dramatic teal and copper mathematical terrain with large editorial name typography.">
 </picture>
 
 </div>
@@ -13,92 +13,86 @@
 I build open-source research software, developer tooling, and market systems — systems that show their evidence rather than assert it.
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/adameddahmouni/"><img src="./assets/ui/button-linkedin.svg" width="150" alt="Adam Eddahmouni on LinkedIn"></a>
-  <a href="#selected-work"><img src="./assets/ui/button-projects.svg" width="150" alt="Selected projects"></a>
-  <a href="https://adameddahmouni.github.io/nosograph/"><img src="./assets/ui/button-research.svg" width="150" alt="NosoGraph research documentation"></a>
-  <a href="mailto:adameddahmouni@gmail.com"><img src="./assets/ui/button-contact.svg" width="150" alt="Email Adam Eddahmouni"></a>
+  <a href="https://www.linkedin.com/in/adameddahmouni/"><img src="./assets/studio-v4/presentation/buttons/linkedin-dark.webp" width="145" alt="Connect on LinkedIn"></a>
+  <a href="#selected-work"><img src="./assets/studio-v4/presentation/buttons/projects-dark.webp" width="145" alt="Explore selected projects"></a>
+  <a href="https://adameddahmouni.github.io/nosograph/"><img src="./assets/studio-v4/presentation/buttons/research-dark.webp" width="145" alt="Explore NosoGraph research documentation"></a>
+  <a href="mailto:adameddahmouni@gmail.com"><img src="./assets/studio-v4/presentation/buttons/contact-dark.webp" width="145" alt="Contact Adam by email"></a>
 </p>
 
 <picture>
-  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/glance/glance-mobile-dark.svg">
-  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/glance/glance-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/glance/glance-desktop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/glance/glance-desktop-light.svg">
-  <img width="100%" src="./assets/glance/glance-desktop-dark.svg" alt="At a glance: engineering, AI systems, research and markets.">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/glance/glance-mobile-dark.webp">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/glance/glance-mobile-light.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/glance/glance-desktop-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/glance/glance-desktop-light.webp">
+  <img width="100%" src="./assets/studio-v4/presentation/glance/glance-desktop-dark.webp" alt="Four focus areas: engineering, AI systems, research, and products.">
 </picture>
 
 ## Selected work
 
 <picture>
-  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/featured/featured-mobile-dark.svg">
-  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/featured/featured-mobile-light.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/featured/featured-desktop-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/featured/featured-desktop-light.svg">
-  <img width="100%" src="./assets/featured/featured-desktop-dark.svg" alt="Three featured systems as cards: NosoGraph, a biomedical evidence graph; Agent-Ready, a repository contract for AI agents; and Short Squeeze Screener, a read-only market screener. Each card carries its conceptual diagram and factual tags.">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/gallery/featured-mobile-dark.webp">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/featured-mobile-light.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/gallery/featured-desktop-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/featured-desktop-light.webp">
+  <img width="100%" src="./assets/studio-v4/presentation/gallery/featured-desktop-dark.webp" alt="Conceptual artwork for NosoGraph, Agent-Ready, and Short Squeeze Screener in a premium three-card gallery. Artwork does not represent actual screenshots or measurements.">
 </picture>
 
 ### NosoGraph
 
-Disease knowledge connected to the evidence behind it. Every claim carries its source, its direction and its certainty, and missing metadata stays `unknown` instead of quietly becoming a guess. Twenty-five pipeline adapters read MONDO, HPO, PubMed, ClinicalTrials.gov, Open Targets and GWAS into one provenance-preserving graph, exposed through a CLI, a FastAPI surface, and deterministic JSON or Markdown exports.
+Biomedical knowledge connected to its underlying evidence, with source provenance, evidence direction, and explicit uncertainty. The public-alpha repository documents 25 pipeline adapters and a 2,445-test offline suite.
 
-`Python` · `25 adapters` · `2,445 offline tests` · `v0.2.1 public alpha`
-
-[Repository](https://github.com/AdamEddahmouni/nosograph) · [Documentation](https://adameddahmouni.github.io/nosograph/) · [DOI](https://doi.org/10.5281/zenodo.22055279)
+`Python` · `Research software` · `v0.2.1 public alpha`  
+[Explore repository](https://github.com/AdamEddahmouni/nosograph) · [Documentation](https://adameddahmouni.github.io/nosograph/) · [Research DOI](https://doi.org/10.5281/zenodo.22055279)
 
 ### Agent-Ready
 
-One schema-validated file that tells every AI coding agent how to work in a repository: the commands it may run, the paths it may not touch, the verification it must pass, and the evidence it must leave behind. Eleven CLI commands, no API keys, no network access, and no LLM calls — the same contract produces the same result every time.
+A deterministic repository contract for AI coding agents: one validated schema for allowed commands, protected paths, generated instructions, and verification evidence. The project documents 11 CLI commands and 557 tests.
 
-`TypeScript` · `11 CLI commands` · `5 adapters` · `557 tests on 3 platforms`
-
-[Repository](https://github.com/AdamEddahmouni/agent-ready)
+`TypeScript` · `Developer tooling` · `5 agent adapters`  
+[Explore repository](https://github.com/AdamEddahmouni/agent-ready)
 
 ### Short Squeeze Screener
 
-A research screener that ranks short-squeeze candidates from structured market data, with quality checks at every step and a frozen demo mode for reproducible runs. It runs locally and read-only: no orders, no brokerage account, no recommendation, and no claim that a candidate will move.
+A read-only market-research screener for evaluating possible short-squeeze conditions using structured data and repeatable demo runs. It does not place orders or claim predictive accuracy.
 
-`Python 3.12` · `v0.16.0` · `local-only` · `FROZEN_DEMO mode`
+`Python 3.12` · `Quantitative research` · `FROZEN_DEMO`  
+[Explore repository](https://github.com/AdamEddahmouni/short-squeeze-screener-internship) · [Getting started](https://github.com/AdamEddahmouni/short-squeeze-screener-internship/blob/main/short-squeeze-core/docs/getting-started.md)
 
-[Repository](https://github.com/AdamEddahmouni/short-squeeze-screener-internship) · [Getting started](https://github.com/AdamEddahmouni/short-squeeze-screener-internship/blob/main/short-squeeze-core/docs/getting-started.md)
+## Engineering evidence
 
-## How a claim earns its place
-
-The evidence model behind NosoGraph, drawn as it is documented in the repository: sources become typed claims, claims carry a direction, and every reading keeps the snapshot it came from. Supporting, contradictory, inconclusive and unasserted evidence can coexist — the graph is not allowed to collapse that into a verdict.
+NosoGraph's research pipeline preserves the chain from source records to validated claims, evidence direction, and source snapshots. Supporting, contradictory, inconclusive, and unasserted evidence remain distinct rather than collapsing into a single verdict.
 
 <picture>
   <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/evidence/pipeline-mobile-dark.svg">
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/evidence/pipeline-mobile-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="./assets/evidence/pipeline-desktop-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/evidence/pipeline-desktop-light.svg">
-  <img width="100%" src="./assets/evidence/pipeline-desktop-dark.svg" alt="Seven-stage evidence chain: sources, 25 registered adapters, normalisation and validation, typed claims, four evidence states, provenance snapshots and the CLI, API and export surfaces.">
+  <img width="100%" src="./assets/evidence/pipeline-desktop-dark.svg" alt="NosoGraph evidence pipeline: sources, adapters, normalization, claims, evidence states, provenance and accessible outputs.">
 </picture>
 
 ## Capabilities
 
-**Languages and runtime** — Python · TypeScript · JavaScript · Node.js · PowerShell
+**Engineering** — Python · TypeScript · JavaScript · Node.js · FastAPI · Docker · GitHub Actions  
+**AI and agent systems** — agent contracts · schema validation · deterministic tooling · evaluation workflows  
+**Research and data** — biomedical evidence modelling · ontology integration · provenance · quantitative screening  
+**Products and delivery** — full-stack software · developer experience · interfaces · test automation
 
-**AI and agent tooling** — repository contracts · schema validation · deterministic CLIs · generated agent instructions
+I'm a Penn State student building software in the open, with an interest in engineering, research, and products that solve real problems.
 
-**Data and research** — evidence modelling · provenance and snapshots · ontology and literature integration · reproducible pipelines
-
-**Platform and delivery** — FastAPI · Redis · Docker Compose · GitHub Actions · pytest
-
-I'm a Penn State student and I build software in the open. Most of what I know came from shipping these systems, reading their tests, and fixing what broke.
-
-## Activity
+## GitHub activity
 
 <picture>
   <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/activity/activity-mobile-dark.svg">
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/activity/activity-mobile-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="./assets/activity/activity-desktop-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/activity/activity-desktop-light.svg">
-  <img width="100%" src="./assets/activity/activity-desktop-dark.svg" alt="Public commit activity for the last twelve months across the three featured repositories, drawn as a teal heat grid with the total shown alongside.">
+  <img width="100%" src="./assets/activity/activity-desktop-dark.svg" alt="Dated public commit activity across the three featured repositories, represented by a generated teal calendar.">
 </picture>
 
 ## Contact
 
-I'm open to internships, research collaborations, and conversations about research software, agent tooling, or market data systems.
+I'm open to internships, research collaborations, and conversations about engineering software, agent tooling, or market-data systems.
 
-**[adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com)** · **[LinkedIn](https://www.linkedin.com/in/adameddahmouni/)** · **[GitHub](https://github.com/AdamEddahmouni)** · **[NosoGraph docs](https://adameddahmouni.github.io/nosograph/)**
+**[Email](mailto:adameddahmouni@gmail.com)** · **[LinkedIn](https://www.linkedin.com/in/adameddahmouni/)** · **[GitHub](https://github.com/AdamEddahmouni)** · **[Research documentation](https://adameddahmouni.github.io/nosograph/)**
 
-<sub>NosoGraph is research software, not medical advice. The screener places no trades and gives no investment advice. All figures shown are taken from each repository's own documentation and GitHub metadata, dated in the generated plate.</sub>
+<sub>Featured artwork is conceptual illustration, not product screenshots or actual market/medical data. NosoGraph is research software, not medical advice. The screener does not provide investment advice or execute trades. Historical numerical figures are attributed to the respective project repositories.</sub>

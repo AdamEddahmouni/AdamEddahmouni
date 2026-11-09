@@ -1,13 +1,5 @@
 name: Check README
 
-# Guards the things that silently rot in a profile README: contrast regressions,
-# invalid SVG, assets that have drifted past their component budget, paths the
-# README references that no longer exist, and dead outbound links.
-#
-# Budgets live in tools/check-assets.mjs so CI and local builds cannot drift
-# apart, and each component has its own exact-byte limit (including activity,
-# which previously fell through to a flat default).
-
 on:
   push:
     paths:
@@ -33,33 +25,28 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
       - uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: "22"
-
       - name: Contrast gate
         run: node tools/check-contrast.mjs
-
       - name: README structure
         run: node tools/check-markdown.mjs
-
-      - name: Asset budgets and manifest
+      - name: Existing SVG budgets and manifest
         run: node tools/check-assets.mjs
-
-      - name: Every asset is well-formed XML
+      - name: V4 raster assets and link integrity
+        run: node tools/check-v4-assets.mjs
+      - name: Every SVG is well-formed XML
         run: |
           status=0
           while IFS= read -r f; do
             if ! python3 -c "import xml.etree.ElementTree as E,sys; E.parse(sys.argv[1])" "$f" 2>/tmp/xmlerr; then
-              echo "::error file=$f::invalid XML — $(cat /tmp/xmlerr | tail -1)"
+              echo "::error file=$f::invalid XML — $(tail -1 /tmp/xmlerr)"
               status=1
             fi
           done < <(find assets -name '*.svg')
           exit $status
-
       - name: Outbound links
         run: node tools/check-links.mjs
-
       - name: Markdown lint
         run: npx --yes markdownlint-cli2@0.13.0 "README.md" "docs/**/*.md"
