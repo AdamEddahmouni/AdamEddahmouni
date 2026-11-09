@@ -223,8 +223,10 @@ not merge PR #2.
 - **Independently linked project cards.** The approved 2000×855 desktop plate
   and 748×2360 phone plate were cropped into three cards per layout, in both
   schemes (`tools/build-v4-cards.mjs`). Each card is wrapped in a real repository
-  link and displayed at 480 CSS px on desktop, filling the phone column. The four
-  source plates remain committed for reproducibility but are not served.
+  link and displayed at 480 CSS px on desktop, filling the phone column. Each
+  card follows its project heading, so the heading introduces the work before
+  the artwork. The four source plates remain committed for reproducibility but
+  are not served.
 - **Authentic evidence.** A real Evidence Explorer capture from the public
   NosoGraph repository is stored locally, disclosed in a `<details>` block and
   labelled as an interface capture, not a hosted demo. Five verified links to
@@ -300,6 +302,39 @@ resolution and layout.
    could not display the rendered images for a human aesthetic review, so the
    visual sign-off still belongs to the owner.
 2. Chromium is the only browser tested; Firefox and WebKit were not available.
-3. The GitHub branch page itself still needs a post-push check for camo image
-   loading and theme switching, which the Markdown API cannot simulate.
+3. The GitHub branch page needed a post-push check for image loading and theme
+   switching, which the Markdown API cannot simulate; that check is recorded in
+   §13.
 4. `main` is unchanged and PR #2 is still draft; no merge was performed.
+
+## 13. Release verification — 195c3fa
+
+Published to `profile/engineering-studio` on 2026-11-09. `main` is untouched and
+PR #2 remains a draft.
+
+| Item | Result |
+| --- | --- |
+| Functional commit | `195c3faab32acf8d89b5938fc89cfee0a62604f0` |
+| Branch CI | [run 42637398451](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42637398451) — **success** |
+| CI steps | Contrast, README structure, SVG budgets, V4 assets and links, XML, outbound links, Markdown lint — all success |
+| Branch page | 4/4 layout combinations verified in headless Chromium |
+
+### 13.1 GitHub branch page
+
+The public blob page was loaded directly at 1280 px desktop and 390 px phone,
+in both dark and light schemes. Every combination reported 12 of 12 images
+loaded, 11 `<picture>` elements and all 29 `<source>` elements intact, the
+three cards at 480 px (desktop) or 324 px (phone), one navigation row on
+desktop and two on phone, zero horizontal overflow, and the evidence capture
+inside its disclosure. The three cards linked to three distinct public
+repositories, and the four navigation images kept their link destinations and
+alternative text. Chromium requested the correct desktop/phone and light/dark
+asset for each scheme.
+
+### 13.2 Remaining limitations
+
+The visual limitations in §12.6 still apply: captures were measured
+programmatically rather than reviewed by eye in this environment, Chromium was
+the only browser available, and final aesthetic approval belongs to the owner.
+PR #2 was open and draft when checked; GitHub reported mergeability as unknown at
+that moment. No merge was performed.
