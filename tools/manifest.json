@@ -1,28 +1,103 @@
-[
-  "/assets/badges/badges-dark.svg",
-  "/assets/badges/badges-light.svg",
-  "/assets/cards/agent-ready-dark.svg",
-  "/assets/cards/agent-ready-light.svg",
-  "/assets/cards/market-trading-platform-dark.svg",
-  "/assets/cards/market-trading-platform-light.svg",
-  "/assets/cards/nosograph-dark.svg",
-  "/assets/cards/nosograph-light.svg",
-  "/assets/cards/short-squeeze-screener-internship-dark.svg",
-  "/assets/cards/short-squeeze-screener-internship-light.svg",
-  "/assets/chips/stack-dark.svg",
-  "/assets/chips/stack-light.svg",
-  "/assets/hero/hero-dark.svg",
-  "/assets/hero/hero-light.svg",
-  "/assets/stats/activity-dark.svg",
-  "/assets/stats/activity-light.svg",
-  "/assets/stats/langs-dark.svg",
-  "/assets/stats/langs-light.svg",
-  "/assets/stats/stats-dark.svg",
-  "/assets/stats/stats-light.svg",
-  "/assets/ui/divider-dark.svg",
-  "/assets/ui/divider-light.svg",
-  "/assets/ui/footer-dark.svg",
-  "/assets/ui/footer-light.svg",
-  "/assets/ui/status-dark.svg",
-  "/assets/ui/status-light.svg"
-]
+{
+  "generated": "2026-11-08",
+  "count": 24,
+  "totalBytes": 774042,
+  "files": [
+    {
+      "path": "assets/activity/activity-desktop-dark.svg",
+      "bytes": 33828
+    },
+    {
+      "path": "assets/activity/activity-desktop-light.svg",
+      "bytes": 33827
+    },
+    {
+      "path": "assets/activity/activity-mobile-dark.svg",
+      "bytes": 33568
+    },
+    {
+      "path": "assets/activity/activity-mobile-light.svg",
+      "bytes": 33567
+    },
+    {
+      "path": "assets/evidence/pipeline-desktop-dark.svg",
+      "bytes": 33805
+    },
+    {
+      "path": "assets/evidence/pipeline-desktop-light.svg",
+      "bytes": 33804
+    },
+    {
+      "path": "assets/evidence/pipeline-mobile-dark.svg",
+      "bytes": 31206
+    },
+    {
+      "path": "assets/evidence/pipeline-mobile-light.svg",
+      "bytes": 31205
+    },
+    {
+      "path": "assets/featured/featured-desktop-dark.svg",
+      "bytes": 35281
+    },
+    {
+      "path": "assets/featured/featured-desktop-light.svg",
+      "bytes": 35280
+    },
+    {
+      "path": "assets/featured/featured-mobile-dark.svg",
+      "bytes": 33215
+    },
+    {
+      "path": "assets/featured/featured-mobile-light.svg",
+      "bytes": 33214
+    },
+    {
+      "path": "assets/glance/glance-desktop-dark.svg",
+      "bytes": 23883
+    },
+    {
+      "path": "assets/glance/glance-desktop-light.svg",
+      "bytes": 23881
+    },
+    {
+      "path": "assets/glance/glance-mobile-dark.svg",
+      "bytes": 21864
+    },
+    {
+      "path": "assets/glance/glance-mobile-light.svg",
+      "bytes": 21862
+    },
+    {
+      "path": "assets/hero/hero-desktop-dark.svg",
+      "bytes": 70110
+    },
+    {
+      "path": "assets/hero/hero-desktop-light.svg",
+      "bytes": 70021
+    },
+    {
+      "path": "assets/hero/hero-mobile-dark.svg",
+      "bytes": 48064
+    },
+    {
+      "path": "assets/hero/hero-mobile-light.svg",
+      "bytes": 47975
+    },
+    {
+      "path": "assets/ui/button-contact.svg",
+      "bytes": 10939
+    },
+    {
+      "path": "assets/ui/button-linkedin.svg",
+      "bytes": 11448
+    },
+    {
+      "path": "assets/ui/button-projects.svg",
+      "bytes": 11113
+    },
+    {
+      "path": "assets/ui/button-research.svg",
+      "bytes": 11082
+    }
+  ]
+}

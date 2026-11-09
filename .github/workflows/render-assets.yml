@@ -1,22 +1,36 @@
-name: Render assets
+name: Render profile assets
 
-# Regenerates every graphic on the profile README from the design tokens and
-# live repository data, then commits the result. Fonts and icon paths are
-# cached in tools/lib, so the only network calls are the repository metadata.
+# Regenerates the generated SVG artwork from the design tokens and captured
+# repository data, runs the quality gates, and commits the result.
+#
+# Approved V4 raster plates, project-card crops and buttons under
+# assets/studio-v4 are static artwork: they are not generated here, and the
+# guard below fails the run if a generator changes them. Rebuild the card
+# derivatives locally with tools/build-v4-cards.mjs instead.
+#
+# Scheduled publishing is intentionally NOT enabled. The schedule block below
+# is commented out until the workflow has been reviewed and the owner has
+# authorised automated commits to the published profile.
+#
+# Failure behaviour: assets are only committed when every generator and every
+# gate succeeds. A failed run leaves the last published artwork untouched and
+# surfaces the error in the job log.
 
 on:
-  schedule:
-    - cron: "23 5 * * *"   # daily, off the hour to avoid the top-of-hour rush
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - "tools/**"
+      - "data/**"
       - "assets/**"
       - ".github/workflows/render-assets.yml"
 
+  # schedule:
+  #   - cron: "23 5 * * *"   # daily, off the hour
+
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: render-assets
@@ -27,27 +41,38 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: "22"
 
-      - name: Refresh repository data
+      - name: Refresh captured repository data
         run: node tools/fetch-repo-data.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Regenerate assets and check contrast
+      - name: Regenerate assets and run gates
         run: node tools/render-all.mjs
 
-      - name: Build asset manifest
-        run: node tools/audit.mjs
+      - name: Protect approved V4 static artwork
+        run: |
+          if ! git diff --quiet -- assets/studio-v4; then
+            echo "::error::Regeneration modified approved V4 artwork under assets/studio-v4. Nothing was committed."
+            git diff --stat -- assets/studio-v4
+            exit 1
+          fi
 
-      - name: Commit if changed
+      - name: Commit generated assets
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets tools/repo-data.json tools/manifest.json
-          git diff --staged --quiet || git commit -m "chore: regenerate profile assets"
-          git push || echo "nothing to push"
+          git add assets tools/manifest.json tools/repo-data.json tools/lib/font-cache.json
+          if git diff --staged --quiet; then
+            echo "No asset changes."
+          else
+            git commit -m "chore: regenerate profile assets"
+            git push
+          fi

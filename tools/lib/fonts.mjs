@@ -2,13 +2,12 @@
  * Per-asset font subsetting.
  *
  * An SVG served through <img> cannot fetch a webfont, so the typeface has to
- * be embedded. Embedding a full face would cost ~48 KB of base64 per asset,
- * which is unacceptable across fourteen files. Instead every asset declares
- * the glyphs it actually draws and we ask Google Fonts for a subset of exactly
- * those, which lands in the low single-digit KB.
+ * be embedded. Embedding a whole face costs tens of KB per asset; instead each
+ * asset declares the faces it uses and we ask Google Fonts for a subset of
+ * exactly the glyphs it draws, which lands in the low single-digit KB.
  *
- * Results are cached on disk and committed, so a build - including CI - is
- * reproducible and needs no network once the cache is warm.
+ * Results are cached in tools/lib/font-cache.json and committed, so a build is
+ * reproducible and CI needs no network once the cache is warm.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -30,18 +29,15 @@ export function saveFontCache() {
   writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 0), 'utf8')
 }
 
-export const cacheStats = () => Object.keys(cache).length
-
 const key = (family, weight, glyphs) =>
   `${family}-${weight}-${createHash('sha1').update(glyphs).digest('hex').slice(0, 10)}`
 
 /**
- * The only characters assumed present without being declared. Assets record
- * every glyph they actually draw, so this just needs to cover digits and the
- * marks that appear in generated numerals and separators. Keeping it small is
- * what makes the subsets small: forcing all of ASCII costs ~3x the bytes.
+ * Characters assumed present without being declared. Assets record every glyph
+ * they actually draw; this only covers numerals and separators emitted by
+ * generators. Keeping it small is what keeps the subsets small.
  */
-export const CORE_GLYPHS = ' 0123456789.,:-+/()%·×→∞…—'
+export const CORE_GLYPHS = ' 0123456789.,:-+/()%·×→∞…—’'
 
 async function fetchSubset(family, weight, glyphs) {
   const spec = family.replace(/ /g, '+')
@@ -56,17 +52,17 @@ async function fetchSubset(family, weight, glyphs) {
 }
 
 /**
- * Ensure a base64 woff2 exists for this exact (family, weight, glyphs) triple.
- * Returns null when the family is unknown, so the caller can fall back to the
- * system stack rather than failing the build.
+ * Ensure a base64 woff2 exists for this (family, weight, glyphs) triple.
+ * Returns null when the family is unavailable so the caller falls back to the
+ * declared system stack rather than failing the build.
  */
 export async function subset(family, weight, glyphs) {
   const set = new Set([...CORE_GLYPHS, ...glyphs].filter((c) => c && c !== '\n' && c !== '\r'))
-  const text = [...set].sort().join('')
-  const k = key(family, weight, text)
+  const textString = [...set].sort().join('')
+  const k = key(family, weight, textString)
   if (cache[k]) return cache[k]
   try {
-    cache[k] = await fetchSubset(family, weight, text)
+    cache[k] = await fetchSubset(family, weight, textString)
     return cache[k]
   } catch (err) {
     console.warn(`  ! font subset unavailable (${family} ${weight}): ${err.message}`)
@@ -74,8 +70,12 @@ export async function subset(family, weight, glyphs) {
   }
 }
 
-/** All faces declared in the token file, in render order. */
-export const faces = [
-  { family: tokens.type.display.family, weights: tokens.type.display.weights, roles: ['display'] },
-  { family: tokens.type.mono.family, weights: tokens.type.mono.weights, roles: ['mono'] },
-]
+/** Declared faces, keyed by role. */
+export const faces = {
+  serif: { family: tokens.type.serif.family, weights: tokens.type.serif.weights },
+  sans: { family: tokens.type.sans.family, weights: tokens.type.sans.weights },
+  mono: { family: tokens.type.mono.family, weights: tokens.type.mono.weights },
+}
+
+/** Faces embedded by default. Artwork with no body copy skips Inter. */
+export const DEFAULT_FACES = ['serif', 'mono']

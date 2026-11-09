@@ -2,38 +2,50 @@
  * Contrast gate.
  *
  * Asserts that every foreground/background pair the design system actually
- * draws with clears WCAG AA in the scheme it is used in. This exists because
- * the original badges were white-on-teal at 1.89:1 and nothing in a README
- * review would have caught it - a contrast failure is invisible until someone
- * with low vision tries to read the page.
+ * draws clears WCAG AA in the scheme it is used in. Several accent colours are
+ * used as 9–10px mono labels inside artwork, so they are checked at body
+ * threshold, not large-text threshold.
  *
- * Runs in CI. Exits non-zero on any failure.
+ * Runs in CI. Exits non-zero on any failure or unresolved pair, because a
+ * silently skipped pair is indistinguishable from a passing one.
  */
 
 import { tokens, contrast } from './lib/svg.mjs'
 
-/** [foreground, background, label, minimum] - 4.5 is AA body, 3.0 is AA large. */
+/** [foreground, background, label, minimum] */
 const PAIRS = [
   ['text', 'page', 'body text on page', 4.5],
-  ['text', 'surface', 'body text on card', 4.5],
-  ['text', 'surfaceAlt', 'body text on raised surface', 4.5],
+  ['text', 'surface', 'body text on plate', 4.5],
+  ['text', 'elevated', 'body text on raised surface', 4.5],
   ['textMuted', 'page', 'secondary text on page', 4.5],
-  ['textMuted', 'surface', 'secondary text on card', 4.5],
-  ['textMuted', 'surfaceAlt', 'secondary text on raised surface', 4.5],
-  ['textFaint', 'surface', 'faint label on card', 4.5],
-  // Per-accent on-colours. A single on-brand value cannot serve all three:
-  // white on teal measures 1.89:1 and dark text on violet measures 3.81:1,
-  // so each fill carries the text colour that actually clears AA against it.
-  ['on.teal', 'brand.teal', 'text on teal fill', 4.5],
-  ['on.blue', 'brand.blue', 'text on blue fill', 4.5],
-  ['on.violet', 'brand.violet', 'text on violet fill', 4.5],
+  ['textMuted', 'surface', 'secondary text on plate', 4.5],
+  ['textMuted', 'elevated', 'secondary text on raised surface', 4.5],
+  ['textFaint', 'page', 'faint label on page', 4.5],
+  ['textFaint', 'surface', 'faint label on plate', 4.5],
+
+  // Accents drawn as small mono labels inside artwork.
+  ['brand.teal', 'surface', 'teal label on plate', 4.5],
+  ['brand.copper', 'surface', 'copper label on plate', 4.5],
+  ['brand.violet', 'surface', 'violet accent on plate', 3],
+  ['brand.violetSoft', 'surface', 'violet label on plate', 4.5],
+  ['evidence.supporting', 'surface', 'supporting state label', 4.5],
+  ['evidence.contradictory', 'surface', 'contradictory state label', 4.5],
+  ['evidence.inconclusive', 'surface', 'inconclusive state label', 4.5],
+
+  // Large display type and drawn strokes on the page ground.
+  ['brand.teal', 'page', 'teal on page', 3],
+  ['brand.copper', 'page', 'copper on page', 3],
+  ['brand.violet', 'page', 'violet on page', 3],
+
+  // Interactive button plate: ink fill on both GitHub themes.
+  ['text', 'surface', 'button label on button ink', 4.5],
 ]
 
-const resolve = (scheme, path) =>
-  path.split('.').reduce((o, k) => o?.[k], scheme)
+const resolve = (scheme, path) => path.split('.').reduce((o, k) => o?.[k], scheme)
 
 let failures = 0
 let checked = 0
+let unresolved = 0
 
 for (const name of ['light', 'dark']) {
   const s = tokens.schemes[name]
@@ -42,40 +54,28 @@ for (const name of ['light', 'dark']) {
     const a = resolve(s, fg)
     const b = resolve(s, bg)
     if (!a || !b) {
-      console.log(`  ? ${label}: unresolved (${fg} / ${bg})`)
+      console.log(`  ??    unresolved (${fg} / ${bg}) — ${label}`)
+      unresolved++
+      failures++
       continue
     }
     const r = contrast(a, b)
     checked++
     const ok = r >= min
     if (!ok) failures++
-    console.log(
-      `  ${ok ? 'pass' : 'FAIL'}  ${r.toFixed(2).padStart(5)}:1  (min ${min})  ${label}  ${a} on ${b}`,
-    )
+    console.log(`  ${ok ? 'pass' : 'FAIL'}  ${r.toFixed(2).padStart(5)}:1  (min ${min})  ${label}  ${a} on ${b}`)
   }
 }
 
-// Brand fills are also used for large display text on the page background,
-// which has a lower bar.
-for (const name of ['light', 'dark']) {
-  const s = tokens.schemes[name]
-  for (const c of ['blue', 'teal', 'violet']) {
-    const col = s.brand[c]
-    const r = contrast(col, s.page)
-    checked++
-    const ok = r >= 3
-    if (!ok) failures++
-    console.log(`  ${ok ? 'pass' : 'FAIL'}  ${r.toFixed(2).padStart(5)}:1  (min 3)  ${name} brand.${c} on page  ${col}`)
-  }
-}
-
-console.log(`\n${checked - failures}/${checked} pairs pass`)
-
-// The specific regression this gate exists to prevent.
-const whiteOnTeal = contrast('#ffffff', '#19d2c7')
 console.log(
-  `\nnote: white on brand teal measures ${whiteOnTeal.toFixed(2)}:1, which is why the ` +
-    'badges render locally with explicit text colour rather than through shields.io.',
+  `\n${checked - (failures - unresolved)}/${checked} resolved pairs pass` +
+    (unresolved ? `, ${unresolved} unresolved` : ''),
 )
 
-process.exit(failures ? 1 : 0)
+if (failures) {
+  console.log('\nContrast gate failed.')
+  process.exit(1)
+}
+
+console.log('\nContrast gate passed. White on the teal accent would measure ' +
+  `${contrast('#ffffff', tokens.schemes.dark.brand.teal).toFixed(2)}:1, which is why no plate uses white on teal.`)

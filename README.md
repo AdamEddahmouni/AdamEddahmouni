@@ -1,117 +1,138 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero/hero-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/hero/hero-light.svg">
-  <img width="100%" alt="Adam Eddahmouni: four open-source projects. NosoGraph for biomedical disease evidence, Agent-Ready for coding-agent repository contracts, a trading-platform monorepo with a lineage guard, and a read-only short-squeeze research screener" src="./assets/hero/hero-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/hero/hero-mobile-dark.webp">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/hero/hero-mobile-light.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/hero/hero-desktop-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/hero/hero-desktop-light.webp">
+  <img width="100%" src="./assets/studio-v4/presentation/hero/hero-desktop-dark.webp" alt="Adam Eddahmouni — Engineering Studio. Dramatic teal and copper mathematical terrain with large editorial name typography.">
 </picture>
-
-[LinkedIn](https://www.linkedin.com/in/adameddahmouni/) · [Email](mailto:adameddahmouni@gmail.com) · [NosoGraph docs](https://adameddahmouni.github.io/nosograph/) · [Projects](#projects) · [Stack](#stack)
 
 </div>
 
-## Hi, I'm Adam 👋
+I build open-source research software, developer tooling, and market-data systems — systems that show their evidence instead of asserting it.
 
-I'm a **Mechanical Engineering** student at **Penn State** (class of 2029) who also builds software: **AI tooling**, **biomedical research software**, and **quantitative market systems**, all in the open.
+<p align="center">
+  <a href="https://www.linkedin.com/in/adameddahmouni/"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/buttons/linkedin-light.webp"><img src="./assets/studio-v4/presentation/buttons/linkedin-dark.webp" width="145" alt="Connect on LinkedIn"></picture></a>
+  <a href="#selected-work"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/buttons/projects-light.webp"><img src="./assets/studio-v4/presentation/buttons/projects-dark.webp" width="145" alt="Explore selected projects"></picture></a>
+  <a href="https://adameddahmouni.github.io/nosograph/"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/buttons/research-light.webp"><img src="./assets/studio-v4/presentation/buttons/research-dark.webp" width="145" alt="Read NosoGraph research documentation"></picture></a>
+  <a href="mailto:adameddahmouni@gmail.com"><picture><source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/buttons/contact-light.webp"><img src="./assets/studio-v4/presentation/buttons/contact-dark.webp" width="145" alt="Contact Adam by email"></picture></a>
+</p>
 
-- 🧬 **Now building:** [NosoGraph](https://github.com/AdamEddahmouni/nosograph), an open-source graph that links disease knowledge to its evidence and sources.
-- 🤖 **Also shipping:** [Agent-Ready](https://github.com/AdamEddahmouni/agent-ready), one config file that tells every AI coding agent how to work in your repo.
-- 📈 **Interested in:** developer tooling, data pipelines, fintech, and applied ML.
-- 🤝 **Open to:** internships, research collaborations, and open-source contributions.
-- 📫 **Reach me:** [adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com) or on [LinkedIn](https://www.linkedin.com/in/adameddahmouni/)
-
-## Projects
-
-<table>
-<tr>
-<td width="50%" valign="top">
+## What I build
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/nosograph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cards/nosograph-light.svg">
-  <img width="100%" alt="NosoGraph: disease intelligence across biomedical sources, with a diagram of the evidence chain from disease through claims and evidence to provenance" src="./assets/cards/nosograph-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/glance/glance-mobile-dark.webp">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/glance/glance-mobile-light.webp">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/glance/glance-desktop-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/glance/glance-desktop-light.webp">
+  <img width="100%" src="./assets/studio-v4/presentation/glance/glance-desktop-dark.webp" alt="Four focus areas: engineering, AI systems, research, and products.">
 </picture>
 
-### [NosoGraph](https://github.com/AdamEddahmouni/nosograph)
+## Selected work
 
-Connects disease knowledge, evidence, and provenance across MONDO, HPO, PubMed, ClinicalTrials.gov, Open Targets and GWAS.
-Every claim records whether evidence supports it, contradicts it, or is inconclusive, and missing data stays `unknown` rather than being guessed.
+### NosoGraph
 
-`Python` · 25 adapters · 2,445 offline tests · archived on Zenodo
+<p align="center">
+  <a href="https://github.com/AdamEddahmouni/nosograph">
+    <picture>
+      <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/gallery/nosograph-mobile-dark.webp">
+      <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/nosograph-mobile-light.webp">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/nosograph-desktop-light.webp">
+      <img width="480" src="./assets/studio-v4/presentation/gallery/nosograph-desktop-dark.webp" alt="NosoGraph project card: disease records feeding typed claims and four distinct evidence states. Conceptual artwork, not a product screenshot.">
+    </picture>
+  </a>
+</p>
 
-[Code](https://github.com/AdamEddahmouni/nosograph) · [Docs](https://adameddahmouni.github.io/nosograph/) · [DOI](https://doi.org/10.5281/zenodo.22055279)
+Biomedical knowledge connected to its underlying evidence, with source provenance, evidence direction, and explicit uncertainty. The public-alpha repository documents 25 pipeline adapters and a 2,445-test offline suite.
 
-</td>
-<td width="50%" valign="top">
+`Python` · `Research software` · `v0.2.1 public alpha`  
+[Explore repository](https://github.com/AdamEddahmouni/nosograph) · [Documentation](https://adameddahmouni.github.io/nosograph/) · [Research DOI](https://doi.org/10.5281/zenodo.22055279)
+
+### Agent-Ready
+
+<p align="center">
+  <a href="https://github.com/AdamEddahmouni/agent-ready">
+    <picture>
+      <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/gallery/agent-ready-mobile-dark.webp">
+      <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/agent-ready-mobile-light.webp">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/agent-ready-desktop-light.webp">
+      <img width="480" src="./assets/studio-v4/presentation/gallery/agent-ready-desktop-dark.webp" alt="Agent-Ready project card: one contract branching into verified instruction adapters for five coding agents. Conceptual artwork, not a product screenshot.">
+    </picture>
+  </a>
+</p>
+
+A deterministic repository contract for AI coding agents: one validated schema for allowed commands, protected paths, generated instructions, and verification evidence. The project documents 11 CLI commands and 557 tests.
+
+`TypeScript` · `Developer tooling` · `5 agent adapters`  
+[Explore repository](https://github.com/AdamEddahmouni/agent-ready)
+
+### Short Squeeze Screener
+
+<p align="center">
+  <a href="https://github.com/AdamEddahmouni/short-squeeze-screener-internship">
+    <picture>
+      <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/studio-v4/presentation/gallery/short-squeeze-screener-mobile-dark.webp">
+      <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/short-squeeze-screener-mobile-light.webp">
+      <source media="(prefers-color-scheme: light)" srcset="./assets/studio-v4/presentation/gallery/short-squeeze-screener-desktop-light.webp">
+      <img width="480" src="./assets/studio-v4/presentation/gallery/short-squeeze-screener-desktop-dark.webp" alt="Short Squeeze Screener project card: a bar series across a threshold line, highlighting one candidate reading. Conceptual artwork, not a product screenshot.">
+    </picture>
+  </a>
+</p>
+
+A read-only market-research screener for evaluating possible short-squeeze conditions using structured data and repeatable demo runs. It does not place orders or claim predictive accuracy.
+
+`Python 3.12` · `Quantitative research` · `FROZEN_DEMO`  
+[Explore repository](https://github.com/AdamEddahmouni/short-squeeze-screener-internship) · [Getting started](https://github.com/AdamEddahmouni/short-squeeze-screener-internship/blob/main/short-squeeze-core/docs/getting-started.md)
+
+## Engineering evidence
+
+NosoGraph's research pipeline preserves the chain from source records to validated claims, evidence direction, and source snapshots. Supporting, contradictory, inconclusive, and unasserted evidence remain distinct rather than collapsing into a single verdict.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/agent-ready-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cards/agent-ready-light.svg">
-  <img width="100%" alt="Agent-Ready: one agent-ready.yaml file generating instruction files for five coding agents" src="./assets/cards/agent-ready-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/evidence/pipeline-mobile-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/evidence/pipeline-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/evidence/pipeline-desktop-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/evidence/pipeline-desktop-light.svg">
+  <img width="100%" src="./assets/evidence/pipeline-desktop-dark.svg" alt="NosoGraph evidence pipeline: sources, adapters, normalization, claims, evidence states, provenance and accessible outputs.">
 </picture>
 
-### [Agent-Ready](https://github.com/AdamEddahmouni/agent-ready)
+<details>
+<summary><strong>Real capture: the public Evidence Explorer</strong></summary>
 
-A `package.json` for AI coding agents.
-Write one schema-validated `agent-ready.yaml` with your commands, rules and checks, and it generates `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, Copilot and Gemini instructions from it.
+<br>
 
-`TypeScript` · JSON Schema · 10-command CLI · no API keys, fully offline
+<p align="center">
+  <img width="100%" src="./assets/evidence/authentic/evidence-explorer.webp" alt="The NosoGraph Evidence Explorer: a dark research interface with disease context, typed claims, evidence direction, and provenance for each claim.">
+</p>
 
-[Code](https://github.com/AdamEddahmouni/agent-ready)
+<sub>Interface capture published in the public NosoGraph repository. Research software, not clinical guidance, and not a hosted demo.</sub>
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+</details>
+
+The work is inspectable in the repositories: [NosoGraph's evidence model](https://github.com/AdamEddahmouni/nosograph/blob/master/docs/architecture/evidence-model.md), [Agent-Ready's CLI reference](https://github.com/AdamEddahmouni/agent-ready/blob/main/docs/specification/cli-reference.md) and [recorded adapter outputs](https://github.com/AdamEddahmouni/agent-ready/tree/main/compatibility/adapter-output/v2), and the [screener's CLI documentation](https://github.com/AdamEddahmouni/short-squeeze-screener-internship/blob/main/short-squeeze-core/docs/CLI.md).
+
+## Capabilities
+
+**Engineering** — Python · TypeScript · JavaScript · Node.js · FastAPI · Docker · GitHub Actions  
+**AI and agent systems** — agent contracts · schema validation · deterministic tooling · evaluation workflows  
+**Research and data** — biomedical evidence modelling · ontology integration · provenance · quantitative screening  
+**Products and delivery** — full-stack software · developer experience · interfaces · test automation
+
+## GitHub activity
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/market-trading-platform-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cards/market-trading-platform-light.svg">
-  <img width="100%" alt="Market Trading Platform: branches feeding a protected main branch, then into a manifest and a lineage ledger" src="./assets/cards/market-trading-platform-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: dark)" srcset="./assets/activity/activity-mobile-dark.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="./assets/activity/activity-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/activity/activity-desktop-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/activity/activity-desktop-light.svg">
+  <img width="100%" src="./assets/activity/activity-desktop-dark.svg" alt="Dated public commit activity across the three featured repositories, represented by a generated teal calendar.">
 </picture>
 
-### [Market Trading Platform](https://github.com/AdamEddahmouni/market-trading-platform)
+## Contact
 
-A monorepo that unifies my trading tools, with a guard script that keeps every snapshot traceable back to the exact commits it came from.
-`main` is protected behind a required CI check.
+I'm a Penn State student, open to internships, research collaborations, and conversations about engineering software, agent tooling, or market-data systems.
 
-`Python` · `TypeScript` · CI-gated `main` · commit lineage ledger
+**[Email](mailto:adameddahmouni@gmail.com)** · **[LinkedIn](https://www.linkedin.com/in/adameddahmouni/)** · **[GitHub](https://github.com/AdamEddahmouni)** · **[Research documentation](https://adameddahmouni.github.io/nosograph/)**
 
-[Code](https://github.com/AdamEddahmouni/market-trading-platform) · [Workflow](https://github.com/AdamEddahmouni/market-trading-platform/blob/main/docs/MONOREPO_WORKFLOW.md)
-
-</td>
-<td width="50%" valign="top">
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/cards/short-squeeze-screener-internship-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/cards/short-squeeze-screener-internship-light.svg">
-  <img width="100%" alt="Short Squeeze Screener: a chart of reported short-interest bars, with inconclusive readings drawn as dashed outlines" src="./assets/cards/short-squeeze-screener-internship-dark.svg">
-</picture>
-
-### [Short Squeeze Screener](https://github.com/AdamEddahmouni/short-squeeze-screener-internship)
-
-A research screener that ranks short-squeeze candidates from structured market data, with data-quality checks at every step.
-Runs fully locally and read-only, with a frozen demo mode for reproducible runs.
-
-`Python` · v0.16 · local-only · reproducible demo mode
-
-[Code](https://github.com/AdamEddahmouni/short-squeeze-screener-internship) · [Getting started](https://github.com/AdamEddahmouni/short-squeeze-screener-internship/blob/main/short-squeeze-core/docs/getting-started.md)
-
-</td>
-</tr>
-</table>
-
-## Stack
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/chips/stack-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/chips/stack-light.svg">
-  <img width="100%" alt="Python, TypeScript, JavaScript, React, Next.js, FastAPI, MongoDB, Supabase, Docker, GitHub Actions, Redis and Git" src="./assets/chips/stack-dark.svg">
-</picture>
-
-## Let's talk
-
-I'm always happy to talk about research software, developer tooling, or markets.
-Email me at **[adameddahmouni@gmail.com](mailto:adameddahmouni@gmail.com)** or connect on **[LinkedIn](https://www.linkedin.com/in/adameddahmouni/)**.
-
-<sub>NosoGraph is research software, not medical advice. The screener places no trades and gives no investment advice.</sub>
+<sub>Featured artwork is conceptual illustration, not product screenshots or actual market/medical data; the NosoGraph capture is the exception and is labelled as a real interface. NosoGraph is research software, not medical advice. The screener does not provide investment advice or execute trades. Historical numerical figures are attributed to the respective project repositories.</sub>

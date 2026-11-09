@@ -1,0 +1,31 @@
+{
+  "$comment": "Verified public facts used by the README and by generated artwork. Every field here is either returned by the GitHub API for AdamEddahmouni or published in the owner's own repositories. See docs/CONTENT_SOURCES.md for provenance. Nothing in this file may be invented.",
+  "username": "AdamEddahmouni",
+  "name": { "first": "Adam", "last": "Eddahmouni" },
+  "monogram": "AE",
+  "studio": "Engineering Studio",
+  "descriptor": "SOFTWARE ENGINEERING / AI SYSTEMS / APPLIED RESEARCH",
+  "statement": "I build open-source research software, developer tooling, and market systems — systems that show their evidence rather than assert it.",
+  "tagline": "BUILD · RESEARCH · SHIP",
+  "affiliation": "Mechanical engineering student at Penn State",
+  "location": "Pennsylvania, United States",
+  "availability": "Open to collaborations",
+  "links": {
+    "github": "https://github.com/AdamEddahmouni",
+    "linkedin": "https://www.linkedin.com/in/adameddahmouni/",
+    "email": "adameddahmouni@gmail.com",
+    "nosograph": "https://github.com/AdamEddahmouni/nosograph",
+    "nosographDocs": "https://adameddahmouni.github.io/nosograph/",
+    "nosographDoi": "https://doi.org/10.5281/zenodo.22055279"
+  },
+  "verified": "2026-11-09",
+  "verification": {
+    "identity": "GitHub API /user: login AdamEddahmouni, bio 'Full-stack and quantitative systems developer … // Penn State Student', location 'Pennsylvania, United States'.",
+    "email": "Published in this repository's previous profile README by the owner. Not returned by the public GitHub API.",
+    "linkedin": "Published in this repository's previous profile README by the owner. Not reachable from this environment to re-verify.",
+    "nosograph": "GitHub API repo metadata plus nosograph/README.md: v0.2.1, Public Alpha, 25 registered pipeline adapters, 2,445 offline tests, Apache-2.0, DOI 10.5281/zenodo.22055279, docs homepage.",
+    "agentReady": "agent-ready/README.md: v0.6.1 pre-1.0, eleven CLI commands, five generated adapter targets, 557 tests across 41 test files, CI on Ubuntu/Windows/macOS, Apache-2.0, no LLM calls or network.",
+    "screener": "short-squeeze-screener-internship/README.md: v0.16.0, Python 3.12, read-only, FROZEN_DEMO mode, MIT, places no orders and gives no advice.",
+    "marketPlatform": "Private repository. Present in the local git remotes only as a link; intentionally not linked or described publicly."
+  }
+}

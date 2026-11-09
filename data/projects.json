@@ -1,0 +1,88 @@
+{
+  "$comment": "The three public projects featured on the profile. Descriptions and figures are drawn from each repository's own README and GitHub metadata as of 2026-11-09. Internal notes that must not be published live in docs/CONTENT_SOURCES.md, not here.",
+  "featured": [
+    {
+      "id": "nosograph",
+      "index": "01",
+      "name": "NosoGraph",
+      "category": "RESEARCH SOFTWARE",
+      "kicker": "BIOMEDICAL EVIDENCE GRAPH",
+      "summary": "Connects disease knowledge to the evidence behind it. Every claim carries its source, its direction and its certainty — and missing metadata stays unknown instead of quietly becoming a guess.",
+      "facts": ["Python", "25 adapters", "2,445 offline tests"],
+      "links": [
+        { "label": "Repository", "href": "https://github.com/AdamEddahmouni/nosograph" },
+        { "label": "Documentation", "href": "https://adameddahmouni.github.io/nosograph/" },
+        { "label": "DOI", "href": "https://doi.org/10.5281/zenodo.22055279" }
+      ],
+      "accent": "teal",
+      "art": "evidence"
+    },
+    {
+      "id": "agent-ready",
+      "index": "02",
+      "name": "Agent-Ready",
+      "category": "DEVELOPER TOOLING",
+      "kicker": "REPOSITORY CONTRACT FOR AI AGENTS",
+      "summary": "One schema-validated file that tells every AI coding agent how to work in a repository — the commands, the restrictions, the verification steps, and the evidence that the work is done.",
+      "facts": ["TypeScript", "11 CLI commands", "5 adapters"],
+      "links": [
+        { "label": "Repository", "href": "https://github.com/AdamEddahmouni/agent-ready" }
+      ],
+      "accent": "violet",
+      "art": "contract"
+    },
+    {
+      "id": "short-squeeze-screener-internship",
+      "index": "03",
+      "name": "Short Squeeze Screener",
+      "category": "QUANTITATIVE RESEARCH",
+      "kicker": "READ-ONLY MARKET SCREENER",
+      "summary": "A research screener that ranks short-squeeze candidates from structured market data, with data-quality checks at every step and a frozen demo mode for reproducible runs.",
+      "facts": ["Python 3.12", "v0.16.0", "local-only"],
+      "links": [
+        { "label": "Repository", "href": "https://github.com/AdamEddahmouni/short-squeeze-screener-internship" },
+        { "label": "Getting started", "href": "https://github.com/AdamEddahmouni/short-squeeze-screener-internship/blob/main/short-squeeze-core/docs/getting-started.md" }
+      ],
+      "accent": "copper",
+      "art": "screener"
+    }
+  ],
+  "glance": [
+    { "icon": "engineering", "title": "Engineering", "note": "Software, data, systems" },
+    { "icon": "ai", "title": "AI Systems", "note": "Agents, tooling, evaluation" },
+    { "icon": "research", "title": "Research", "note": "Evidence, provenance" },
+    { "icon": "markets", "title": "Markets", "note": "Data, quantitative work" }
+  ],
+  "capabilities": [
+    {
+      "group": "Languages & runtime",
+      "items": ["Python", "TypeScript", "JavaScript", "Node.js", "PowerShell"]
+    },
+    {
+      "group": "AI & agent tooling",
+      "items": ["Agent contracts", "JSON Schema validation", "Deterministic CLIs", "Repo instruction files"]
+    },
+    {
+      "group": "Data & research",
+      "items": ["Evidence modelling", "Provenance & snapshots", "MONDO / HPO / PubMed / ClinicalTrials.gov / Open Targets / GWAS integration", "Reproducible pipelines"]
+    },
+    {
+      "group": "Platform & delivery",
+      "items": ["FastAPI", "Redis", "Docker Compose", "GitHub Actions CI", "pytest"]
+    }
+  ],
+  "evidence": {
+    "title": "How a claim earns its place",
+    "note": "NosoGraph's evidence chain, as documented in the repository: sources become typed claims, claims carry evidence direction, and every reading keeps the snapshot it came from.",
+    "source": "https://github.com/AdamEddahmouni/nosograph/blob/master/docs/architecture/evidence-model.md",
+    "stages": [
+      { "label": "SOURCES", "detail": "MONDO · HPO · PubMed · ClinicalTrials.gov · Open Targets · GWAS" },
+      { "label": "ADAPTERS", "detail": "25 registered pipeline adapters, each with its own mapping" },
+      { "label": "NORMALISE", "detail": "Identifiers resolved, metadata validated, gaps preserved" },
+      { "label": "TYPED CLAIM", "detail": "Disease → claim → evidence relationship → study" },
+      { "label": "EVIDENCE STATE", "detail": "Supporting · Contradictory · Inconclusive · Unasserted" },
+      { "label": "PROVENANCE", "detail": "Source snapshot kept with every reading" },
+      { "label": "SURFACES", "detail": "CLI · FastAPI · JSON / Markdown exports" }
+    ]
+  }
+}
