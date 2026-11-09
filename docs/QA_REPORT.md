@@ -1,7 +1,7 @@
 # QA report
 
 Branch reviewed: `profile/engineering-studio`.
-Tested commits: `774926a` (baseline), `90b614a` (CI and legibility remediation), and the featured-gallery follow-up on the same branch.
+Tested commits: `774926a` (baseline), `90b614a` (CI and legibility remediation) and `ceac9f7` (featured gallery).
 Date: 2026-11-09. Nothing was merged into `main`.
 
 ## 1. CI status
@@ -10,6 +10,7 @@ Date: 2026-11-09. Nothing was merged into `main`.
 | --- | --- | --- |
 | [`42544861673`](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42544861673) | `774926a` | **failure** — asset size budgets |
 | [`42549471766`](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42549471766) | `90b614a` | **success** — all steps |
+| [`42552600066`](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42552600066) | `ceac9f7` | **success** — featured gallery |
 
 The failure was structural, not cosmetic: the workflow divided bytes by 1024,
 compared the truncated integer against one flat default, and had no `activity`
@@ -116,7 +117,7 @@ description said "six-stage"; the chain has seven stages. Corrected.
 | External links | `node tools/check-links.mjs` | 7 verified, 1 gated, 0 dead |
 | Markdown lint | `markdownlint-cli2@0.13.0` | **0 errors** |
 | Determinism | two renders, `sha256sum` over `assets/**/*.svg` | **byte-identical** |
-| CI | GitHub Actions run `42549471766` | **success** |
+| CI | Actions run `42552600066` (gallery), `42549471766` (remediation) | **success** |
 
 Screenshots: 1440/1280/1024/768/390/360 px in dark and light, 5 picture crops,
 two reduced-motion captures, plus plate close-ups used during the fixes
@@ -124,7 +125,7 @@ two reduced-motion captures, plus plate close-ups used during the fixes
 
 ## 6. Real GitHub rendering
 
-The branch README was loaded as a GitHub page, not just raw Markdown:
+The branch README was loaded as a GitHub page, not just raw Markdown, and re-checked after the gallery push on `ceac9f7`:
 
 - 5 `<picture>` elements and **9 images** loaded (`complete = true`) at their
   full natural sizes (1200×430 hero, 1200×382 gallery, 1200×300 activity).
