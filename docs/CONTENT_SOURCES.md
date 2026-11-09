@@ -13,6 +13,7 @@ than left in place.
 | “Penn State student” | GitHub profile bio: “Full-stack and quantitative systems developer … // Penn State Student” | verified from bio; degree subject deliberately not stated |
 | “Pennsylvania, United States” | GitHub API `/user` `location` | verified |
 | Public repositories | GitHub API: 5 public repositories, of which 3 are featured projects | verified |
+| “open-source research software, developer tooling, and market-data systems” | The three featured public repositories: NosoGraph, Agent-Ready, Short Squeeze Screener | verified from repository descriptions and code |
 | LinkedIn URL | Previous profile README in this repository (owner-supplied) | unverified externally; kept because the owner published it |
 | Email `adameddahmouni@gmail.com` | Previous profile README in this repository (owner-supplied); commit emails are GitHub noreply | unverified externally; kept because the owner published it |
 
@@ -80,6 +81,24 @@ reports 451 public commits. The activity plate says `PUBLIC COMMITS` and prints
 the capture date, so the figure is never mistaken for live data or for the
 private-aware contribution total on the GitHub profile. If a later API call
 fails, the committed file is left untouched and the last valid plate survives.
+
+## Evidence links in the README
+
+All four were fetched on 2026-11-09 and return HTTP 200:
+
+| Link | Source |
+| --- | --- |
+| NosoGraph evidence model | `nosograph/docs/architecture/evidence-model.md` |
+| Agent-Ready CLI reference | `agent-ready/docs/specification/cli-reference.md` |
+| Agent-Ready recorded adapter outputs | `agent-ready/compatibility/adapter-output/v2` |
+| Screener CLI documentation | `short-squeeze-screener-internship/short-squeeze-core/docs/CLI.md` |
+| Evidence Explorer capture | `nosograph/docs/assets/product/evidence-explorer.webp` (1440×900; published by the project's own README) |
+
+The capture is a real interface image from the public repository. The README
+labels it as a capture, not a hosted demo, and keeps the research-software
+caveat. It is stored in this repository at
+`assets/evidence/authentic/evidence-explorer.webp` so the profile does not depend
+on another repository's file layout; the source path is recorded above.
 
 ## Artwork provenance
 

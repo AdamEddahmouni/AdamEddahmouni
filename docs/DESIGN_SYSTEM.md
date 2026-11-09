@@ -10,7 +10,7 @@ palette and a motion vocabulary.
 | --- | --- |
 | **The Monograph** | Editorial serif display, generous margins, ruled sections, restrained copy |
 | **Signal Observatory** | Generated parametric surfaces, instrumentation arcs, technical labels |
-| **Product Foundry** | A three-card project gallery, each card with its own conceptual diagram |
+| **Product Foundry** | Three independently linked project cards, each with its own conceptual diagram |
 
 Balance: editorial credibility first, technical character second, product
 expression third. No cyberpunk, no neon glow, no badge walls, no fake terminals.
@@ -65,7 +65,10 @@ including accent labels drawn at 9–10 px. It fails on unresolved tokens.
 
 ## 4. Grid and geometry
 
-- Desktop artboards: 1200 px wide, 48 px padding. Mobile: 480 px wide, 24–26 px padding.
+- Generated SVG artboards: 1200 px wide, 48 px padding. Mobile: 480 px wide, 24–26 px padding.
+- V4 raster artboards: hero 2592×960 desktop / 1408×1584 phone; cards 628×640
+  desktop / 676×646 phone. Cards display at 480 CSS px on desktop and fill the
+  phone column; they are cropped, never stretched.
 - Radius: 16 px plate, 12 px card, 6 px chip, full pill for buttons.
 - Rules are 1 px at 55–90% border opacity; no thick dividers.
 - Plates are inset by 1 px and drawn with a rounded clip, so the page shows at
@@ -77,17 +80,25 @@ including accent labels drawn at 9–10 px. It fails on unresolved tokens.
 
 | Component | Files | Notes |
 | --- | --- | --- |
-| Hero | `assets/hero/hero-{desktop,mobile}-{dark,light}.svg` | Name, descriptor, generated surface, instrumentation |
-| At a glance | `assets/glance/glance-*` | Four domains, custom icons, hairline separators; qualifiers are desktop-only |
-| Featured gallery | `assets/featured/featured-*` | Three cards on desktop, stacked on phones; each card carries a compact conceptual diagram, serif project name and factual pills. Descriptions, links and full facts stay in Markdown |
+| Hero | `assets/studio-v4/presentation/hero/*.webp` | Cinematic teal/copper surface; editorial name is rasterised, so regenerate the composition rather than retyping in Markdown |
+| At a glance | `assets/studio-v4/presentation/glance/*.webp` | Four domains, custom icons, hairline separators |
+| Project cards | `assets/studio-v4/presentation/gallery/<project>-{desktop,mobile}-{dark,light}.webp` | One card per project, cropped from the approved three-up plates by `tools/build-v4-cards.mjs`. Each card is wrapped in a real repository link; descriptions, facts and destinations remain Markdown |
 | Evidence diagram | `assets/evidence/pipeline-*` | NosoGraph's documented seven-stage evidence chain; vertical flow on phones |
+| Authentic capture | `assets/evidence/authentic/evidence-explorer.webp` | Real public Evidence Explorer interface, inside a `<details>` disclosure and labelled as a capture from the repository, not a hosted demo |
 | Activity | `assets/activity/activity-*` | Public commit calendar from captured API data; 53-week grid, total, capture date and legend, no month ticks |
-| Buttons | `assets/ui/button-*.svg` | Real links, theme-neutral ink pills |
+| Buttons | `assets/studio-v4/presentation/buttons/<name>-{dark,light}.webp` | Separate dark and light pills inside real anchors. `prefers-color-scheme` selects the variant through `<picture>` |
 
-Each plate carries `<title>` and `<desc>`; the README carries descriptive alt
-text; images are decorative or duplicated by Markdown, never the only copy.
+Each generated plate carries `<title>` and `<desc>`; the README carries
+descriptive alt text; images are decorative or duplicated by Markdown, never the
+only copy. GitHub preserves `<source>` elements inside `<a><picture>` (confirmed
+against the Markdown API and the branch page), which is what makes the cards both
+linked and theme-aware.
 
 ## 6. Motion
+
+The V4 hero, glance, cards and buttons are static WebP stills: they must look
+finished on GitHub, which does not run scripts inside README images. The
+generated SVG evidence, activity and legacy plates retain the reveal vocabulary:
 
 - One reveal per plate: a left-to-right mask wipe on the surface, a 1.2 s fade on
   the rest, staggered 90 ms.
@@ -100,10 +111,11 @@ text; images are decorative or duplicated by Markdown, never the only copy.
 ## 7. Accessibility
 
 - Contrast gate at AA body threshold for every text pair, both schemes.
-- Semantic headings in the README: 5 sections, 3 project headings.
+- Semantic headings in the README: 6 sections, 3 project headings.
 - Descriptive link labels; no bare "here".
-- Buttons are images inside real anchors, and equivalent text links exist in the
-  Contact section.
+- Buttons are theme-aware images inside real anchors; project cards are linked
+  to their repositories, and equivalent text links exist beneath every card and
+  in the Contact section.
 - No meaning conveyed by colour alone: evidence states are labelled in the
   diagram and explained in the caption.
 - Alt text describes the information in each plate, not just its appearance.

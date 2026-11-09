@@ -113,6 +113,9 @@ main li { margin: 4px 0; }
 main hr { border: 0; border-top: 1px solid #d1d9e0; margin: 24px 0; }
 main img { max-width: 100%; height: auto; }
 main picture { display: block; }
+/* Linked pictures are the project cards and the four inline buttons. Keep
+   them inline so the navigation row can wrap like GitHub's. */
+main a picture { display: inline; }
 main img + em, main p > em { color: #57606a; }
 @media (prefers-color-scheme: dark) {
   main h2 { border-color: #3d444d; }

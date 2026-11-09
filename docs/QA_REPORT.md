@@ -189,6 +189,11 @@ when `main` is updated.
 
 ## 11. V4 cinematic artwork integration — 2026-11-09
 
+> **Superseded in part by §12.** The composite gallery and dark-only buttons
+> described here were replaced by three independently linked cards and
+> theme-aware buttons. The rest of this section remains the record of the first
+> V4 integration.
+
 V4 is now committed to the `profile/engineering-studio` branch, replacing the earlier flat hero and diagram-only featured gallery with the approved cinematic visual system. `main` remains unchanged.
 
 - **Commit:** `a0be8dd` introduced 16 WebP assets, responsive hero/glance/gallery composition, concise project copy and a dedicated image-integrity check.
@@ -196,8 +201,105 @@ V4 is now committed to the `profile/engineering-studio` branch, replacing the ea
 - **Latest successful CI:** [Run 42628614803](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42628614803), commit `66df87e`. All substantive checks passed: contrast, README structure, SVG budgets/manifest, V4 WebP integrity/budgets, SVG XML, outbound links and Markdown lint.
 - **Binary integrity:** each of the 20 committed files (including 16 WebP images) was verified against the local Git blob SHA before the atomic feature-branch commit.
 - **Local preview:** desktop 1280 px and mobile 390 px in dark and light color schemes. Seven images loaded per preview without horizontal overflow. Previews omit two inherited SVGs and show placeholders for those elements; the GitHub branch retains the actual evidence/activity images.
-- **Visual tradeoff:** the featured-gallery composite is not three separately clickable cards. Genuine repository links appear in Markdown directly below the gallery.
+- **Visual tradeoff (superseded by §12):** the featured-gallery composite was not three separately clickable cards. Genuine repository links appeared in Markdown directly below the gallery.
 - **Reproducibility:** V4 artwork is intentionally rasterized for cinematic quality. The existing SVG generators remain for evidence and activity. Do not claim that re-running the SVG generators recreates the V4 hero.
 - **Remaining acceptance:** direct human review of the GitHub feature-branch rendering in both themes and on a narrow phone viewport. The `main` profile is not yet published with V4.
 
 **Draft PR for owner approval:** [Engineering Studio V4](https://github.com/AdamEddahmouni/AdamEddahmouni/pull/2). No merge or automatic publication was performed.
+
+---
+
+## 12. Final polish — linked cards, light buttons, evidence — 2026-11-09
+
+Base: `44cac97`. This pass did not touch `main`, did not rewrite history, and did
+not merge PR #2.
+
+### 12.1 What changed
+
+- **Light-theme navigation.** Four light button WebP files were derived from the
+  approved dark art by mapping the studio palette roles in CIE Lab. Alpha
+  silhouettes are byte-identical, so geometry, icons and type are unchanged.
+  Each button is now `<a><picture>` with a light `<source>` and a dark fallback.
+- **Independently linked project cards.** The approved 2000×855 desktop plate
+  and 748×2360 phone plate were cropped into three cards per layout, in both
+  schemes (`tools/build-v4-cards.mjs`). Each card is wrapped in a real repository
+  link and displayed at 480 CSS px on desktop, filling the phone column. The four
+  source plates remain committed for reproducibility but are not served.
+- **Authentic evidence.** A real Evidence Explorer capture from the public
+  NosoGraph repository is stored locally, disclosed in a `<details>` block and
+  labelled as an interface capture, not a hosted demo. Five verified links to
+  public evidence artifacts were added.
+- **Rhythm and copy.** Added `What I build` as an explicit section, moved the
+  Penn State line into Contact so it appears once, tightened the opening, and
+  removed the stray closing paragraph. 6 sections, 3 projects.
+- **Verification.** `check-markdown.mjs` now validates linked theme-aware
+  pictures, all four responsive variants, light button variants, card-to-repo
+  destinations and widths. `check-v4-assets.mjs` now validates dimensions,
+  complete families, budgets and source plates. `render-all.mjs` runs that gate.
+  The render workflow refuses to commit if a generator changes `assets/studio-v4`.
+- **Previews.** JPEG captures at 84% replace the stale PNGs; named detail crops
+  now cover the hero, glance, three cards, pipeline, real capture and activity.
+
+### 12.2 Commands and results
+
+| Check | Command | Result |
+| --- | --- | --- |
+| Build + local gates | `node tools/render-all.mjs` | **exit 0** |
+| Contrast | `node tools/check-contrast.mjs` | **38/38** pairs pass |
+| README structure | `node tools/check-markdown.mjs` | **19 passes, 0 failures** |
+| SVG budgets | `node tools/check-assets.mjs` | 8 referenced, 24 generated, 756 KB |
+| V4 assets | `node tools/check-v4-assets.mjs` | **29 referenced, 2.16 MB, 4 source plates, 0 problems** |
+| SVG XML | Python `ElementTree` over `assets/**` | **50/50 valid** |
+| External links | `node tools/check-links.mjs` | **11 verified, 1 gated, 0 dead** |
+| Markdown lint | `markdownlint-cli2@0.13.0` | **0 errors** |
+| Layout matrix | Playwright at 360/390/768/1024/1280/1440 × dark/light | **layout ok** |
+| GitHub renderer | `gh api /markdown` with the README | 11 themed pictures, **29 sources preserved**, 1 details |
+
+The browser matrix asserted, for all 12 combinations: no horizontal overflow;
+12 images loaded per page; the correct mobile/desktop and dark/light source was
+selected; three cards linked to the correct repositories; the navigation wrapped
+to two rows at 360 and 390 px and stayed on one row above that; and the rendered
+button/card regions measured light in light mode and dark in dark mode. Page
+heights: 4,253 px at 1024–1440, 4,078 px at 768, 4,905 px at 390, 4,819 px at 360.
+
+### 12.3 Visual evidence
+
+`docs/previews/` now contains:
+
+- `readme-{dark,light}-{1440,1280,1024,768,390,360}.jpg` — full page.
+- `detail-{hero,glance,card-nosograph,card-agent-ready,card-screener,pipeline,evidence-capture,activity}-{dark,light}.jpg`.
+- `readme-{dark,light}-reduced-motion.jpg`.
+
+Card detail crops are 960×980 (2× of the 480×490 display box). Full-page heights
+match the browser measurement above. Totals: 7.9 MB for the preview directory,
+including the historical `qa*.png` captures.
+
+### 12.4 GitHub compatibility
+
+GitHub's Markdown API preserves `<source>` inside `<a><picture>` and wraps it in
+`<themed-picture>`. The rendered output contained 11 pictures, 29 sources, 21
+anchors and the disclosure; nothing was stripped. Relative `./assets/...` paths
+are unchanged by the API, so the branch page is the final check for camo
+resolution and layout.
+
+### 12.5 Security and privacy
+
+- No secrets, tokens or credentials are added. No runtime third-party service or
+  badge is introduced.
+- The private `market-trading-platform` repository is still excluded; the README
+  checker fails on its name.
+- The new screenshot is already published in the public NosoGraph repository,
+  contains no personal records, and is explicitly labelled as research software
+  and not clinical guidance.
+- All five new evidence destinations return HTTP 200. LinkedIn remains gated
+  (999) and is reported as gated, not verified.
+
+### 12.6 Limitations
+
+1. The captures were produced and measured programmatically; this environment
+   could not display the rendered images for a human aesthetic review, so the
+   visual sign-off still belongs to the owner.
+2. Chromium is the only browser tested; Firefox and WebKit were not available.
+3. The GitHub branch page itself still needs a post-push check for camo image
+   loading and theme switching, which the Markdown API cannot simulate.
+4. `main` is unchanged and PR #2 is still draft; no merge was performed.

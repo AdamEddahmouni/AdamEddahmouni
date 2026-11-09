@@ -1,31 +1,54 @@
-# Engineering Studio V4 — Integrated artwork
+# Engineering Studio V4 — integrated artwork
 
-V4 was committed directly to the `profile/engineering-studio` feature branch in commit `a0be8dd`. This remains a review branch; `main` is unchanged.
+V4 is committed to the `profile/engineering-studio` feature branch. `main` is
+unchanged; this remains a draft for owner review.
 
 ## What changed
 
-- Replaced the old hero with the V4 cinematic teal/copper terrain composition.
-- Added desktop and mobile compositions in both light and dark themes.
-- Replaced the flat featured-work graphic with the three-project V4 gallery.
-- Preserved verified Markdown descriptions and direct links for all three projects.
-- Kept the original SVG research pipeline and GitHub activity graphics.
-- Added `tools/check-v4-assets.mjs` to validate the new WebP artwork in CI.
+- Cinematic teal/copper hero with desktop and phone compositions in both themes.
+- A four-domain capability band.
+- **Three independently linked project cards**, cropped from the approved
+  three-up gallery by `tools/build-v4-cards.mjs`. Each card is wrapped in a real
+  repository link and has desktop, phone, dark and light variants.
+- **Light-theme navigation buttons** derived from the approved dark artwork, so
+  the pills no longer sit as dark objects on a cream page.
+- A real Evidence Explorer capture from the public NosoGraph repository, behind a
+  disclosure and explicitly labelled as a capture, not a hosted demo.
+- The existing generated research-pipeline and public-activity graphics.
 
 ## Implementation notes
 
-The featured gallery is a single composited image, **not three independent clickable cards**. Direct project repository links appear below it. The four navigation buttons are separate images nested inside genuine anchor links.
+The cards are crops of the approved gallery, not new illustrations. The gallery
+plates remain in the repository as the source for those crops; they are not
+referenced by the README. The buttons keep the dark art's exact alpha silhouette,
+type and iconography; only the palette roles change, using the same tokens as the
+rest of the system.
 
-The V4 hero and gallery include rasterized editorial text; regenerate source compositions when that wording changes. Essential project descriptions, caveats, contact details and destination links remain real, selectable Markdown.
+`<a><picture><source media="(prefers-color-scheme: …)"><img></picture></a>` is
+used for both cards and buttons. GitHub's Markdown pipeline preserves the
+`<source>` elements inside the anchor (verified against the Markdown API and the
+rendered branch page), so the artwork is both clickable and theme-aware. Fallback
+`<img>` sources are the desktop dark variants, which means an environment that
+ignores `<picture>` still shows finished artwork.
 
-V4 assets under `assets/studio-v4/` are intentionally committed to the public profile repository. The large master-art archive and unused decorative extras are **not** committed. Legacy SVG assets and generator scripts remain available for the research pipeline, activity chart and future iterations.
+V4 assets under `assets/studio-v4/` are intentionally committed to the public
+profile repository. The large master-art archive and unused decorative extras are
+**not** committed. Legacy SVG assets and generators remain available for the
+research pipeline, activity chart and future iterations.
 
 ## Validation and release
 
-- `node tools/check-v4-assets.mjs` checks all referenced V4 WebP files, format signatures and component-size budgets.
-- `node tools/check-markdown.mjs` checks responsive picture variants, link structure and existing SVG references.
-- `node tools/check-assets.mjs` checks the existing SVG asset manifest and budgets.
-- The GitHub `Check README` workflow also checks contrast, XML, external links and Markdown lint.
+- `node tools/check-v4-assets.mjs` checks every referenced WebP: signature,
+  exact dimensions, complete families, budgets and the four source plates.
+- `node tools/check-markdown.mjs` checks responsive variants, the light button
+  variants, alt text, real anchor wrappers and card destinations.
+- `node tools/check-assets.mjs` checks the generated SVG manifest and budgets.
+- The GitHub `Check README` workflow also checks contrast, XML, external links and
+  Markdown lint.
 
-Local GitHub-like desktop/mobile previews were created at 1280 and 390 px in both themes. They intentionally use placeholders for existing evidence/activity SVGs because this patch was composited independently; the **actual feature branch retains those real SVG files**.
-
-Review the feature branch visually on GitHub, including mobile and theme switching, before merging it into `main`. No merge or automatic publication has been authorized.
+Local GitHub-like captures at 1440/1280/1024/768/390/360 px in both themes live
+in `docs/previews/` as JPEGs. Browser checks assert image loading, no horizontal
+overflow, the selected theme/layout source, real link destinations, navigation
+wrapping and rendered button/card luminance. Review the feature branch on GitHub,
+including mobile and theme switching, before merging. No merge or automatic
+publication has been authorized.

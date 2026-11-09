@@ -1,7 +1,12 @@
 name: Render profile assets
 
-# Regenerates the profile artwork from the design tokens and captured
+# Regenerates the generated SVG artwork from the design tokens and captured
 # repository data, runs the quality gates, and commits the result.
+#
+# Approved V4 raster plates, project-card crops and buttons under
+# assets/studio-v4 are static artwork: they are not generated here, and the
+# guard below fails the run if a generator changes them. Rebuild the card
+# derivatives locally with tools/build-v4-cards.mjs instead.
 #
 # Scheduled publishing is intentionally NOT enabled. The schedule block below
 # is commented out until the workflow has been reviewed and the owner has
@@ -51,6 +56,14 @@ jobs:
 
       - name: Regenerate assets and run gates
         run: node tools/render-all.mjs
+
+      - name: Protect approved V4 static artwork
+        run: |
+          if ! git diff --quiet -- assets/studio-v4; then
+            echo "::error::Regeneration modified approved V4 artwork under assets/studio-v4. Nothing was committed."
+            git diff --stat -- assets/studio-v4
+            exit 1
+          fi
 
       - name: Commit generated assets
         run: |

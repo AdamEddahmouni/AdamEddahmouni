@@ -3,9 +3,12 @@
  *
  * GitHub's README renderer is the only real acceptance test, but these catch
  * the failures that are invisible until someone loads the profile: a missing
- * responsive source, a dangling asset path, a picture nested in a link (which
- * loses its <source> elements), a button image that is not actually a link,
- * or unverified sample data left in the copy.
+ * responsive source, a dangling asset path, a card or button that is not a real
+ * link, a theme variant that never loads, or unverified sample data in the copy.
+ *
+ * GitHub now preserves <source> elements inside <a><picture>…</picture></a>, so
+ * the project cards and buttons are both linked and theme-aware. That is
+ * asserted here rather than assumed.
  */
 
 import { readFileSync, existsSync } from 'node:fs'
@@ -21,7 +24,7 @@ const pass = (msg) => { console.log(`  pass  ${msg}`); passes++ }
 
 // 1. balanced HTML -----------------------------------------------------------
 console.log('\ntag balance')
-for (const tag of ['div', 'picture', 'a', 'p', 'sub', 'strong']) {
+for (const tag of ['div', 'picture', 'a', 'p', 'sub', 'strong', 'details', 'summary']) {
   const open = (readme.match(new RegExp(`<${tag}[\\s>]`, 'g')) ?? []).length
   const close = (readme.match(new RegExp(`</${tag}>`, 'g')) ?? []).length
   if (open === close) pass(`<${tag}> ${open}/${close}`)
@@ -30,53 +33,128 @@ for (const tag of ['div', 'picture', 'a', 'p', 'sub', 'strong']) {
 
 // 2. pictures ----------------------------------------------------------------
 console.log('\npicture elements')
-const pictures = readme.match(/<picture>[\s\S]*?<\/picture>/g) ?? []
-if (!pictures.length) fail('no <picture> elements found')
-let badPicture = 0
-for (const [i, p] of pictures.entries()) {
-  const sources = [...p.matchAll(/<source\b[^>]*>/g)].map((m) => {
-    const tag = m[0]
-    return {
-      srcset: (tag.match(/srcset="([^"]+)"/) ?? [])[1] ?? '',
-      media: (tag.match(/media="([^"]+)"/) ?? [])[1] ?? '',
-    }
-  })
+const pictureBlocks = [...readme.matchAll(/<picture>[\s\S]*?<\/picture>/g)].map((m) => ({
+  markup: m[0],
+  index: m.index,
+}))
+if (!pictureBlocks.length) fail('no <picture> elements found')
+
+const linkedHref = (index) => {
+  const before = readme.slice(0, index)
+  const open = before.lastIndexOf('<a ')
+  const close = before.lastIndexOf('</a>')
+  if (open < 0 || open < close) return null
+  return before.slice(open).match(/href="([^"]+)"/)?.[1] ?? null
+}
+
+const sourcesOf = (markup) => [...markup.matchAll(/<source\b[^>]*>/g)].map((m) => ({
+  srcset: (m[0].match(/srcset="([^"]+)"/) ?? [])[1] ?? '',
+  media: (m[0].match(/media="([^"]+)"/) ?? [])[1] ?? '',
+}))
+
+let responsive = 0
+let buttons = 0
+let brokenPicture = 0
+for (const [i, picture] of pictureBlocks.entries()) {
+  const sources = sourcesOf(picture.markup)
   const srcsets = sources.map((s) => s.srcset).filter(Boolean)
   const media = sources.map((s) => s.media)
-  if (!media.some((m) => m.includes('max-width') && m.includes('prefers-color-scheme: dark'))) {
-    fail(`picture ${i + 1}: no mobile dark source`); badPicture++
+  const img = picture.markup.match(/<img[^>]*>/)
+  const isButton = srcsets.some((s) => s.includes('/presentation/buttons/'))
+  const isResponsive = media.some((m) => m.includes('max-width'))
+
+  if (!img) { fail(`picture ${i + 1}: no fallback <img>`); brokenPicture++; continue }
+  const alt = img[0].match(/\balt="([^"]*)"/)?.[1]?.trim() ?? ''
+  if (alt.length < (isButton ? 10 : 40)) {
+    fail(`picture ${i + 1}: missing or too-short alt text`); brokenPicture++
   }
-  if (!media.some((m) => m.includes('max-width') && m.includes('prefers-color-scheme: light'))) {
-    fail(`picture ${i + 1}: no mobile light source`); badPicture++
+  const fallbackSrc = img[0].match(/\bsrc="([^"]+)"/)?.[1] ?? ''
+  if (!fallbackSrc) { fail(`picture ${i + 1}: fallback <img> has no src`); brokenPicture++ }
+  if (!sources.length) { fail(`picture ${i + 1}: no <source> elements`); brokenPicture++ }
+
+  for (const source of sources) {
+    if (!source.srcset) { fail(`picture ${i + 1}: <source> without srcset`); brokenPicture++ }
+    if (!source.media) { fail(`picture ${i + 1}: <source> without media`); brokenPicture++ }
   }
-  if (!media.some((m) => !m.includes('max-width') && m.includes('prefers-color-scheme: dark'))) {
-    fail(`picture ${i + 1}: no desktop dark source`); badPicture++
-  }
-  if (!media.some((m) => !m.includes('max-width') && m.includes('prefers-color-scheme: light'))) {
-    fail(`picture ${i + 1}: no desktop light source`); badPicture++
-  }
-  const img = p.match(/<img[^>]*>/)
-  if (!img) { fail(`picture ${i + 1}: no fallback <img>`); badPicture++; continue }
-  const alt = img[0].match(/\balt="([^"]*)"/)
-  if (!alt || alt[1].trim().length < 24) {
-    fail(`picture ${i + 1}: missing or too-short alt text`); badPicture++
-  }
-  for (const src of srcsets) {
+  for (const src of [...srcsets, fallbackSrc]) {
     if (!existsSync(join(ROOT, src.replace(/^\.\//, '')))) {
-      fail(`picture ${i + 1}: srcset targets missing ${src}`); badPicture++
+      fail(`picture ${i + 1}: targets missing ${src}`); brokenPicture++
     }
   }
-}
-if (!badPicture) pass(`${pictures.length} pictures: mobile + desktop sources, both schemes, descriptive alt, files present`)
 
-// 3. pictures must not be nested in links ------------------------------------
-console.log('\npicture inside a link')
-const nested = readme.match(/<a[^>]*>(?:(?!<\/a>)[\s\S])*?<picture/g) ?? []
-if (nested.length) {
-  for (const n of nested) fail(`<picture> inside <a> loses its <source> elements: ${n.slice(0, 60)}...`)
-} else {
-  pass('no <picture> nested inside <a>')
+  if (isResponsive) {
+    responsive++
+    if (!media.some((m) => m.includes('max-width') && m.includes('prefers-color-scheme: dark'))) {
+      fail(`picture ${i + 1}: no mobile dark source`); brokenPicture++
+    }
+    if (!media.some((m) => m.includes('max-width') && m.includes('prefers-color-scheme: light'))) {
+      fail(`picture ${i + 1}: no mobile light source`); brokenPicture++
+    }
+    // The fallback <img> is the desktop dark artwork on the project cards, so
+    // it satisfies the dark desktop variant without a duplicate <source>.
+    if (!media.some((m) => !m.includes('max-width') && m.includes('prefers-color-scheme: dark')) &&
+        !/-desktop-dark\.webp$/.test(fallbackSrc)) {
+      fail(`picture ${i + 1}: no desktop dark source`); brokenPicture++
+    }
+    if (!media.some((m) => !m.includes('max-width') && m.includes('prefers-color-scheme: light'))) {
+      fail(`picture ${i + 1}: no desktop light source`); brokenPicture++
+    }
+  } else if (isButton) {
+    buttons++
+    if (!media.some((m) => m.includes('prefers-color-scheme: light'))) {
+      fail(`picture ${i + 1}: button has no light-theme source`); brokenPicture++
+    }
+    if (!/presentation\/buttons\/[a-z]+-dark\.webp/.test(fallbackSrc)) {
+      fail(`picture ${i + 1}: button fallback is not the dark artwork`); brokenPicture++
+    }
+    if (!/\bwidth="145"/.test(img[0])) {
+      fail(`picture ${i + 1}: button width drifted from 145`); brokenPicture++
+    }
+  } else {
+    fail(`picture ${i + 1}: neither responsive plate nor themed button`)
+    brokenPicture++
+  }
 }
+if (!brokenPicture) {
+  pass(`${pictureBlocks.length} pictures: ${responsive} responsive plates, ${buttons} themed buttons, all files present`)
+}
+
+// 3. linked artwork -----------------------------------------------------------
+console.log('\nlinked artwork')
+const PROJECT_LINKS = {
+  nosograph: 'https://github.com/AdamEddahmouni/nosograph',
+  'agent-ready': 'https://github.com/AdamEddahmouni/agent-ready',
+  'short-squeeze-screener': 'https://github.com/AdamEddahmouni/short-squeeze-screener-internship',
+}
+const cardIds = new Set()
+for (const picture of pictureBlocks) {
+  const match = picture.markup.match(/gallery\/([a-z-]+)-desktop-dark\.webp/)
+  if (!match) continue
+  const id = match[1]
+  cardIds.add(id)
+  const href = linkedHref(picture.index)
+  if (!href) fail(`project card ${id} is not inside a link`)
+  else if (href !== PROJECT_LINKS[id]) fail(`project card ${id} links to ${href}`)
+  const img = picture.markup.match(/<img[^>]*>/)?.[0] ?? ''
+  if (!/\bwidth="480"/.test(img)) fail(`project card ${id} width drifted from 480`)
+}
+for (const id of Object.keys(PROJECT_LINKS)) {
+  if (!cardIds.has(id)) fail(`no independently linked card for ${id}`)
+}
+if (cardIds.size === Object.keys(PROJECT_LINKS).length) {
+  pass(`${cardIds.size} project cards are genuine links to their repositories`)
+}
+
+const buttonIds = new Set()
+for (const picture of pictureBlocks) {
+  const match = picture.markup.match(/buttons\/([a-z]+)-dark\.webp/)
+  if (!match) continue
+  buttonIds.add(match[1])
+  const href = linkedHref(picture.index)
+  if (!href) fail(`button ${match[1]} is not a real link`)
+}
+if (buttonIds.size === 4) pass(`4 navigation buttons are genuine links`)
+else fail(`expected 4 linked buttons, found ${buttonIds.size}`)
 
 // 4. asset references --------------------------------------------------------
 console.log('\nasset references')
@@ -85,9 +163,9 @@ let missing = 0
 for (const r of refs) {
   if (!existsSync(join(ROOT, r.replace(/^\.\//, '')))) { fail(`missing asset ${r}`); missing++ }
 }
-if (!missing) pass(`${refs.length} asset references resolve`)
+if (!missing) pass(`${refs.length} SVG references resolve`)
 
-// 5. every image is either decorative artwork or a real linked button --------
+// 5. links -------------------------------------------------------------------
 console.log('\nlinks')
 const anchors = [...readme.matchAll(/<a\s[^>]*href="([^"]+)"/g)].map((m) => m[1])
 const mdLinks = [...readme.matchAll(/\]\(([^)]+)\)/g)].map((m) => m[1])
@@ -106,16 +184,6 @@ for (const id of internal) {
   if (!headings.includes(slug)) fail(`internal link #${slug} has no matching heading`)
 }
 if (internal.length) pass(`${internal.length} internal anchors resolve`)
-
-const buttons = refs.filter((r) => r.includes('/ui/button-'))
-let unlinked = 0
-for (const button of buttons) {
-  const line = readme.split('\n').find((l) => l.includes(button)) ?? ''
-  if (!/<a\s[^>]*href="[^"]+"/.test(line) || !/<\/a>/.test(line)) {
-    fail(`button image is not a real link: ${button}`); unlinked++
-  }
-}
-if (buttons.length && !unlinked) pass(`${buttons.length} buttons are genuine links`)
 
 // 6. content restrictions ----------------------------------------------------
 console.log('\ncontent restrictions')
@@ -144,8 +212,10 @@ if (!bad) pass('no unverified sample data, private links or badge services')
 console.log('\nstructure')
 const h2 = [...readme.matchAll(/^##\s+(.*)$/gm)].map((m) => m[1])
 const h3 = [...readme.matchAll(/^###\s+(.*)$/gm)].map((m) => m[1])
-if (h2.length < 5) fail(`only ${h2.length} h2 sections; expected a complete profile`)
+if (h2.length < 6) fail(`only ${h2.length} h2 sections; expected a complete profile`)
 else pass(`${h2.length} sections: ${h2.join(' · ')}`)
+if (!h2.includes('What I build')) fail('missing the "What I build" section')
+if (!h2.includes('Selected work')) fail('missing the "Selected work" section')
 if (h3.length < 3) fail(`only ${h3.length} featured projects`)
 else pass(`${h3.length} featured projects`)
 const email = readme.match(/mailto:([^)"\s]+)/)

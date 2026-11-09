@@ -76,7 +76,7 @@ writeFileSync(join(ROOT, 'tools', 'manifest.json'), JSON.stringify(manifest, nul
 const mb = (manifest.totalBytes / 1024 / 1024).toFixed(2)
 console.log(`\nmanifest: ${manifest.count} assets, ${mb} MB total`)
 
-for (const gate of ['check-contrast.mjs', 'check-markdown.mjs', 'check-assets.mjs']) {
+for (const gate of ['check-contrast.mjs', 'check-markdown.mjs', 'check-assets.mjs', 'check-v4-assets.mjs']) {
   console.log(`\n── ${gate}`)
   const r = spawnSync(process.execPath, [`tools/${gate}`], { stdio: 'inherit' })
   if (r.status !== 0) process.exit(r.status ?? 1)
