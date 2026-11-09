@@ -184,3 +184,20 @@ performed; the match is compositional, judged from the captures in
 approved study's three-card composition. Not ready to merge without that review,
 and the branch should not be merged by an agent: the profile page changes only
 when `main` is updated.
+
+---
+
+## 11. V4 cinematic artwork integration — 2026-11-09
+
+V4 is now committed to the `profile/engineering-studio` branch, replacing the earlier flat hero and diagram-only featured gallery with the approved cinematic visual system. `main` remains unchanged.
+
+- **Commit:** `a0be8dd` introduced 16 WebP assets, responsive hero/glance/gallery composition, concise project copy and a dedicated image-integrity check.
+- **Follow-up commits:** corrected Markdown formatting and removed an unused local variable without changing rendered art.
+- **Latest successful CI:** [Run 42628614803](https://github.com/AdamEddahmouni/AdamEddahmouni/actions/runs/42628614803), commit `66df87e`. All substantive checks passed: contrast, README structure, SVG budgets/manifest, V4 WebP integrity/budgets, SVG XML, outbound links and Markdown lint.
+- **Binary integrity:** each of the 20 committed files (including 16 WebP images) was verified against the local Git blob SHA before the atomic feature-branch commit.
+- **Local preview:** desktop 1280 px and mobile 390 px in dark and light color schemes. Seven images loaded per preview without horizontal overflow. Previews omit two inherited SVGs and show placeholders for those elements; the GitHub branch retains the actual evidence/activity images.
+- **Visual tradeoff:** the featured-gallery composite is not three separately clickable cards. Genuine repository links appear in Markdown directly below the gallery.
+- **Reproducibility:** V4 artwork is intentionally rasterized for cinematic quality. The existing SVG generators remain for evidence and activity. Do not claim that re-running the SVG generators recreates the V4 hero.
+- **Remaining acceptance:** direct human review of the GitHub feature-branch rendering in both themes and on a narrow phone viewport. The `main` profile is not yet published with V4.
+
+**Draft PR for owner approval:** [Engineering Studio V4](https://github.com/AdamEddahmouni/AdamEddahmouni/pull/2). No merge or automatic publication was performed.
