@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16",
+  "generated": "2026-11-17",
   "repos": {
     "nosograph": {
       "stars": 1,
@@ -15,8 +15,8 @@
       "forks": 0,
       "license": "Apache-2.0",
       "language": "TypeScript",
-      "lastCommit": "2026-08-05",
-      "pushedAt": "2026-10-28",
+      "lastCommit": "2026-11-17",
+      "pushedAt": "2026-11-17",
       "defaultBranch": "main"
     },
     "short-squeeze-screener-internship": {
@@ -42,13 +42,13 @@
       "pct": null
     },
     {
-      "name": "JavaScript",
-      "bytes": 637780,
+      "name": "TypeScript",
+      "bytes": 1518662,
       "pct": null
     },
     {
-      "name": "TypeScript",
-      "bytes": 571306,
+      "name": "JavaScript",
+      "bytes": 649745,
       "pct": null
     },
     {
@@ -67,8 +67,18 @@
       "pct": null
     },
     {
+      "name": "PowerShell",
+      "bytes": 15346,
+      "pct": null
+    },
+    {
       "name": "Dockerfile",
       "bytes": 5359,
+      "pct": null
+    },
+    {
+      "name": "status",
+      "bytes": "0404",
       "pct": null
     },
     {
@@ -84,16 +94,6 @@
     {
       "name": "documentation_url",
       "bytes": "0https://docs.github.com/rest/repos/repos#list-repository-languages",
-      "pct": null
-    },
-    {
-      "name": "PowerShell",
-      "bytes": 12650,
-      "pct": null
-    },
-    {
-      "name": "status",
-      "bytes": "0404",
       "pct": null
     }
   ],
@@ -130,6 +130,7 @@
       "2026-07-25": 30,
       "2026-07-20": 2,
       "2026-07-19": 2,
+      "2026-11-17": 2,
       "2026-07-30": 1,
       "2026-07-29": 2,
       "2026-07-12": 9,
@@ -145,6 +146,6 @@
       "2026-07-31": 1,
       "2026-07-27": 34
     },
-    "total": 451
+    "total": 453
   }
 }
