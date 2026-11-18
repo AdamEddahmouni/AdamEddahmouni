@@ -3,7 +3,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/hero/hero-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/hero/hero-light.svg">
-  <img width="100%" alt="Adam Eddahmouni: four open-source projects. NosoGraph for biomedical disease evidence, Agent-Ready for coding-agent repository contracts, a trading-platform monorepo with a lineage guard, and a read-only short-squeeze research screener" src="./assets/hero/hero-dark.svg">
+  <img width="100%" alt="Adam Eddahmouni: four projects. NosoGraph for biomedical disease evidence, Agent-Ready for coding-agent repository contracts, a private trading-platform monorepo with a lineage guard, and a read-only short-squeeze research screener" src="./assets/hero/hero-dark.svg">
 </picture>
 
 [LinkedIn](https://www.linkedin.com/in/adameddahmouni/) · [Email](mailto:adameddahmouni@gmail.com) · [NosoGraph docs](https://adameddahmouni.github.io/nosograph/) · [Projects](#projects) · [Stack](#stack)
@@ -12,7 +12,7 @@
 
 ## Hi, I'm Adam 👋
 
-I'm a **Mechanical Engineering** student at **Penn State** (class of 2029) who also builds software: **AI tooling**, **biomedical research software**, and **quantitative market systems**, all in the open.
+I'm a **Mechanical Engineering** student at **Penn State** (class of 2029) who also builds software: **AI tooling**, **biomedical research software**, and **quantitative market systems**. Some of my projects are open source and others are private.
 
 - 🧬 **Now building:** [NosoGraph](https://github.com/AdamEddahmouni/nosograph), an open-source graph that links disease knowledge to its evidence and sources.
 - 🤖 **Also shipping:** [Agent-Ready](https://github.com/AdamEddahmouni/agent-ready), one config file that tells every AI coding agent how to work in your repo.
@@ -55,7 +55,7 @@ Every claim records whether evidence supports it, contradicts it, or is inconclu
 A `package.json` for AI coding agents.
 Write one schema-validated `agent-ready.yaml` with your commands, rules and checks, and it generates `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, Copilot and Gemini instructions from it.
 
-`TypeScript` · JSON Schema · 10-command CLI · no API keys, fully offline
+`TypeScript` · JSON Schema · 11-command CLI (v0.6.1) · no API keys, fully offline
 
 [Code](https://github.com/AdamEddahmouni/agent-ready)
 
@@ -70,14 +70,14 @@ Write one schema-validated `agent-ready.yaml` with your commands, rules and chec
   <img width="100%" alt="Market Trading Platform: branches feeding a protected main branch, then into a manifest and a lineage ledger" src="./assets/cards/market-trading-platform-dark.svg">
 </picture>
 
-### [Market Trading Platform](https://github.com/AdamEddahmouni/market-trading-platform)
+### Market Trading Platform (private)
 
 A monorepo that unifies my trading tools, with a guard script that keeps every snapshot traceable back to the exact commits it came from.
 `main` is protected behind a required CI check.
 
 `Python` · `TypeScript` · CI-gated `main` · commit lineage ledger
 
-[Code](https://github.com/AdamEddahmouni/market-trading-platform) · [Workflow](https://github.com/AdamEddahmouni/market-trading-platform/blob/main/docs/MONOREPO_WORKFLOW.md)
+Private repository, not open source.
 
 </td>
 <td width="50%" valign="top">
