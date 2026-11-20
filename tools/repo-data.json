@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19",
+  "generated": "2026-11-20",
   "repos": {
     "nosograph": {
       "stars": 1,
@@ -15,8 +15,8 @@
       "forks": 0,
       "license": "Apache-2.0",
       "language": "TypeScript",
-      "lastCommit": "2026-11-17",
-      "pushedAt": "2026-11-17",
+      "lastCommit": "2026-11-20",
+      "pushedAt": "2026-11-20",
       "defaultBranch": "main"
     },
     "short-squeeze-screener-internship": {
@@ -30,8 +30,8 @@
     }
   },
   "account": {
-    "followers": 2,
-    "publicRepos": 5,
+    "followers": 3,
+    "publicRepos": 8,
     "location": "Pennsylvania, United States",
     "bio": "Full-stack and quantitative systems developer exploring AI-driven tooling, fintech, and applied software engineering // Penn State Student"
   },
@@ -43,12 +43,12 @@
     },
     {
       "name": "TypeScript",
-      "bytes": 1658010,
+      "bytes": 1908757,
       "pct": null
     },
     {
       "name": "JavaScript",
-      "bytes": 653385,
+      "bytes": 666425,
       "pct": null
     },
     {
@@ -130,6 +130,7 @@
       "2026-07-25": 30,
       "2026-07-20": 2,
       "2026-07-19": 2,
+      "2026-11-20": 8,
       "2026-11-17": 15,
       "2026-07-30": 1,
       "2026-07-29": 2,
@@ -146,6 +147,6 @@
       "2026-07-31": 1,
       "2026-07-27": 34
     },
-    "total": 466
+    "total": 474
   }
 }
